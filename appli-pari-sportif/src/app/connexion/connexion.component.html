@@ -12,7 +12,7 @@
 					</div>
 					<div class="form-connection">
 						<label for="intitule">Mot de passe :</label>
-							<a id="oublieMdp" href="oublieMdp.html">Mot de passe oublié ?</a>
+							<a routerLink="/motDePasseOublie" routerLinkActive="active">Mot de passe oublié ?</a>
 					<input type="password"
 							class="form-control" id="mdp">
 					</div>
@@ -21,10 +21,8 @@
 			</div>
 			<div class="card-footer text-center ">
 					<div class="btn-group btn-group-lg">
-				<button type="button" class="btn btn-warning" onclick="save()">
+				<button type="button" class="btn btn-warning" routerLink="/compteUtilisateur" routerLinkActive="active">
 					Connexion</button>
-
-
         <button type="button" class="btn btn-success" routerLink="/inscription" routerLinkActive="active"> 	Pas de compte ?
 				</button>
 

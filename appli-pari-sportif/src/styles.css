@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.ng-touched:not(form){
+  border: 3px solid lightblue;
+}
+
+.ng-dirty.ng-valid:not(form){
+  border: 5px solid green;
+  border-radius: 2px;
+}
+
+.ng-dirty.ng-invalid:not(form){
+  border: 5px solid red;
+  border-radius: 1px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.help-block {
+  color: red;
+  font-weight: 700;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
