@@ -14,7 +14,7 @@ export class CompteUtilisateurComponent implements OnInit {
   // utilisateur!:Utilisateur[];
 
 
-  constructor()  {
+  constructor()  {}
 
   ngOnInit(): void {
 
@@ -30,3 +30,4 @@ export class CompteUtilisateurComponent implements OnInit {
 //    this.heroes = this.heroes.filter(selectHero =>selectHero !== hero)
 
 }
+
