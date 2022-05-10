@@ -6,16 +6,14 @@ import { Router } from '@angular/router';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.css']
 })
+export class PageNotFoundComponent  {
 
-export class PageNotFoundComponent implements OnInit {{
- 
-  constructor(private router:Router) { }
- 
+  constructor(private router: Router) { }
+
   goHome(){
     this.router.navigate(['/'])
   }
-  
-    ngOnInit(): void {
-  }
 
 
+
+}

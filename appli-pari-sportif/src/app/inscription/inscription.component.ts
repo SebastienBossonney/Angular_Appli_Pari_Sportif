@@ -5,6 +5,7 @@ import { Utilisateur } from '../utilisateur.model';
 import { UserService } from '../utilisateur.service';
 import { reservedNameValidator } from './reserved-name.directive';
 
+
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
