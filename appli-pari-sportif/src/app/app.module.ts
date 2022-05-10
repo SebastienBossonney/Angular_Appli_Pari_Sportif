@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -17,7 +18,9 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utilisateur.component';
 import { HistoriquePariFootComponent } from './historique-pari-foot/historique-pari-foot.component';
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique
     DonneesUtilisateurComponent,
     HistoriquePariFootComponent,
     HistoriquePariRugbyComponent,
+    PageNotFoundComponent,
     
    // LimiteInterfaceComponent
 
@@ -42,7 +46,7 @@ import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

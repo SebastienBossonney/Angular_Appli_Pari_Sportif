@@ -6,6 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DonneesPariComponent } from './donnees-pari/donnees-pari.component';
 const routes: Routes = [
+
   {path: 'connexion', component: ConnexionComponent},
   {path: 'inscription', component: InscriptionComponent},
   {path: '**', component: PageNotFoundComponent},
