@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 // import { Limite } from './limite-interface.component';
 import { map, Observable, Subject, Subscription, takeUntil } from 'rxjs';
 
@@ -13,6 +14,8 @@ export class DonneesPariComponent implements OnInit {
   limiteArg=false;//Pour le bouton modifier de limite d'argent
   salaire=false; //Pour le bouton modifier le salaire
   risque=false;//Pour le bouton modifier le seuil de risque 
+
+ 
 
   changeLimite() { //Pour le bouton modifier de limite d'argent
     if(this.limiteArg) {
@@ -40,10 +43,14 @@ export class DonneesPariComponent implements OnInit {
 
     }
 
+    
+
 
   // limite$!: Observable<Limite>
 
-  constructor() { }
+  constructor() {   }
+
+  
 
   ngOnInit(): void {
     // this.getLimite()

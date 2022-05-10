@@ -9,8 +9,8 @@
 			</div>
 			<div class="card-body">
 				<form>
-					<div class="form-connection" *ngFor="email des utilisateurs"> 
-						<label for="emailCompte">{{utilisateur.email}} </label> <input type="text"
+					<div class="form-connection" > 
+						<label for="emailCompte"></label> <input type="text"
 							class="form-control" id="emailCompte" disabled="disabled">
 
 					</div>
@@ -66,8 +66,8 @@
 				</form>
 			</div>
 			<div class="card-footer text-left ">
-				<button type="submit"
-					 class="btn btn-outline-warning btn-sm float-left" [routerLink]="['./donnees-pari.component.html']" > <!--onclick="window.location.href = 'http://localhost:4200/donnees-pari.component.html'" -->
+				<button  type="submit" 
+					 class="btn btn-outline-warning btn-sm float-left" > <a routerLink="/donneesPari"></a>
 					Modifier</button>
 			</div>
 			</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { stringify } from 'querystring';
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
 
@@ -14,16 +13,14 @@ export class CompteUtilisateurComponent implements OnInit {
   utilisateur!:Utilisateur[];
   
   
-  constructor(private utilisateurService: UtilisateurService ) {
+  constructor(private router: Router) {
 
   }
-
+ goDonneesPari(){
+      this.router.navigate(['/donneesPari'])
+    }
   ngOnInit(): void {
-    this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
-      this.utilisateur=utilisateur;
-      
-    })
-
+     
     
 
   }
