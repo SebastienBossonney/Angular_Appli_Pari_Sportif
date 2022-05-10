@@ -9,6 +9,7 @@ import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utili
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 
 const routes: Routes = [
+
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
