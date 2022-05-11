@@ -28,6 +28,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
 
+
    // LimiteInterfaceComponent
 
 
@@ -58,7 +60,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 
     CommonModule,
     HttpClientModule,
- 
+
     FormsModule,
     ReactiveFormsModule
 
