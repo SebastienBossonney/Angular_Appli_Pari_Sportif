@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { map, switchMap } from 'rxjs';
 
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
@@ -13,30 +14,28 @@ export class CompteUtilisateurComponent implements OnInit
 {
 
 
-  utilisateur!:Utilisateur[];
-
-
-  constructor(private utilisateurService: UtilisateurService ) { }
-
-
-  // utilisateur!:Utilisateur[];
+  utilisateur!:Utilisateur;
+  
 
 
 
+  constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute)  {}
 
-  ngOnInit(): void {}
+  ngOnInit(){
+  this.getUtilisateurById()
+ 
+  }
 
-
-    // this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
-    //   this.utilisateur=utilisateur;
-
+  getUtilisateurById(){
+    this.route.paramMap.pipe(switchMap((params:ParamMap)=>{
+      const id = +params.get('id')!;
+      const user = this.utilisateurService.getUtilisateurById(id);
+      return user
+    }),map(utilisateur => this.utilisateur= utilisateur)
+    ).subscribe()
+  }
 }
 
-
-
-
-//   this.utilisateurService.getUtilisateurById(Utilisateur.id).subscribe(() =>{
-//    this.heroes = this.heroes.filter(selectHero =>selectHero !== hero)
 
 
 
