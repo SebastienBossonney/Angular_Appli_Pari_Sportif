@@ -23,7 +23,7 @@ export class CompteUtilisateurComponent implements OnInit {
 
   constructor()  {}
 
-  ngOnInit(): void {
+  ngOnInit(){
 
 
     // this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
