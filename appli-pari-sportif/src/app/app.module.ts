@@ -24,7 +24,7 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 
 import { PariComponent } from './pari/pari.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     HistoriquePariRugbyComponent,
 
    // LimiteInterfaceComponent
-    PariComponent
+    PariComponent,
 
     CompteUtilisateurComponent,
 

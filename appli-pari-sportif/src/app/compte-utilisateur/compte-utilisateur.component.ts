@@ -15,7 +15,7 @@ export class CompteUtilisateurComponent implements OnInit {
   utilisateur!:Utilisateur[];
 
 
-  constructor(private utilisateurService: UtilisateurService ) {
+ 
 
 
   // utilisateur!:Utilisateur[];
