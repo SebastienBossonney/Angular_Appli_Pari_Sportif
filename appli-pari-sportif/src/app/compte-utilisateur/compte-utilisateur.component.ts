@@ -10,18 +10,19 @@ import { UtilisateurService} from '../utilisateur-service.service';
 })
 export class CompteUtilisateurComponent implements OnInit {
 
-  utilisateur!:Utilisateur[];
-  
-  
-  constructor(private router: Router) {
 
-  }
- goDonneesPari(){
-      this.router.navigate(['/donneesPari'])
-    }
+  // utilisateur!:Utilisateur[];
+
+
+  constructor()  {}
+
   ngOnInit(): void {
-     
-    
+
+    // this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
+    //   this.utilisateur=utilisateur;
+
+
+
 
   }
 
@@ -29,3 +30,4 @@ export class CompteUtilisateurComponent implements OnInit {
 //    this.heroes = this.heroes.filter(selectHero =>selectHero !== hero)
 
 }
+
