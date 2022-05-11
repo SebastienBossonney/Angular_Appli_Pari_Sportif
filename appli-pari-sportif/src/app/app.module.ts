@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -22,9 +20,12 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
 
 
-import { PariComponent } from './pari/pari.component';
+
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { ParierRoutingModule } from './parier/parier-routing.module';
+import { ParierModule } from './parier/parier.module';
+
 
 
 @NgModule({
@@ -42,9 +43,7 @@ import { FormsModule } from '@angular/forms';
     HistoriquePariRugbyComponent,
 
    // LimiteInterfaceComponent
-    PariComponent
-
-    CompteUtilisateurComponent,
+    CompteUtilisateurComponent
 
    // LimiteInterfaceComponent
 
@@ -56,9 +55,12 @@ import { FormsModule } from '@angular/forms';
 
     CommonModule,
     HttpClientModule,
- 
+
+
+
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ParierModule
 
   ],
   providers: [HttpClientModule],

@@ -11,14 +11,15 @@ export class PariSportMatchComponent implements OnInit {
   sportId: number | undefined;
   private sub: any;
 
-  constructor( private router: Router, private route: ActivatedRoute) {
-
+  constructor( private route: ActivatedRoute) {
+   console.log("constructor");
   }
 
   ngOnInit(): void {
-  this.sub = this.route.params.subscribe(params => {
-      this.sportId = +params['id']; // (+) converts string 'id' to a number
-    });
+    console.log('j entre');
+  // this.sub = this.route.params.subscribe(params => {
+  //     this.sportId = +params['id']; // (+) converts string 'id' to a number
+  //   });
   }
 
 }

@@ -7,10 +7,9 @@ import { PariSportComponent } from './pari-sport/pari-sport.component';
 const routes: Routes = [
   {path: 'sport', component: PariSportComponent,
   children: [
-    {path: 'sport/:id', component: PariSportMatchComponent
-  }
-  ]},
-  {path: '', redirectTo:'/parier',pathMatch:'full'}];
+    {path: ':id', component: PariSportMatchComponent}
+            ]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

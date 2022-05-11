@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Utilisateur } from '../utilisateur.model';
-import { UserService } from '../utilisateur.service';
+
+
 import { reservedNameValidator } from './reserved-name.directive';
 
 
@@ -14,6 +15,7 @@ import { reservedNameValidator } from './reserved-name.directive';
 export class InscriptionComponent {
 
   user!: Utilisateur;
+  //userService: UserService | undefined;
 
 
   constructor(
@@ -34,24 +36,11 @@ export class InscriptionComponent {
     },
   )
 
-  // loginForm = new FormGroup(
-  //   {
-  //     identifiant : new FormControl(''),
-  //     email : new FormControl(''),
-  //     motDePasse : new FormControl(''),
-  //     profil : new FormControl(''),
-  //     salaire : new FormControl(''),
-  //   }
-  // )
 
   onSubmit() {
-    // this.userService.save(this.user).subscribe((result) => this.gotoUserList());
+    // this.userService.createUtilisateur(this.loginForm.value);
+}
 
-  }
-
-  gotoUserList() {
-    // this.router.navigate(['/utilisateurs']);
-  }
 
   login() {
     const controls = this.loginForm.controls;

@@ -7,6 +7,7 @@ import { DonneesPariComponent } from './donnees-pari/donnees-pari.component';
 import { MotDePasseOublieComponent } from './mot-de-passe-oublie/mot-de-passe-oublie.component';
 import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utilisateur.component';
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
+import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 
 const routes: Routes = [
 
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
   { path: 'donneesPari', component: DonneesPariComponent },
-  {path:'donneesUtilisateur',component:DonneesUtilisateurComponent},
-  {path:'compteUtilisateur',component:CompteUtilisateurComponent},
+  { path:'donneesUtilisateur',component:DonneesUtilisateurComponent},
+  { path:'compteUtilisateur',component:CompteUtilisateurComponent},
+  { path: 'sport', component: PariSportComponent},
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

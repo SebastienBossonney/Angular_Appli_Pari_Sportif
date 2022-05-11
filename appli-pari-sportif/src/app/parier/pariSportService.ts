@@ -6,7 +6,7 @@ import { Sport } from './sport';
 @Injectable({
   providedIn: 'root'
 })
-export class PariService {
+export class PariSportService {
 
   private pariUrl : string;
 
@@ -15,7 +15,6 @@ export class PariService {
    }
 
   public getSports(): Observable<Sport[]> {
-    
      return this.http.get<Sport[]>(this.pariUrl);
    }
 }
