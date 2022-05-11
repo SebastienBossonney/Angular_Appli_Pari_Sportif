@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-///import { stringify } from 'querystring';
+
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
 
@@ -11,18 +11,24 @@ import { UtilisateurService} from '../utilisateur-service.service';
 })
 export class CompteUtilisateurComponent implements OnInit {
 
+
   utilisateur!:Utilisateur[];
 
 
   constructor(private utilisateurService: UtilisateurService ) {
 
-  }
+
+  // utilisateur!:Utilisateur[];
+
+
+  constructor()  {}
 
   ngOnInit(): void {
-    this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
-      this.utilisateur=utilisateur;
 
-    })
+
+    // this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
+    //   this.utilisateur=utilisateur;
+
 
 
 
@@ -32,3 +38,4 @@ export class CompteUtilisateurComponent implements OnInit {
 //    this.heroes = this.heroes.filter(selectHero =>selectHero !== hero)
 
 }
+
