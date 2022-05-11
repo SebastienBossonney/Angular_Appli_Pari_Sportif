@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
@@ -21,6 +22,11 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
 
 
+import { PariComponent } from './pari/pari.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,19 +40,28 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
     DonneesUtilisateurComponent,
     HistoriquePariFootComponent,
     HistoriquePariRugbyComponent,
+
+   // LimiteInterfaceComponent
+    PariComponent
+
     CompteUtilisateurComponent,
 
    // LimiteInterfaceComponent
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    CommonModule,
+    HttpClientModule,
+ 
     FormsModule,
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
