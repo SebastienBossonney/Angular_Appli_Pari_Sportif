@@ -12,15 +12,15 @@ export class UtilisateurService{
 
   constructor(private http:HttpClient) { 
 
-    this.utilisateurUrl ='http://localhost:8080/utilisateurs'
+    this.utilisateurUrl ='http://localhost:8080/utilisateurs/'
   }
 
   public getUtilisateur(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>(this.utilisateurUrl);
   }
 
-  public getUtilisateurById(){
-    return this.http.get<Utilisateur>(this.utilisateurUrl);
+  public getUtilisateurById(id:number): Observable<Utilisateur>{
+    return this.http.get<Utilisateur>(this.utilisateurUrl + id);
   }
 
   public saveUtilisateur(utilisateur: Utilisateur) {

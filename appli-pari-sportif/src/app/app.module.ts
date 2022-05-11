@@ -24,6 +24,8 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 
 import { PariComponent } from './pari/pari.component';
 import { CommonModule } from '@angular/common';
+import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
+
 
 
 
@@ -42,8 +44,10 @@ import { CommonModule } from '@angular/common';
     HistoriquePariRugbyComponent,
 
    // LimiteInterfaceComponent
-    PariComponent
+    PariComponent,
 
+    CompteUtilisateurComponent,
+    AllUtilisateursComponent,
 
 
    // LimiteInterfaceComponent

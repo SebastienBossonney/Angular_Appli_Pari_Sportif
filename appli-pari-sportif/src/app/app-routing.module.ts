@@ -9,6 +9,7 @@ import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utili
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 import { HistoriquePariFootComponent } from './historique-pari-foot/historique-pari-foot.component';
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
+import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
   { path: 'donneesPari', component: DonneesPariComponent },
   {path:'donneesUtilisateur',component:DonneesUtilisateurComponent},
-  {path:'compteUtilisateur',component:CompteUtilisateurComponent},
+  {path: 'allUtilisateurs', component:AllUtilisateursComponent,
+  children: [{path:':id',component:CompteUtilisateurComponent}]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
