@@ -1,0 +1,242 @@
+<div class="container">
+  <span class="h1 text-warning text-center">Compte utilisateur</span>
+  <div class="card mt-3">
+    <div class="card-header bg-warning text-dark text-center">
+      <span class="h3">Données d'utilisateur</span>
+    </div>
+    <div class="card-body">
+      <form>
+        <!-- <div class="form-connection" *ngFor="email; des: utilisateurs">
+          <label for="emailCompte">{{utilisateur.email}} </label> <input type="text"
+
+							class="form-control" id="emailCompte" disabled="disabled">
+        </div> -->
+        <div class="form-connection">
+          <label for="mdpCompte">Mot de passe: </label>
+          <input
+            type="password"
+            value="*******"
+            disabled="disabled"
+            class="form-control"
+            id="mdpCompte"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        routerLink="/donneesUtilisateur"
+        routerLinkActive="active"
+        class="btn btn-outline-warning btn-sm float-left"
+      >
+        Modifier
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-3" id="DonneesPari">
+    <div class="card-header bg-warning text-dark text-center">
+      <h3>Données de pari</h3>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="limiteCompte">Limite d'argent:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="limiteCompte"
+            disabled="disabled"
+          />
+        </div>
+        <div class="form-group">
+          <label for="salaireCompte">Salaire (facultatif):</label>
+          <input
+            type="text"
+            class="form-control"
+            id="salaireCompte"
+            disabled="disabled"
+          />
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="Risque"
+              checked
+              disabled="disabled"
+            />
+            Risque
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="miRisque"
+              disabled="disabled"
+            />
+            Mi-Risque
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="sansRisque"
+              disabled="disabled"
+            />
+            Sans Risque
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm float-left"
+        routerLink="/donneesPari"
+        routerLinkActive="active"
+      >
+        Modifier
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-3 d-flex flex-row" id="DonneesPari">
+    <div
+      class="card-header bg-outline-success bordur-success text-dark text-left"
+    >
+      <h5>Historique des paris</h5>
+    </div>
+    <div class="btn-group btn-group-lg">
+      <button
+        type="button"
+        class="btn btn float-right text-success"
+        title="Football"
+      >
+        <i class="fa-solid fa-futbol"></i> Visualiser
+      </button>
+    </div>
+    <div class="btn-group btn-group-lg">
+      <button
+        type="button"
+        class="btn btn float-right text-warning"
+        title="Basketball"
+      >
+        <i class="fa-solid fa-basketball"></i> Visualiser
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3" id="DonneesPari">
+  <div class="card-header bg-warning text-dark text-center">
+    <h3>Données de pari</h3>
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label for="limiteCompte">Limite d'argent:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="limiteCompte"
+          disabled="disabled"
+        />
+      </div>
+      <div class="form-group">
+        <label for="salaireCompte">Salaire (facultatif):</label>
+        <input
+          type="text"
+          class="form-control"
+          id="salaireCompte"
+          disabled="disabled"
+        />
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            name="profil"
+            id="risque"
+            class="form-check-input"
+            value="Risque"
+            checked
+            disabled="disabled"
+          />
+          Risque
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            name="profil"
+            id="risque"
+            class="form-check-input"
+            value="miRisque"
+            disabled="disabled"
+          />
+          Mi-Risque
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            name="profil"
+            id="risque"
+            class="form-check-input"
+            value="sansRisque"
+            disabled="disabled"
+          />
+          Sans Risque
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer text-left">
+    <button type="submit" class="btn btn-outline-warning btn-sm float-left">
+      <a routerLink="/donneesPari"></a> Modifier
+    </button>
+  </div>
+</div>
+
+<div class="card mt-3 d-flex flex-row" id="DonneesPari">
+  <div
+    class="card-header bg-outline-success bordur-success text-dark text-left"
+  >
+    <h5>Historique des paris</h5>
+  </div>
+  <div class="btn-group btn-group-lg">
+    <button
+      type="button"
+      class="btn btn float-right text-success"
+      title="Football"
+      onclick="window.location.href = 'http://localhost:8080/tpHtml/historiqueParisFootball.html'"
+    >
+      <i class="fa-solid fa-futbol"></i> Visualiser
+    </button>
+  </div>
+  <div class="btn-group btn-group-lg">
+    <button
+      type="button"
+      class="btn btn float-right text-warning"
+      title="Basketball"
+      onclick="window.location.href = 'http://localhost:8080/tpHtml/historiqueParisBasketball.html'"
+    >
+      <i class="fa-solid fa-basketball"></i> Visualiser
+    </button>
+  </div>
+</div>
