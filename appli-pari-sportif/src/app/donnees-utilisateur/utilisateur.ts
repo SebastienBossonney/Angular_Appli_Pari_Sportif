@@ -6,6 +6,8 @@ export class Utilisateur {
     "id": number;
     "identifiant": String;
     "email": String; 
+    "role": String;
+    "profil": String;
     "motDePasse":String;
     "montantDisponible":number;
     "salaire": number
