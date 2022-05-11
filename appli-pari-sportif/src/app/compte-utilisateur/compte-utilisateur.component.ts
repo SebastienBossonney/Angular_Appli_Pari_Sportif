@@ -15,15 +15,13 @@ export class CompteUtilisateurComponent implements OnInit {
   utilisateur!:Utilisateur[];
 
 
-  constructor(private utilisateurService: UtilisateurService ) {
+  constructor(private utilisateurService: UtilisateurService ) { }
 
 
   // utilisateur!:Utilisateur[];
 
 
-  constructor()  {}
-
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
 
     // this.utilisateurService.getUtilisateur().subscribe(utilisateur =>{
@@ -37,5 +35,4 @@ export class CompteUtilisateurComponent implements OnInit {
 //   this.utilisateurService.getUtilisateurById(Utilisateur.id).subscribe(() =>{
 //    this.heroes = this.heroes.filter(selectHero =>selectHero !== hero)
 
-}
 
