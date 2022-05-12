@@ -1,6 +1,5 @@
 export interface Utilisateur {
 	id: number,
-  version : number,
   identifiant : string,
 	email : string,
   motDePasse : string,

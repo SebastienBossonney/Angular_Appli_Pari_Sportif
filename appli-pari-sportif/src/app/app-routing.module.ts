@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
   { path: 'donneesPari', component: DonneesPariComponent },
   {path:'donneesUtilisateur',component:DonneesUtilisateurComponent},
+  {path:'compteUtilisateur', component: CompteUtilisateurComponent},
   {path: 'allUtilisateurs', component:AllUtilisateursComponent,
   children: [{path:':id',component:CompteUtilisateurComponent}]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},

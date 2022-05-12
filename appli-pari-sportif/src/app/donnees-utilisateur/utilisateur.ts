@@ -4,12 +4,13 @@ import { RouterLink } from "@angular/router";
 export class Utilisateur {
 
     "id": number;
-    "identifiant": String;
-    "email": String; 
-    "role": String;
-    "profil": String;
-    "motDePasse":String;
+    "identifiant": string;
+    "email": string;
+    "role": string;
+    "profil": string;
+    "motDePasse":string;
     "montantDisponible":number;
-    "salaire": number
-
+    "salaire": number;
+    "montantTotalGagne" : number;
+    "montantTotalPerdu" : number;
 }
