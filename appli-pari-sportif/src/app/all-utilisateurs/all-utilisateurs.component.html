@@ -1,17 +1,19 @@
 <div class="h1 text-warning text-center">Voici les utilisateurs</div>
-
+    
 <ul>
     <div class="card-header bg-outline-warning" *ngFor="let utilisateur of utilisateurs "> 
         <h3 class="text-success" [routerLink]="['./', utilisateur.id]">{{utilisateur?.identifiant}},</h3>
         <div [routerLink]="['./', utilisateur.id]"><strong>Id: </strong> {{utilisateur?.id}},</div>
         <div [routerLink]="['./', utilisateur.id]"><strong>Email: </strong>{{utilisateur?.email}},</div>
         <div [routerLink]="['./', utilisateur.id]"><strong>Mot de passe: </strong>{{utilisateur?.motDePasse}},</div>
+        <div [routerLink]="['./', utilisateur.id]"><strong>Limite d'argent: </strong>{{utilisateur?.limite}},</div>
         <div [routerLink]="['./', utilisateur.id]"><strong>Salaire(facultatif): </strong>{{utilisateur?.salaire}},</div>
         <div [routerLink]="['./', utilisateur.id]"><strong>Rôle: </strong>{{utilisateur?.role}},</div>
         <div [routerLink]="['./', utilisateur.id]"><strong>Profil (Risque, Mi-Risque, Sans Risque): </strong>{{utilisateur?.profil}},</div>
     </div>
 </ul>
 <router-outlet></router-outlet>
+
 <!-- <div>
     <div>
         <button (click)="add()">Ajout d'IronMan</button>

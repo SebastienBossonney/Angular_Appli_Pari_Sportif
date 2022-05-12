@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 // import { Limite } from './limite-interface.component';
-import { map, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { map, Observable, Subject, Subscription, switchMap, takeUntil } from 'rxjs';
+import { UtilisateurService } from '../utilisateur-service.service';
+import { Utilisateur } from '../utilisateur.model';
 
 @Component({
   selector: 'app-donnees-pari',
   templateUrl: './donnees-pari.component.html',
   styleUrls: ['./donnees-pari.component.css']
 })
-export class DonneesPariComponent implements OnInit {
+export class DonneesPariComponent {
 
   
   limiteArg=false;//Pour le bouton modifier de limite d'argent
@@ -44,21 +47,39 @@ export class DonneesPariComponent implements OnInit {
     }
 
     
+  utilisateur!:Utilisateur;
+  
 
+
+
+  // constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute)  {}
+
+  // ngOnInit(){
+  // this.getUtilisateurById()
+  // this.utilisateur=this.route.snapshot.data['utilisateur']
+ 
+  // }
+
+  // getUtilisateurById(){
+  //   this.route.paramMap.pipe(switchMap((params:ParamMap)=>{
+  //     const id = +params.get('id')!;
+  //     const user = this.utilisateurService.getUtilisateurById(id);
+  //     return user
+  //   }),map(utilisateur => this.utilisateur= utilisateur)
+  //   ).subscribe()
+  // }
+}
 
   // limite$!: Observable<Limite>
 
-  constructor() {   }
 
   
 
-  ngOnInit(): void {
-    // this.getLimite()
-  }
+  
 
 // private getLimite(){
 //   this.limite$ = this.limiteService.getLimite()
 
 // }
 
-}
+
