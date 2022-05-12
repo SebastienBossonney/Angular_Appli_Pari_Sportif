@@ -1,4 +1,277 @@
+
 <div class="container">
+  <div class="card mt-3">
+    <div class="card-header bg-warning text-dark text-center">
+      <span class="h3">Données d'utilisateur</span>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="emailCompte">Adresse email: </label> <input
+            type="text" class="form-control" id="emailCompte" placeholder={{utilisateur.email}}
+            disabled="disabled">
+        </div>
+
+      </form>
+    </div>
+    <div class="card-footer text-left ">
+      <button type="button"
+        class="btn btn-outline-warning btn-sm float-left" id="emailModif"
+        (click)="changeEmail()">Modifier</button>
+
+    </div>
+
+  </div>
+
+  <div class="card mt-3" id='newEmail' *ngIf="email">
+    <div class="card-body">
+      <form [formGroup]="emailForm">
+          <div class="form-connection">
+          <label for="nouvelEmail">Nouvelle adresse email: </label> <input
+          type="email" class="form-control" formControlName='nouvelEmail' id="nouvelEmail" placeholder="maNouvelleAdresseEmail@site.com">
+          </div>
+        <!-- <div
+          class="help-block"
+          *ngIf="email.touched && email.invalid"
+          >Le format d'email n'est pas valide</div> -->
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg ">
+            <button type="submit"
+              class="btn btn-success"
+              [disabled]="!emailForm.valid"
+              (click)="editEmail()"><i class="bi bi-check-square"></i>
+            </button>
+            <button type="button"
+              class="btn btn-warning"><i class="bi bi-backspace"></i>
+            </button>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="motDePasseCompte">Mot de passe </label> <input
+            type="password" class="form-control" value='*******' placeholder={{utilisateur.motDePasse}} id="motDePasseCompte"
+            disabled="disabled">
+        </div>
+
+      </form>
+    </div>
+    <div class="card-footer text-left ">
+      <button type="button"
+        class="btn btn-outline-warning btn-sm float-left" id="mdpModif"
+        (click)="changeMdp()">Modifier</button>
+
+
+    </div>
+    </div>
+    <div class="card mt-3" id='newMdp' *ngIf="mdp">
+      <div class="card-body">
+        <form >
+          <div class="form-connection">
+            <label for="ancienMdp">Ancien mot de passe: </label> <input
+              type="text" class="form-control" id="ancienMdp" placeholder="Mon ancien mot de passe">
+          </div>
+
+          <div class="form-connection">
+            <label for="nouvelMdp">Nouveau mot de passe: </label> <input
+              type="text" class="form-control" id="nouveauMdp" placeholder="Mon nouveau mot de passe"
+              >
+          </div>
+          <div class="form-connection">
+            <label for="confirmationNouvelMdp">Confirmation du nouveau
+              mot de passe: </label> <input type="text" class="form-control"
+              id="confirmationNouveauMdp" placeholder="Mon nouveau mot de passe">
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg ">
+            <button type="button"
+              class="btn btn-success"
+              onclick="save()"><i class="bi bi-check-square"></i>
+            </button>
+            <button type="button"
+              class="btn btn-warning"><i class="bi bi-backspace"></i>
+            </button>
+
+          </div>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="card mt-3">
+    <div class="card-header bg-warning text-dark text-center">
+      <span class="h3">Données de Pari</span>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="limiteArgent">Limite d'argent: </label> <input
+            type="text" class="form-control" id="limiteArgent" placeholder={{utilisateur.limite}}
+            disabled="disabled">
+        </div>
+
+      </form>
+    </div>
+    <div class="card-footer text-left ">
+      <button  type="button"
+        class="btn btn-outline-warning btn-sm float-left" id="limiteModif"
+        (click)="changeLimite()" >Modifier</button>
+
+    </div>
+
+  </div>
+
+  <div class="card mt-3" id='newLimite' *ngIf="limiteArg" >
+    <div class="card-body">
+      <form [formGroup]="limiteForm">
+        <div class="form-connection" >
+          <label for="newLimite">Nouvelle limite d'argent: </label> <input
+            type="number" class="form-control" id="nouvelleLimite" formControlName='nouvelleLimite'  min="0" max="10000">
+        </div>
+
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg ">
+            <button   type="button" class="btn btn-success" [disabled]="!limiteForm.valid" (click)="editLimite()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning">
+              <i class="bi bi-backspace"></i>
+            </button>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-connection" >
+          <label for="salaireCompte">Salaire (facultatif) </label> <input
+                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur.salaire}}
+            disabled="disabled">
+        </div>
+
+      </form>
+    </div>
+    <div class="card-footer text-left " >
+      <button type="button" (click)="changeSalaire()"
+              class="btn btn-outline-warning btn-sm float-left" id="salaireModif"
+        >Modifier</button>
+
+
+    </div>
+  </div>
+  <div class="card mt-3" id='newSalaire' *ngIf="salaire">
+    <div class="card-body">
+      <form [formGroup]="salaireForm">
+        <div class="form-connection">
+          <label for="newSalaire">Nouveau salaire: </label> <input
+          type="number" class="form-control" formControlName='nouveauSalaire' id="nouveauSalaire"  min="0" max="10000">
+        </div>
+
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg ">
+            <button type="button" class="btn btn-success" [disabled]="!salaireForm.valid" (click)="editSalaire()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning"
+            routerLinkActive="active">
+              <i class="bi bi-backspace"></i>
+            </button>
+
+          </div>
+        </div>
+
+      </form>
+
+
+    </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <form>
+          <div class="form-connection">
+          <label for="newSalaire">Profil du joueur: </label><input
+          type="text" class="form-control" id="newSalaire" placeholder={{utilisateur.profil}} disabled=disabled>
+          </div>
+        </form>
+
+
+      <div class="card-footer text-left ">
+        <button type="button"
+          class="btn btn-outline-warning btn-sm float-left" id="seuilModif"
+          (click)="changeRisque()">Modifier</button>
+
+
+      </div>
+    </div>
+
+    <div class="card mt-3" id="newSeuilRisque" *ngIf="risque">
+
+      <div class="card-body">
+
+        <form >
+          <select [(ngModel)]="utilisateurProfilSelect" id="profilSelect" name="profilSelect"  class="form-select" (change)="changeProfil(utilisateurProfilSelect)">
+            <option disable hidden [value]="selectDefaultValue">--</option>
+            <option *ngFor="let utilisateur of utilisateurs" value="{{utilisateur.id}}">
+            {{ utilisateur.profil }}
+          </option>
+          </select>
+          <!-- <div class="form-check-inline">
+            <label class="form-check-label"> <input type="radio"
+              name="profil" id="risque" class="form-check-input"
+              value="Risque" checked> Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label"> <input type="radio"
+              name="profil" id="risque" class="form-check-input"
+              value="miRisque"> Mi-Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label"> <input type="radio"
+              name="profil" id="risque" class="form-check-input"
+              value="sansRisque"> Sans Risque
+            </label>
+          </div> -->
+        </form>
+
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg ">
+            <button type="button" class="btn btn-success" onclick="save()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning">
+              <i class="bi bi-backspace"></i>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+<router-outlet></router-outlet>
+
+<!-- <div class="container">
   <span class="h1 text-warning text-center">Compte utilisateur</span>
   <div class="card mt-3">
     <div class="card-header bg-warning text-dark text-center">
@@ -6,10 +279,19 @@
     </div>
     <div class="card-body">
       <form>
-        <div class="form-connection" >
-          <label for="emailCompte">Email: </label> 
-          <input type="button" class="btn btn-danger" id="emailCompte" disabled="disabled" >
+        <div>
+          <div class="form-connection" >
+            <label for="emailCompte">Email: </label> 
+            <input type="text" class="form-control" id="emailCompte" placeholder={{utilisateur.email}} disabled="disabled" >
+          </div>
+          <button
+          type="button"
+          (click)="changeEmail()"
+          class="btn btn-outline-warning btn-sm float-left">
+          Modifier
+          </button>
         </div>
+      </form>
         <div class="form-connection">
           <label for="mdpCompte">Mot de passe: </label>
           <input
@@ -17,23 +299,23 @@
             value="*******"
             disabled="disabled"
             class="form-control"
+            placeholder={{utilisateur.motDePasse}}
             id="mdpCompte"
           />
         </div>
+      <form>
       </form>
     </div>
     <div class="card-footer text-left">
       <button
         type="button"
-        routerLink="/donneesUtilisateur"
-        routerLinkActive="active"
-        class="btn btn-outline-warning btn-sm float-left"
-      >
+        (click)="changeEmail()"
+        class="btn btn-outline-warning btn-sm float-left">
         Modifier
       </button>
     </div>
   </div>
-
+  
   <div class="card mt-3" id="DonneesPari">
     <div class="card-header bg-warning text-dark text-center">
       <h3>Données de pari</h3>
@@ -47,6 +329,7 @@
             class="form-control"
             id="limiteCompte"
             disabled="disabled"
+            placeholder={{utilisateur.limite}}
           />
         </div>
         <div class="form-group">
@@ -56,6 +339,7 @@
             class="form-control"
             id="salaireCompte"
             disabled="disabled"
+            placeholder={{utilisateur.salaire}}
           />
         </div>
         <div class="form-check-inline">
@@ -105,8 +389,7 @@
         type="button"
         class="btn btn-outline-warning btn-sm float-left"
         routerLink="/donneesPari"
-        routerLinkActive="active"
-      >
+        routerLinkActive="active">
         Modifier
       </button>
     </div>
@@ -139,5 +422,4 @@
       </button>
     </div>
   </div>
-</div>
-
+</div> -->
