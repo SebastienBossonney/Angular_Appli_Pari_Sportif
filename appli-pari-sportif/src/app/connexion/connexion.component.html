@@ -26,30 +26,24 @@
             name="motDePasse"
           />
         </div>
+      </div>
+      <div class="card-footer text-center">
+        <div class="btn-group btn-group-lg">
+          <button type="button" class="btn btn-warning" (click)="submit()">
+            Connexion
+          </button>
 
-      </form>
-    </div>
-    <div class="card-footer text-center">
-      <div class="btn-group btn-group-lg">
-        <button
-          type="button"
-          class="btn btn-warning"
-          routerLink="/allUtilisateurs"
-          routerLinkActive="active"
-        >
-          Connexion
-        </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          routerLink="/inscription"
-          routerLinkActive="active"
-        >
-          Pas de compte ?
-        </button>
-
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/inscription"
+            routerLinkActive="active"
+          >
+            Pas de compte ?
+          </button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
