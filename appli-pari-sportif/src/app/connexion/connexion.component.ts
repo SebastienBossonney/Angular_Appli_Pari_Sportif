@@ -41,17 +41,17 @@ export class ConnexionComponent {
     this.userService.findAll().subscribe((data) => {
 
 
-      // this.userList.forEach((user) => {
-      //   console.log('identifiant tableau : ', user.identifiant);
-      //   console.log('motDePasse tableau : ',user.motDePasse);
-      //   console.log('identifiant form : ', this.form.get('identifiant')?.value);
-      //   console.log('motDePasse form : ',this.form.get('motDePasse')?.value);
-      //   if (
-      //     user.identifiant === this.form.get('identifiant')?.value &&
-      //     user.motDePasse === this.form.get('motDePasse')?.value
-      //   )
-      //     this.exist = true;
-      // });
+      this.userList.forEach((user) => {
+        console.log('identifiant tableau : ', user.identifiant);
+        console.log('motDePasse tableau : ',user.motDePasse);
+        console.log('identifiant form : ', this.form.get('identifiant')?.value);
+        console.log('motDePasse form : ',this.form.get('motDePasse')?.value);
+        if (
+          user.identifiant === this.form.get('identifiant')?.value &&
+          user.motDePasse === this.form.get('motDePasse')?.value
+        )
+          this.exist = true;
+      });
 
     });
 
