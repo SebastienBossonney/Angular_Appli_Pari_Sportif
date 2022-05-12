@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -18,16 +17,12 @@ import { HistoriquePariFootComponent } from './historique-pari-foot/historique-p
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 
-
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
 
-
-import { PariComponent } from './pari/pari.component';
 import { CommonModule } from '@angular/common';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
-
-
-
+import { UserService } from './utilisateur.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -43,29 +38,22 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
     HistoriquePariFootComponent,
     HistoriquePariRugbyComponent,
 
-   // LimiteInterfaceComponent
-    PariComponent,
+    // LimiteInterfaceComponent
 
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
 
-
-   // LimiteInterfaceComponent
-
-
+    // LimiteInterfaceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     CommonModule,
     HttpClientModule,
-
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ],
-  providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+  providers: [HttpClientModule, UserService, AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

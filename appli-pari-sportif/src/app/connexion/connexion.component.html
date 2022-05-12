@@ -3,40 +3,46 @@
     <div class="card-header bg-warning text-dark text-center">
       <span class="h2">Connexion</span>
     </div>
-    <div class="card-body">
-      <form>
+    <form [formGroup]="form">
+      <div class="card-body">
         <div class="form-connection">
-          <label for="id">Identifiant: </label>
-          <input type="text" class="form-control" id="id" />
+          <label for="identifiant">Identifiant: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="identifiant"
+            name="identifiant"
+          />
         </div>
         <div class="form-connection">
-          <label for="intitule">Mot de passe :</label>
+          <label for="motDePasse">Mot de passe :</label>
           <a routerLink="/motDePasseOublie" routerLinkActive="active"
             >Mot de passe oublié ?</a
           >
-          <input type="password" class="form-control" id="mdp" />
+          <input
+            type="password"
+            class="form-control"
+            id="motDePasse"
+            name="motDePasse"
+          />
         </div>
-      </form>
-    </div>
-    <div class="card-footer text-center">
-      <div class="btn-group btn-group-lg">
-        <button
-          type="button"
-          class="btn btn-warning"
-          routerLink="compteUtilisateur"
-          routerLinkActive="active"
-        >
-          Connexion
-        </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          routerLink="/inscription"
-          routerLinkActive="active"
-        >
-          Pas de compte ?
-        </button>
       </div>
-    </div>
+      <div class="card-footer text-center">
+        <div class="btn-group btn-group-lg">
+          <button type="button" class="btn btn-warning" (click)="submit()">
+            Connexion
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/inscription"
+            routerLinkActive="active"
+          >
+            Pas de compte ?
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

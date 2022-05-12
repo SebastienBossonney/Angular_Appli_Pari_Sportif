@@ -17,7 +17,7 @@ export class AllUtilisateursComponent implements OnInit {
   filteredUtilisateur$!: Observable<Utilisateur[]>;
 
   identifiant = new FormControl('', Validators.required)
-  
+
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -38,18 +38,18 @@ export class AllUtilisateursComponent implements OnInit {
     this.utilisateurService.getUtilisateur().pipe(map(utilisateursObservable => this.utilisateurs = utilisateursObservable), takeUntil(this.utilisateurSub)).subscribe()
   }
 
- 
- 
+
+
  add(utilisateur: Utilisateur) {
     this.utilisateurService.saveUtilisateur(utilisateur).subscribe(utilisateur => this.utilisateurs.push(utilisateur))
   }
 
- 
+
 
   // rename
   rename(utilisateur:Utilisateur) {
     // const modificationUtilisateur = {
-    //   id:utilisateur.id, 
+    //   id:utilisateur.id,
     //   identifiant: utilisateur.identifiant,
     //   email: utilisateur.email,
     //   motDePasse: utilisateur.motDePasse,
@@ -57,9 +57,9 @@ export class AllUtilisateursComponent implements OnInit {
     //   profil: utilisateur.profil,
     //   salaire: utilisateur.salaire}
     this.utilisateurService.editUtilisateur(utilisateur.id, utilisateur).subscribe(() => {
-      this.utilisateurs.forEach(mec => {
-        if(mec.id === utilisateur.id) {
-          let index = this.utilisateurs.indexOf(mec)
+      this.utilisateurs.forEach(utilisateur => {
+        if(utilisateur.id === utilisateur.id) {
+          let index = this.utilisateurs.indexOf(utilisateur)
           this.utilisateurs[index] = utilisateur;
         }
       });
@@ -68,7 +68,7 @@ export class AllUtilisateursComponent implements OnInit {
   // remove
   remove(utilisateur: Utilisateur) {
     this.utilisateurService.deleteUtilisateur(utilisateur.id).subscribe(() => {
-      this.utilisateurs = this.utilisateurs.filter(selectUtilisateur => selectUtilisateur !== utilisateur) 
+      this.utilisateurs = this.utilisateurs.filter(selectUtilisateur => selectUtilisateur !== utilisateur)
     })
   }
 

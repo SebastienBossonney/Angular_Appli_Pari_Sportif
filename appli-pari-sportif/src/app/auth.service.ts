@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from 'rxjs';
+import { UtilisateurService } from './utilisateur-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,12 @@ export class AuthService {
 
   isLogged: boolean = false;
 
+  constructor(private userService: UtilisateurService){
+
+  }
+
   login(name:string, password:string): Observable<boolean>{
-    //appel au service pour recup tous les utilisateurs + verifier le .name et .password
+
     const isLogged = (name==='admin' && password==='admin');
 
     return of(isLogged).pipe(
@@ -22,3 +27,4 @@ export class AuthService {
     this.isLogged=false;
   }
 }
+
