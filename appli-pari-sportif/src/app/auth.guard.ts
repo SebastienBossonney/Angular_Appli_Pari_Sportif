@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
   CanActivate,
-  RouterStateSnapshot,
-  UrlTree,
+  Router,
 } from '@angular/router';
-import { Router } from 'express';
-import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  router: any;
-  constructor(private authService: AuthService, private routage: Router) {}
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate():boolean {
     if(this.authService.isLogged){
@@ -23,6 +19,7 @@ export class AuthGuard implements CanActivate {
   this.router.navigate(['/connexion'])
   return false;
 }
+
 
 
 }

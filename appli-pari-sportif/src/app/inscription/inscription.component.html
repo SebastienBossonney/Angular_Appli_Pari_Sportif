@@ -4,7 +4,7 @@
       <h3>Inscription</h3>
     </div>
     <div class="card-body">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <form [formGroup]="loginForm">
         <label for="identifiant">Identifiant</label>
         <input
           type="text"
@@ -13,6 +13,7 @@
           name="identifiant"
           placeholder="Enter your identifiant"
           formControlName="identifiant"
+
           required/>
         <div
           class="help-block"
@@ -27,6 +28,7 @@
           name="email"
           placeholder="Enter your email address"
           formControlName="email"
+
           required
           />
           <div
@@ -35,7 +37,7 @@
           >Email non valide</div>
         <label for="motDePasse">Mot de Passe :</label>
         <input
-          type="motDePasse"
+          type="password"
           class="form-control"
           id="motDePasse"
           name="motDePasse"
@@ -71,7 +73,7 @@
             <input
               type="radio"
               name="profil"
-              id="risque"
+              id="risque2"
               class="form-check-input"
               value="MIRISQUE"
               formControlName="profil"
@@ -84,7 +86,7 @@
             <input
               type="radio"
               name="profil"
-              id="risque"
+              id="risque3"
               class="form-check-input"
               value="SANSRISQUE"
               formControlName="profil"
@@ -95,10 +97,10 @@
         <div class="card-footer d-flex justify-content-center">
           <div class="btn-group btn-group-lg">
             <button
-              type="submit"
+              type="button"
               class="btn btn-info"
               [disabled]="!loginForm.valid"
-              routerLink="/compteUtilisateur" routerLinkActive="active"
+              (click)="onSubmit()"
             >
               Login
             </button>
