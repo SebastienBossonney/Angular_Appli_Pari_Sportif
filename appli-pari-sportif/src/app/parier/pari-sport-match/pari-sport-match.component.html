@@ -1,13 +1,19 @@
-
-  <!-- <div class="card mt-3">
+<!-- <div class="card mt-3">
     <form> -->
 <label for="matchSelect">Matches </label>
-<select [(ngModel)]="matchSelectCH" id="matchSelect" name="matchSelect" class="form-select" (ngModelChange)="onChange($event)">
-<option disable hidden [value]="selectDefaultValue">--</option>
-<option *ngFor="let m of matchs" [ngValue]="m">
-  {{ m.equipes[0].nom}} vs {{ m.equipes[1].nom}}
-</option>
+<select
+  [(ngModel)]="matchSelectCH"
+  id="matchSelect"
+  name="matchSelect"
+  class="form-select"
+  (ngModelChange)="onChange($event)"
+>
+  <option disable hidden [value]="selectDefaultValue">--</option>
+  <option *ngFor="let m of matchs" [ngValue]="m">
+    {{ m.equipes[0].nom }} vs {{ m.equipes[1].nom }}
+  </option>
 </select>
+
 <br>
 <form >
 <!-- PARI  /////////////////////////////////////////// -->
@@ -54,10 +60,67 @@
 
 
 
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <label id="equipe1" class="h6">{{ equipe1.nom }}</label>
+      </div>
+      <div>
+        <label id="equipe2" class="h6">{{ equipe2.nom }}</label>
+      </div>
+    </div>
 
+    <div class="d-flex justify-content-between">
+      <div class="bg-light">
+        <label id="coteE1">{{ coteE1.valeur }}</label
+        >&nbsp;<input
+          type="radio"
+          class="form-check-input"
+          name="radioPari"
+          value="option1"
+          id="checkBoxCE1"
+        />
+      </div>
+      <div class="bg-light">
+        <label id="coteE2">{{ coteE2.valeur }}</label
+        >&nbsp;<input
+          type="radio"
+          class="form-check-input"
+          name="radioPari"
+          value="option2"
+          id="checkBoxCE2"
+        />
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="d-flex justify-content-center bg-light">
+        &nbsp;<label id="coteMN">{{ coteMN.valeur }}</label
+        >&nbsp;<input
+          type="radio"
+          class="form-check-input"
+          name="radioPari"
+          value="option3"
+          id="checkBoxCE3"
+        />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <input type="text" class="text-end" id="sommeAParier" placeholder="€" />
+      </div>
+    </div>
+  </div>
 
-
-
-
-
+  <div class="card-footer d-flex justify-content-end">
+    <div class="btn-group btn-group-lg">
+      <button type="button" id="parier" class="btn btn-success">
+        <i class="bi bi-check-square"></i>
+      </button>
+      <button type="button" id="cancelPari" class="btn btn-warning">
+        <i class="bi bi-backspace"></i>
+      </button>
+    </div>
+  </div>
+</div>

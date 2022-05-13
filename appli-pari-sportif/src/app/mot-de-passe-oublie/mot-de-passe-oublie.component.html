@@ -1,20 +1,48 @@
 <div class="container">
   <div class="card mt-1">
+
     <div class="card-header bg-warning text-dark text-center">
       <span class="h2">Mot de passe oublié</span>
     </div>
+
     <div class="card-body">
-      <form>
+      <form [formGroup]="form">
         <div class="form-connection">
-          <label for="id">Adresse email: </label> <input type="email"
-            class="form-control" id="email">
+          <label for="email">Adresse email: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            formControlName="email"
+            required
+          />
+        </div>
+        <div class="card-footer text-center">
+          <div>
+
+            <button
+              type="button"
+              class="btn btn-warning btn-group-lg"
+              (click)="sendEmail()"
+            >
+              Envoyer les consignes
+            </button>
+          </div>
+          <div>
+            <a routerLink="/connexion" routerLinkActive="active"
+              >Retour vers Connexion</a
+            >
+          </div>
         </div>
       </form>
-
+      <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success</strong> Email to reset password sent.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
-    <div class="card-footer text-center">
-      <div><button type="button" class="btn btn-warning btn-group-lg" onclick="save()">
-        Envoyer les consignes</button></div>
-      <div><a routerLink="/connexion" routerLinkActive="active">Retour vers Connexion</a></div>
   </div>
 </div>

@@ -22,7 +22,7 @@ const routes: Routes = [
   children: [
     {path:':id', component:CompteUtilisateurComponent
   , resolve:{utilisateur: CompteUtilisateurResolverService}},
-    {path:':donneesUtilisateur',component:DonneesUtilisateurComponent},
+    // {path:':donneesUtilisateur',component:DonneesUtilisateurComponent},
     { path: ':donneesPari', component: DonneesPariComponent },]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},

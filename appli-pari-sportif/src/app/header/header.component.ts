@@ -8,8 +8,10 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
   router: any;
+  
+  constructor(private authService: AuthService) {
 
-  constructor(private authService: AuthService) { }
+   }
 
   ngOnInit(): void {
   }

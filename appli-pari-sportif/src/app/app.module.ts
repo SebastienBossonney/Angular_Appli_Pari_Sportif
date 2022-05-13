@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
+import { AvertissementComponent } from './avertissement/avertissement.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AuthService } from './auth.service';
 
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
+    AvertissementComponent,
 
     // LimiteInterfaceComponent
   ],
