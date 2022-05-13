@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
+
   {path: 'allUtilisateurs', component:AllUtilisateursComponent,
   children: [
     {path:':id', component:CompteUtilisateurComponent
