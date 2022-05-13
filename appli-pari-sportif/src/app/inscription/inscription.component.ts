@@ -56,7 +56,7 @@ export class InscriptionComponent {
   }
 
   gotoUserList() {
-    this.router.navigate(['/compteUtilisateur']);
+    this.router.navigate(['/connexion']);
   }
 
   login() {

@@ -29,6 +29,7 @@ export class AuthService {
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         sessionStorage.setItem('user', JSON.stringify(user));
+        this.isLogged=true;
         return user;
     }));
   }
@@ -38,5 +39,6 @@ export class AuthService {
       sessionStorage.removeItem('user');
     }
     this.router.navigate(['/account/login']);
+    this.isLogged=false;;
   }
  }
