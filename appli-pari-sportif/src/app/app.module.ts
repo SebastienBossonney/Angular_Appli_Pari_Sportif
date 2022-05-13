@@ -23,8 +23,12 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 
 import { CommonModule } from '@angular/common';
 
+
 import { ParierRoutingModule } from './parier/parier-routing.module';
 import { ParierModule } from './parier/parier.module';
+
+import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
+
 
 
 
@@ -43,7 +47,13 @@ import { ParierModule } from './parier/parier.module';
     HistoriquePariRugbyComponent,
 
    // LimiteInterfaceComponent
-    CompteUtilisateurComponent
+
+    PariComponent,
+
+    CompteUtilisateurComponent,
+    AllUtilisateursComponent,
+
+
 
    // LimiteInterfaceComponent
 
@@ -55,7 +65,6 @@ import { ParierModule } from './parier/parier.module';
 
     CommonModule,
     HttpClientModule,
-
 
 
     FormsModule,
