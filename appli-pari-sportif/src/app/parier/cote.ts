@@ -1,5 +1,5 @@
 export interface Cote {
-  id: number,
-  statut: string,
-  valeur: number
+  id: number;
+  statut: string;
+  valeur: number;
 }
