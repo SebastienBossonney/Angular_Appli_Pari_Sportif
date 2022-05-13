@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../utilisateur.service';
 import { AuthService } from '../auth.service';
@@ -16,13 +12,8 @@ import { first } from 'rxjs';
   styleUrls: ['./connexion.component.css'],
 })
 export class ConnexionComponent {
-  auth: boolean = false;
-  message: string = "Vous n'etes pas connecte";
-  loading = false;
-  submitted = false;
   user!: Utilisateur;
   userList!: Utilisateur[];
-  exist: boolean = false;
 
   constructor(
     // private route: ActivatedRoute,
@@ -37,38 +28,20 @@ export class ConnexionComponent {
   });
 
   submit() {
-    console.log(this.form.get('identifiant')?.value, '          ', this.form.get('motDePasse')?.value )
-    this.authService.login(this.form.get('identifiant')?.value, this.form.get('motDePasse')?.value)
-    .pipe(first())
-    .subscribe(
-        data => {
-          console.log('Connected')
-            // this.router.navigate([this.returnUrl]);
-            this.loading=true;
-        },
-        error => {
-          console.log('Not connected')
-            this.loading = false;
-        });
-}
-
-      // .subscribe((user: Utilisateur) => {
-      //   if (user.id!=null) {
-      //     console.log('Connecte');
-      //     // this.router.navigate(['/compteUtilisateur']);
-      //     this.auth = true;
-      //   } else {
-      //     console.log('Deconnecte');
-      //     this.router.navigate(['/connexion']);
-      //     this.auth = false;
-      //   }
-      // });
-
-
-  logout() {
-    this.authService.logout();
-    console.log('Deconnecte');
-    this.router.navigate(['/connexion']);
-    this.auth = false;
+    this.authService
+      .login(
+        this.form.get('identifiant')?.value,
+        this.form.get('motDePasse')?.value
+      )
+      .subscribe((user: Utilisateur) => {
+        if (localStorage.getItem('user')) {
+          var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+          this.router.navigate(['/allUtilisateurs' + '/' + userInfo.id]);
+          console.log('Connecte');
+        } else {
+          console.log('Mauvais identifiant');
+          this.router.navigate(['/connexion']);
+        }
+      });
   }
 }
