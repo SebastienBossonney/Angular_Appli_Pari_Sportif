@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Equipe } from 'src/app/equipe-interface/equipe-interface.component';
+import { Utilisateur } from 'src/app/utilisateur.model';
 import { Cote } from '../cote';
 import { Match } from '../match';
 import { MatchService } from '../match.service';
@@ -29,6 +30,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   coteE1!: Cote;
   coteE2!: Cote;
   coteMN!: Cote;
+  user!: Utilisateur;
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
