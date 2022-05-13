@@ -36,9 +36,10 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   coteSelected!: number;
   pari!: Pari;
   radioButtonOk: boolean = false;
-  messageRadio: string = "";
+  messageRadio: string = " ";
   messageSommeAParier: string = "Il faut remplir la somme à parier";
-  radioPari!: string;
+  //radioPari!: string;
+  cote!: Cote;
 
 
   matchSelected: boolean = false;
@@ -70,9 +71,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
        console.log("rezgui");
        if(this.matchSelectCH)
        {
-           this.pariForm = this.fb.group({
-            equipe1: ''
-          });
+
            this.equipe1 = this.matchSelectCH.equipes[0];
           this.equipe2 = this.matchSelectCH.equipes[1];
           this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {this.cotesM = data;
@@ -87,9 +86,14 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       else{this.matchSelected = false;}
     }
 
-    // parier(){
-    //   if (this.radioPari.invalid)
+     parier(){
+      //  if (this.radioPari)
+      //   {
+      //      this.radioButtonOk = true;
+      //      this.cote = this.cotesM[this.coteSelected];
+      //   }
+      //   else {this.messageRadio = "Il faut choissir une cote"}
 
-    //   //this.pari.
-    // }
+      //  //this.pari.
+     }
 }
