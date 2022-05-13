@@ -73,30 +73,40 @@
     </div>
     <div class="card mt-3" id='newMdp' *ngIf="mdp">
       <div class="card-body">
-        <form >
+        <form [formGroup]="motDePasseForm" >
           <div class="form-connection">
-            <label for="ancienMdp">Ancien mot de passe: </label> <input
-              type="text" class="form-control" id="ancienMdp" placeholder="Mon ancien mot de passe">
-          </div>
-
+            <label for="ancienMotDePasse">Ancien mot de passe: </label> <input
+              type="password" class="form-control" id="ancienMotDePasse" formControlName="ancienMotDePasse" placeholder="Mon ancien mot de passe">
+            </div>
+          <!-- <div class="form-error" *ngIf="ancienMotDePassForm.hasError('notSame') && f.ancienMotDePasse.dirty"> L'ancien mot de passe ne correspond pas! </div> -->
           <div class="form-connection">
-            <label for="nouvelMdp">Nouveau mot de passe: </label> <input
-              type="text" class="form-control" id="nouveauMdp" placeholder="Mon nouveau mot de passe"
-              >
-          </div>
+            <label for="nouveauMotDePasse">Nouveau mot de passe: </label> <input
+              type="password" class="form-control"  placeholder="Mon nouveau mot de passe" formControlName='nouveauMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.nouveauMotDePasse.errors }">
+              <!-- <div *ngIf="submitted && f.nouveauMotDePasse.errors" class="invalid-feedback">
+                <div *ngIf="f.nouveauMotDePasse.errors.required">Le nouveau mot de passe est requis</div>
+                <div *ngIf="f.nouveauMotDePasse.errors.minlength">Le mot de passe doit faire au moins 8 caractères</div>
+            </div> -->
+            </div>
           <div class="form-connection">
             <label for="confirmationNouvelMdp">Confirmation du nouveau
-              mot de passe: </label> <input type="text" class="form-control"
-              id="confirmationNouveauMdp" placeholder="Mon nouveau mot de passe">
-          </div>
+              mot de passe: </label> <input type="password" class="form-control"
+               placeholder="Mon nouveau mot de passe" formControlName='confirmeMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.confirmMotDePasse.errors }">
+              <!-- <div *ngIf="submitted && f.confirmMotDePasse.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmMotDePasse.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.confirmMotDePasse.errors.mustMatch">Passwords must match</div>
+            </div> -->
+          
+            </div>
+            <div class="form-error text-danger" *ngIf="motDePasseForm.hasError('notSame') && f.confirmeMotDePasse.dirty"> Le mot de passe de confirmation ne correspond pas avec le nouveau mot de passe! </div>
           <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
-            <button type="button"
+            <button type="submit"
               class="btn btn-success"
-              onclick="save()"><i class="bi bi-check-square"></i>
+              [disabled]="!motDePasseForm.valid"
+              (click)="editMotDePasse()"><i class="bi bi-check-square"></i>
             </button>
             <button type="button"
-              class="btn btn-warning"><i class="bi bi-backspace"></i>
+              class="btn btn-warning" (click)="onReset()"><i class="bi bi-backspace"></i>
             </button>
 
           </div>
@@ -145,7 +155,7 @@
             <button   type="button" class="btn btn-success" [disabled]="!limiteForm.valid" (click)="editLimite()">
               <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" class="btn btn-warning">
+            <button type="button" class="btn btn-warning" (click)="onReset()">
               <i class="bi bi-backspace"></i>
             </button>
 
@@ -189,7 +199,7 @@
               <i class="bi bi-check-square"></i>
             </button>
             <button type="button" class="btn btn-warning"
-            routerLinkActive="active">
+            (click)="onReset()">
               <i class="bi bi-backspace"></i>
             </button>
 
@@ -225,13 +235,47 @@
 
       <div class="card-body">
 
-        <form >
-          <select [(ngModel)]="utilisateurProfilSelect" id="profilSelect" name="profilSelect"  class="form-select" (change)="changeProfil(utilisateurProfilSelect)">
-            <option disable hidden [value]="selectDefaultValue">--</option>
-            <option *ngFor="let utilisateur of utilisateurs" value="{{utilisateur.id}}">
-            {{ utilisateur.profil }}
-          </option>
-          </select>
+        <form [formGroup]="profilForm">
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque"
+                class="form-check-input"
+                value="RISQUE"
+                formControlName="nouveauProfil"
+                />
+              Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque2"
+                class="form-check-input"
+                value="MIRISQUE"
+                formControlName="nouveauProfil"
+                />
+              Mi-Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque3"
+                class="form-check-input"
+                value="SANSRISQUE"
+                formControlName="nouveauProfil"
+                />
+              Sans Risque
+            </label>
+          </div>
+          
           <!-- <div class="form-check-inline">
             <label class="form-check-label"> <input type="radio"
               name="profil" id="risque" class="form-check-input"
@@ -254,10 +298,10 @@
 
         <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
-            <button type="button" class="btn btn-success" onclick="save()">
+            <button type="button" class="btn btn-success" (click)="editProfil()">
               <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" class="btn btn-warning">
+            <button type="button" class="btn btn-warning" (click)="onReset()">
               <i class="bi bi-backspace"></i>
             </button>
 

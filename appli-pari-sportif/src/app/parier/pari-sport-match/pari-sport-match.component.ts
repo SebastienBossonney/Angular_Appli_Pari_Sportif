@@ -1,8 +1,10 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Equipe } from 'src/app/equipe-interface/equipe-interface.component';
+import { Utilisateur } from 'src/app/utilisateur.model';
 import { Cote } from '../cote';
 import { Match } from '../match';
 import { MatchService } from '../match.service';
@@ -19,6 +21,8 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   matchs!: Match[];
   selectDefaultValue : any;
   matchSelect: any;
+  fb!: FormBuilder;
+  pariForm!:FormGroup;
   equipe1! : Equipe;
   equipe2! : Equipe;
   matchSelectCH!: Match;
@@ -26,6 +30,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   coteE1!: Cote;
   coteE2!: Cote;
   coteMN!: Cote;
+  user!: Utilisateur;
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
@@ -56,7 +61,9 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
        console.log("rezgui");
        if(this.matchSelectCH)
        {
-          console.log('avoir',this.matchSelectCH);
+           this.pariForm = this.fb.group({
+            equipe1: ''
+          });
            this.equipe1 = this.matchSelectCH.equipes[0];
           this.equipe2 = this.matchSelectCH.equipes[1];
           this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {this.cotesM = data;
@@ -69,5 +76,9 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
           this.matchSelected = true;
         }
       else{this.matchSelected = false;}
+    }
+
+    parier(){
+
     }
 }
