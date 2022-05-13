@@ -15,6 +15,7 @@
           formControlName="identifiant"
           required/>
         <label for="motDePasse">Mot de Passe :</label>
+        <a class="btn btn-link" (click)="mdpOublie()" >Mot de passe oublié ?</a>
         <input
           type="password"
           class="form-control"
@@ -23,6 +24,7 @@
           placeholder="Enter your password"
           formControlName="motDePasse"
           required/>
+
         <div class="card-footer d-flex justify-content-center">
           <div class="btn-group btn-group-lg">
             <button type="button" class="btn btn-warning" (click)="submit()">

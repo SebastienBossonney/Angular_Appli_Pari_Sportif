@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService } from '../utilisateur-service.service';
 
@@ -17,9 +18,9 @@ export class AllUtilisateursComponent implements OnInit {
   filteredUtilisateur$!: Observable<Utilisateur[]>;
 
   identifiant = new FormControl('', Validators.required)
-  
+
   // @Input () visible='';
-  
+
 
 
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute) { }

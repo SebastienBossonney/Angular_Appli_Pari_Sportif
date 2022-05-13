@@ -18,7 +18,6 @@ export class ConnexionComponent {
   constructor(
     // private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {}
@@ -43,5 +42,9 @@ export class ConnexionComponent {
           this.router.navigate(['/connexion']);
         }
       });
+  }
+
+  mdpOublie(){
+    this.router.navigate(['/motDePasseOublie'])
   }
 }
