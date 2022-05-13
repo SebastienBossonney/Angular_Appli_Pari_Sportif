@@ -75,4 +75,8 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
         }
       else{this.matchSelected = false;}
     }
+
+    parier(){
+      
+    }
 }
