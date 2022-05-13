@@ -1,63 +1,45 @@
-<div class="container">
-  <div class="card mt-3">
+ <div class="container">
+  <div class="card mt-3" id="inscriptionForm">
     <div class="card-header bg-warning text-dark text-center">
-      <span class="h2">Connexion</span>
+      <h3>Inscription</h3>
     </div>
-    <form [formGroup]="form">
-      <div class="card-body">
-        <div class="form-connection">
-          <label for="identifiant">Identifiant: </label>
-          <input
-            type="text"
-            class="form-control"
-            id="identifiant"
-            name="identifiant"
-          />
-        </div>
-        <div class="form-connection">
-          <label for="motDePasse">Mot de passe :</label>
-          <a routerLink="/motDePasseOublie" routerLinkActive="active"
-            >Mot de passe oublié ?</a
+    <div class="card-body">
+      <form [formGroup]="form">
+        <label for="identifiant">Identifiant</label>
+        <input
+          type="text"
+          class="form-control"
+          id="identifiant"
+          name="identifiant"
+          placeholder="Enter your identifiant"
+          formControlName="identifiant"
+          required/>
+        <label for="motDePasse">Mot de Passe :</label>
+        <input
+          type="password"
+          class="form-control"
+          id="motDePasse"
+          name="motDePasse"
+          placeholder="Enter your password"
+          formControlName="motDePasse"
+          required/>
+        <div class="card-footer d-flex justify-content-center">
+          <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-warning" (click)="submit()">
+              Connexion
+            </button>
+            <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/inscription"
+            routerLinkActive="active"
           >
-          <input
-            type="password"
-            class="form-control"
-            id="motDePasse"
-            name="motDePasse"
-          />
-        </div>
-      </div>
-      <div class="card-footer text-center">
-        <div class="btn-group btn-group-lg">
-          <button type="button" class="btn btn-warning" (click)="submit()">
-            Connexion
+            Pas de compte ?
           </button>
-
-</div>
-    </div>
-    <div class="card-footer text-center">
-      <div class="btn-group btn-group-lg">
-        <button
-          type="button"
-          class="btn btn-warning"
-          routerLink="/allUtilisateurs"
-          routerLinkActive="active"
-        >
-          Connexion
-        </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          routerLink="/inscription"
-          routerLinkActive="active"
-        >
-          Pas de compte ?
-        </button>
-
-
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 

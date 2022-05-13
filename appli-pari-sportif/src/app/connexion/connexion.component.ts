@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../utilisateur.service';
 import { AuthService } from '../auth.service';
 import { Utilisateur } from '../utilisateur.model';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-connexion',
@@ -22,7 +23,6 @@ export class ConnexionComponent {
   user!: Utilisateur;
   userList!: Utilisateur[];
   exist: boolean = false;
-  user3!: Utilisateur;
 
   constructor(
     // private route: ActivatedRoute,
@@ -37,40 +37,33 @@ export class ConnexionComponent {
   });
 
   submit() {
+    console.log(this.form.get('identifiant')?.value, '          ', this.form.get('motDePasse')?.value )
+    this.authService.login(this.form.get('identifiant')?.value, this.form.get('motDePasse')?.value)
+    .pipe(first())
+    .subscribe(
+        data => {
+          console.log('Connected')
+            // this.router.navigate([this.returnUrl]);
+            this.loading=true;
+        },
+        error => {
+          console.log('Not connected')
+            this.loading = false;
+        });
+}
 
-    this.userService.findAll().subscribe((data) => {
+      // .subscribe((user: Utilisateur) => {
+      //   if (user.id!=null) {
+      //     console.log('Connecte');
+      //     // this.router.navigate(['/compteUtilisateur']);
+      //     this.auth = true;
+      //   } else {
+      //     console.log('Deconnecte');
+      //     this.router.navigate(['/connexion']);
+      //     this.auth = false;
+      //   }
+      // });
 
-
-      this.userList.forEach((user) => {
-        console.log('identifiant tableau : ', user.identifiant);
-        console.log('motDePasse tableau : ',user.motDePasse);
-        console.log('identifiant form : ', this.form.get('identifiant')?.value);
-        console.log('motDePasse form : ',this.form.get('motDePasse')?.value);
-        if (
-          user.identifiant === this.form.get('identifiant')?.value &&
-          user.motDePasse === this.form.get('motDePasse')?.value
-        )
-          this.exist = true;
-      });
-
-    });
-
-
-    // this.authService
-    //   .login(this.name, this.password)
-    //   .subscribe((isLogged: boolean) => {
-    //     if (isLogged) {
-    //       console.log('Connecte');
-    //       this.router.navigate(['/compteUtilisateur']);
-    //       this.auth = true;
-    //     } else {
-    //       console.log('Deconnecte');
-    //       this.password = '';
-    //       this.router.navigate(['/connexion']);
-    //       this.auth = false;
-    //     }
-    //   });
-  }
 
   logout() {
     this.authService.logout();
