@@ -23,17 +23,17 @@
         <div><label id='equipe2' class="h6">{{equipe2.nom}}</label></div>
         </div>
 
-        <div class="d-flex justify-content-between">
-        <div class="bg-light"><label id="coteE1">{{coteE1.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="option1" id="checkBoxCE1"></div>
-        <div class="bg-light"><label id="coteE2">{{coteE2.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="option2" id="checkBoxCE2"></div>
+        <div class="d-flex justify-content-between" {{messageRadio}}>
+        <div class="bg-light"><label id="coteE1">{{coteE1.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="0" id="checkBoxCE1"  [(ngModel)]="coteSelected" required #radioPari="ngModel"></div>
+        <div class="bg-light"><label id="coteE2">{{coteE2.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="checkBoxCE2"  [(ngModel)]="coteSelected" required #radioPari="ngModel"></div>
         </div>
 
         <div class="row">
-        <div class="d-flex justify-content-center bg-light">&nbsp;<label id="coteMN">{{coteMN.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="option3" id="checkBoxCE3"></div>
+        <div class="d-flex justify-content-center bg-light">&nbsp;<label id="coteMN">{{coteMN.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="2" id="checkBoxMN"  [(ngModel)]="coteSelected" required #radioPari="ngModel"></div>
         </div>
         <br/>
           <div class="row">
-          <div class="d-flex justify-content-center"><input type="text" class="text-end" id="sommeAParier" placeholder="€"></div>
+          <div class="d-flex justify-content-center"><input type="text" class="text-end" id="sommeAParier" placeholder="€" [(ngModel)]="sommeAParier" required></div>
           </div>
          </div>
 
@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        
+
 </div></form>
 
 

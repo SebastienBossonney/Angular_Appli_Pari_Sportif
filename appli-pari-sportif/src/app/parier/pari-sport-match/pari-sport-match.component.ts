@@ -8,6 +8,7 @@ import { Utilisateur } from 'src/app/utilisateur.model';
 import { Cote } from '../cote';
 import { Match } from '../match';
 import { MatchService } from '../match.service';
+import { Pari } from '../pari';
 
 @Component({
   selector: 'app-pari-sport-match',
@@ -31,6 +32,14 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   coteE2!: Cote;
   coteMN!: Cote;
   user!: Utilisateur;
+  sommeAParier! : number;
+  coteSelected!: number;
+  pari!: Pari;
+  radioButtonOk: boolean = false;
+  messageRadio: string = "";
+  messageSommeAParier: string = "Il faut remplir la somme à parier";
+  radioPari!: string;
+
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
@@ -78,7 +87,9 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       else{this.matchSelected = false;}
     }
 
-    parier(){
+    // parier(){
+    //   if (this.radioPari.invalid)
 
-    }
+    //   //this.pari.
+    // }
 }
