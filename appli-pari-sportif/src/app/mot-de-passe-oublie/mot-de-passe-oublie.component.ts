@@ -10,7 +10,7 @@ import { MotDePasseOublieService } from './mot-de-passe-oublie.service';
 })
 export class MotDePasseOublieComponent {
   user!: Utilisateur;
-  alert:Boolean=false;
+  alert: Boolean = false;
   constructor(
     private mdpService: MotDePasseOublieService,
     private formBuilder: FormBuilder
@@ -23,18 +23,16 @@ export class MotDePasseOublieComponent {
     this.mdpService
       .findEmail(this.form.get('email')?.value)
       .subscribe((user: Utilisateur) => {
-        console.log(user.id)
+        console.log(user.id);
         if (user.id) {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
-          this.alert=true;
+          this.alert = true;
         } else {
           console.log('Email incorrect');
         }
       });
   }
-  closeAlert(){
-    this.alert=false;
+  closeAlert() {
+    this.alert = false;
   }
-
 }
-
