@@ -77,6 +77,6 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
     }
 
     parier(){
-      
+
     }
 }
