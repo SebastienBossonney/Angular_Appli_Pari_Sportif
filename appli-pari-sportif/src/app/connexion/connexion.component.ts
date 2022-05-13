@@ -34,7 +34,7 @@ export class ConnexionComponent {
         this.form.get('motDePasse')?.value
       )
       .subscribe((user: Utilisateur) => {
-        if (localStorage.getItem('user')) {
+        if (sessionStorage.getItem('user')) {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
           this.router.navigate(['/allUtilisateurs' + '/' + userInfo.id]);
           console.log('Connecte');
