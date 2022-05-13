@@ -48,7 +48,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 
    // LimiteInterfaceComponent
 
-    PariComponent,
+    //PariComponent,
 
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
