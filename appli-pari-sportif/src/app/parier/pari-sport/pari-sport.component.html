@@ -25,19 +25,22 @@
 				<form>
 					<div class="sportAParier">
 						<label for="sportSelect" >Sport</label>
-						<select  id="sportSelect" class="form-select" (change)="onChange($event)" >
+						<select [(ngModel)]="sportSelect" id="sportSelect" name="sportSelect"  class="form-select" (change)="onChange(sportSelect)">
               <option disable hidden [value]="selectDefaultValue">--</option>
-							<option *ngFor="let s of sports" [routerLink]="['./', s.id]" >
+							 <option *ngFor="let s of sports" value="{{s.id}}">
               {{ s.nomSport }}
-            </option>
-
+              </option>
 						</select>
 
 					</div>
-
-          </form>
-          </div>
           <router-outlet></router-outlet>
+        </form>
+
+        </div>
+
+      </div>
+      </div>
+
 
 <br/>
 

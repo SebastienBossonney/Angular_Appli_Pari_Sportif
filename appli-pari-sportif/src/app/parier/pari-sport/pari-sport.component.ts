@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ControlValueAccessor } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PariSportService } from '../pariSportService';
 import { Sport } from '../sport';
 
@@ -14,10 +15,11 @@ export class PariSportComponent implements OnInit {
   sports!: Sport[];
   selectDefaultValue : any;
   s! : Sport;
+  sportSelect: any;
 
   //selectedDevice! : Sport;
 
-    constructor(private pariSportService : PariSportService, private route: ActivatedRoute) {
+    constructor(private pariSportService : PariSportService, private route: ActivatedRoute, private router: Router) {
 
     }
 
@@ -25,10 +27,9 @@ export class PariSportComponent implements OnInit {
      this.pariSportService.getSports().subscribe(data => {this.sports = data});
   }
 
-  onChange(event : any | undefined) {
-    console.log(event.target.value);
-    //this.router.
-    //this.selectedDevice = event;
+  onChange(sportSelected : number | undefined) {
+    console.log(sportSelected);
+    this.router.navigateByUrl(`/sport/${sportSelected}`);
 }
 
 }
