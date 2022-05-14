@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PariComponent } from './pari-sport.component';
+import { PariSportComponent } from './pari-sport.component';
 
-describe('PariComponent', () => {
-  let component: PariComponent;
-  let fixture: ComponentFixture<PariComponent>;
+describe('PariSportComponent', () => {
+  let component: PariSportComponent;
+  let fixture: ComponentFixture<PariSportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PariComponent ]
+      declarations: [ PariSportComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PariComponent);
+    fixture = TestBed.createComponent(PariSportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

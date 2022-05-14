@@ -1,14 +1,18 @@
 
+import { JsonpClientBackend } from '@angular/common/http';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
+import { Observable, switchAll, switchMap } from 'rxjs';
 import { Equipe } from 'src/app/equipe-interface/equipe-interface.component';
 import { Utilisateur } from 'src/app/utilisateur.model';
 import { Cote } from '../cote';
 import { Match } from '../match';
 import { MatchService } from '../match.service';
 import { Pari } from '../pari';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pari-sport-match',
@@ -36,9 +40,13 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   radioButtonOk: boolean = false;
   messageRadio: string = " ";
   messageSommeAParier: string = "Il faut remplir la somme à parier";
-  //radioPari!: string;
+
+
   cote!: Cote;
 
+  today: Date = new Date();
+  pipe = new DatePipe('Europe/Paris');
+  todayWithPipe = null;
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
@@ -91,11 +99,30 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       else{this.matchSelected = false;}
     }
 
+    swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success'
+
+      },
+      buttonsStyling: false
+    })
+
      parier(){
 
       const formValue = this.pariForm.value;
+      const sommeAParier = formValue.sommeAParier;
+      this.user =  JSON.parse(sessionStorage.getItem("user")!);
+      if(sommeAParier > this.user.montantDisponible){
+        this.swalWithBootstrapButtons.fire('',"Vous ne avez pas soufisant de mountant disponible pour faire cet pari", 'warning');
+      }
+      else{
       const coteSelected = this.cotesM[formValue.radioPari];
-      console.log(coteSelected);
+      this.pari.coteId= coteSelected.id;
+      const stringDate = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
+      //let dateResult = new Date(stringDate);
+      //this.pari.datePari = new Date(stringDate);
+      }
+      console.log(sommeAParier);
     }
 
 
