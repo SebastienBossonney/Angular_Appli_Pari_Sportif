@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ParierRoutingModule } from './parier-routing.module';
 import { PariSportComponent } from './pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './pari-sport-match/pari-sport-match.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -18,7 +18,8 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserModule,
     ParierRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ParierModule { }
