@@ -15,17 +15,21 @@ import { DonneesPariComponent } from './donnees-pari/donnees-pari.component';
 import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utilisateur.component';
 import { HistoriquePariFootComponent } from './historique-pari-foot/historique-pari-foot.component';
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
-import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
-
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
-
 import { CommonModule } from '@angular/common';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
 import { AvertissementComponent } from './avertissement/avertissement.component';
+
 import { HeaderComponent } from './header/header.component';
 import { ParierModule } from './parier/parier.module';
+
+import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
+import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
+import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
+
+
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import { ParierModule } from './parier/parier.module';
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
     AvertissementComponent,
+    PariSportComponent,
+    PariSportMatchComponent
 
     // LimiteInterfaceComponent
   ],
