@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
+
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurListComponent } from './utilisateur-list/utilisateur-list.component';
@@ -21,9 +21,14 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
 import { AvertissementComponent } from './avertissement/avertissement.component';
+
+import { HeaderComponent } from './header/header.component';
+import { ParierModule } from './parier/parier.module';
+
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
+
 
 
 @NgModule({
@@ -54,6 +59,7 @@ import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-ma
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    ParierModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
