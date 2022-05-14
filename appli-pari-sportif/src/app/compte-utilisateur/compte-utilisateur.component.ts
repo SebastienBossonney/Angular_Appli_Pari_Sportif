@@ -1,12 +1,10 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit, Output } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
-
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
-//import { MustMatch } from './mot-de-passe.validator';
+
 
 @Component({
   selector: 'app-compte-utilisateur',
@@ -15,8 +13,7 @@ import { UtilisateurService} from '../utilisateur-service.service';
 })
 export class CompteUtilisateurComponent implements OnInit {
 
-  // @Output('rendrevisible') 
-  currentVisible: boolean = false;
+
 
   utilisateurs$!: Utilisateur[]
   utilisateur!:Utilisateur;
