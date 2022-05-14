@@ -11,6 +11,8 @@ import { HistoriquePariFootComponent } from './historique-pari-foot/historique-p
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 import { CompteUtilisateurResolverService } from './compte-utilisateur/compte-utilisateur-resolver';
+import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
+import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 
 const routes: Routes = [
 
@@ -25,6 +27,10 @@ const routes: Routes = [
     // {path:':donneesUtilisateur',component:DonneesUtilisateurComponent},
     { path: ':donneesPari', component: DonneesPariComponent },]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
+  {path: 'sport', component: PariSportComponent,
+  children: [
+    {path: ':id', component: PariSportMatchComponent}
+            ]},
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

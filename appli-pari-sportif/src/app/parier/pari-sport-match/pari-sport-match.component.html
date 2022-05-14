@@ -24,19 +24,30 @@
         </div>
 
         <div class="d-flex justify-content-between">
-        <div class="bg-light"><label id="coteE1" *ngIf="coteE1">{{coteE1.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="0" id="coteE1" formControlName="radioPari" ></div>
-        <div class="bg-light"><label id="coteE2" *ngIf="coteE2">{{coteE2.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="coteE2" formControlName="radioPari" ></div>
+        <div class="bg-light">
+          <label id="coteE1" for="coteE1" *ngIf="coteE1">{{coteE1.valeur}}</label>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<input type="radio" class="form-check-input" name ="radioPari"  value="0" id="coteE1" formControlName="radioPari" ></div>
+        <div class="bg-light">
+          &nbsp;&nbsp;<label id="coteE2" for="coteE2" *ngIf="coteE2">{{coteE2.valeur}}</label>
+          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="coteE2" formControlName="radioPari" ></div>
         </div>
-        <div class="row">
-        <div class="d-flex justify-content-center bg-light">&nbsp;<label id="coteMN" *ngIf="coteMN">{{coteMN.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="2" id="coteMN" formControlName="radioPari"></div>
-        </div>
+<div class="row">
+        <div class=" d-flex justify-content-center bg-light">
+
+          <label id="coteMN" for="coteMN"  *ngIf="coteMN">{{coteMN.valeur}}</label>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp;&nbsp;
+            <input type="radio" class="form-check-input" name ="radioPari" value="2" id="coteMN" formControlName="radioPari">
+            </div>
+          </div>
+
         <br/>
           <div class="row">
-          <div class="d-flex justify-content-center"><input type="number" class="text-end" id="sommeAParier" placeholder="€" formControlName="sommeAParier"></div>
+          <div class="d-flex justify-content-center"><input type="number" class="text-end" id="sommeAParier" placeholder="Somme à Parier   €" formControlName="sommeAParier"></div>
           </div>
          </div>
 
-
+        
     <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
             <button type="input"
