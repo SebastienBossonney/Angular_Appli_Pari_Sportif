@@ -8,7 +8,7 @@
       <form>
         <div class="form-connection">
           <label for="emailCompte">Adresse email: </label> <input
-            type="text" class="form-control" id="emailCompte" placeholder={{utilisateur.email}}
+            type="text" class="form-control" id="emailCompte" placeholder={{utilisateur?.email}}
             disabled="disabled">
         </div>
 
@@ -57,7 +57,7 @@
       <form>
         <div class="form-connection">
           <label for="motDePasseCompte">Mot de passe </label> <input
-            type="password" class="form-control" value='*******' placeholder={{utilisateur.motDePasse}} id="motDePasseCompte"
+            type="password" class="form-control" value='*******' placeholder={{utilisateur?.motDePasse}} id="motDePasseCompte"
             disabled="disabled">
         </div>
 
@@ -127,7 +127,7 @@
       <form>
         <div class="form-connection">
           <label for="limiteArgent">Limite d'argent: </label> <input
-            type="text" class="form-control" id="limiteArgent" placeholder={{utilisateur.limite}}
+            type="text" class="form-control" id="limiteArgent" placeholder={{utilisateur?.limite}}
             disabled="disabled">
         </div>
 
@@ -171,7 +171,7 @@
       <form>
         <div class="form-connection" >
           <label for="salaireCompte">Salaire (facultatif) </label> <input
-                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur.salaire}}
+                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur?.salaire}}
             disabled="disabled">
         </div>
 
@@ -217,7 +217,7 @@
         <form>
           <div class="form-connection">
           <label for="newSalaire">Profil du joueur: </label><input
-          type="text" class="form-control" id="newSalaire" placeholder={{utilisateur.profil}} disabled=disabled>
+          type="text" class="form-control" id="newSalaire" placeholder={{utilisateur?.profil}} disabled=disabled>
           </div>
         </form>
 
@@ -240,7 +240,7 @@
             <label class="form-check-label">
               <input
                 type="radio"
-                name="profil"
+                name="nouveauProfil"
                 id="risque"
                 class="form-check-input"
                 value="RISQUE"
@@ -253,7 +253,7 @@
             <label class="form-check-label">
               <input
                 type="radio"
-                name="profil"
+                name="nouveauProfil"
                 id="risque2"
                 class="form-check-input"
                 value="MIRISQUE"
@@ -266,7 +266,7 @@
             <label class="form-check-label">
               <input
                 type="radio"
-                name="profil"
+                name="nouveauProfil"
                 id="risque3"
                 class="form-check-input"
                 value="SANSRISQUE"
