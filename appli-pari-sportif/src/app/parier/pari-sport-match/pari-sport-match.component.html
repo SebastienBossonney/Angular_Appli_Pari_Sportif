@@ -9,7 +9,7 @@
 </option>
 </select>
 <br>
-<form >
+<form [formGroup]="pariForm">
 <!-- PARI  /////////////////////////////////////////// -->
   <div class="card mt-3" *ngIf="matchSelected" id='cardPariMatch'>
     <div class="card-header bg-warning text-dark text-center">
@@ -24,33 +24,32 @@
         </div>
 
         <div class="d-flex justify-content-between">
-                  <div class="bg-light"><label id="coteE1">{{coteE1.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="0" id="coteE1"  ></div>
-        <div class="bg-light"><label id="coteE2">{{coteE2.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="coteE2"  ></div>
+        <div class="bg-light"><label id="coteE1" *ngIf="coteE1">{{coteE1.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="0" id="coteE1" formControlName="radioPari" ></div>
+        <div class="bg-light"><label id="coteE2" *ngIf="coteE2">{{coteE2.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="coteE2" formControlName="radioPari" ></div>
         </div>
-
         <div class="row">
-        <div class="d-flex justify-content-center bg-light">&nbsp;<label id="coteMN">{{coteMN.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="2" id="coteMN" ></div>
+        <div class="d-flex justify-content-center bg-light">&nbsp;<label id="coteMN" *ngIf="coteMN">{{coteMN.valeur}}</label>&nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="2" id="coteMN" formControlName="radioPari"></div>
         </div>
         <br/>
           <div class="row">
-          <div class="d-flex justify-content-center"><input type="text" class="text-end" id="sommeAParier" placeholder="€"  required></div>
+          <div class="d-flex justify-content-center"><input type="number" class="text-end" id="sommeAParier" placeholder="€" formControlName="sommeAParier"></div>
           </div>
          </div>
 
 
     <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
-            <button type="button"
-               class="btn btn-success" (click)="parier()"><i class="bi bi-check-square" ></i>
+            <button type="input"
+               class="btn btn-success" (click)="parier()" [disabled]="pariForm.invalid"><i class="bi bi-check-square" ></i>
             </button>
             <button type="button" id="cancelPari"
-              class="btn btn-warning"><i class="bi bi-backspace"></i>
+              class="btn btn-warning"><i class="bi bi-backspace" routerLink="/sport" routerLinkActive="active"></i>
             </button>
           </div>
         </div>
-
-
 </div></form>
+
+
 
 
 
