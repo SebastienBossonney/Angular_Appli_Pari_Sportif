@@ -48,3 +48,4 @@ export class ConnexionComponent {
     this.router.navigate(['/motDePasseOublie'])
   }
 }
+
