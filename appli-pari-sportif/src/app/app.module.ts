@@ -24,6 +24,8 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
 import { AvertissementComponent } from './avertissement/avertissement.component';
+import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
+import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AvertissementComponent } from './avertissement/avertissement.component'
     CompteUtilisateurComponent,
     AllUtilisateursComponent,
     AvertissementComponent,
+    PariSportComponent,
+    PariSportMatchComponent
 
     // LimiteInterfaceComponent
   ],
