@@ -19,9 +19,6 @@ export class AllUtilisateursComponent implements OnInit {
 
   identifiant = new FormControl('', Validators.required)
 
-  // @Input () visible='';
-
-
 
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute) { }
 
@@ -53,14 +50,6 @@ export class AllUtilisateursComponent implements OnInit {
 
   // rename
   rename(utilisateur:Utilisateur) {
-    // const modificationUtilisateur = {
-    //   id:utilisateur.id,
-    //   identifiant: utilisateur.identifiant,
-    //   email: utilisateur.email,
-    //   motDePasse: utilisateur.motDePasse,
-    //   role: utilisateur.role,
-    //   profil: utilisateur.profil,
-    //   salaire: utilisateur.salaire}
     this.utilisateurService.editUtilisateur(utilisateur.id, utilisateur).subscribe(() => {
       this.utilisateurs.forEach(utilisateur => {
         if(utilisateur.id === utilisateur.id) {

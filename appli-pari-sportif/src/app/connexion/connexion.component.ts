@@ -35,7 +35,7 @@ export class ConnexionComponent {
       .subscribe((user: Utilisateur) => {
         if (sessionStorage.getItem('user')) {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
-          this.router.navigate(['/allUtilisateurs' + '/' + userInfo.id]);
+          this.router.navigate(['utilisateur' + '/' + userInfo?.id]);
           console.log('Connecte');
         } else {
           console.log('Mauvais identifiant');

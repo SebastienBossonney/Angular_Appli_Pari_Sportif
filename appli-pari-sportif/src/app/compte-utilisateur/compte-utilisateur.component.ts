@@ -3,7 +3,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
-import { AuthService } from '../auth.service';
+
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
 //import { MustMatch } from './mot-de-passe.validator';
@@ -15,16 +15,16 @@ import { UtilisateurService} from '../utilisateur-service.service';
 })
 export class CompteUtilisateurComponent implements OnInit {
 
-  // @Output('rendrevisible')
+  // @Output('rendrevisible') 
   currentVisible: boolean = false;
 
   utilisateurs$!: Utilisateur[]
   utilisateur!:Utilisateur;
   limiteArg=false;//Pour le bouton modifier de limite d'argent
   salaire=false; //Pour le bouton modifier le salaire
-  risque=false;//Pour le bouton modifier le seuil de risque
-  mdp=false;//Pour le bouton modifier le mot de passe
-  email=false;//Pour le bouton modifier l'email
+  risque=false;//Pour le bouton modifier le seuil de risque 
+  mdp=false;//Pour le bouton modifier le mot de passe 
+  email=false;//Pour le bouton modifier l'email 
   utilisateurs!:Utilisateur[];
   utilisateurProfilSelect:any;
   selectDefaultValue:any;
@@ -102,7 +102,6 @@ export class CompteUtilisateurComponent implements OnInit {
 
   get f() {return this.motDePasseForm.controls;}
 
-
   getUtilisateurById(){
     this.route.paramMap.pipe(switchMap((params:ParamMap)=>{
       const id = +params.get('id')!;
@@ -149,7 +148,7 @@ export class CompteUtilisateurComponent implements OnInit {
       montantDisponible: this.utilisateur.montantDisponible,
     };
 
-
+    
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
@@ -228,14 +227,15 @@ export class CompteUtilisateurComponent implements OnInit {
       salaire: this.utilisateur.salaire,
       montantDisponible: this.utilisateur.montantDisponible,
     };
-
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
   }
-
+ 
  gotoUtilisateurCompte() {
-    this.router.navigate(['/allUtilisateurs']);
+    var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.router.navigate(['/utilisateur' + '/' + userInfo.id]);
+    this.onReset();
  }
 
    changeLimite() { //Pour le bouton modifier de limite d'argent
@@ -245,7 +245,7 @@ export class CompteUtilisateurComponent implements OnInit {
       this.limiteArg= true;
     }
   }
-
+  
   changeSalaire() {
     if (this.salaire){
       this.salaire=false;
@@ -270,10 +270,8 @@ export class CompteUtilisateurComponent implements OnInit {
       this.mdp=false;
     } else {
       this.mdp= true;
-
     }}
   
-
   changeEmail() { //Pour le bouton modifier de limite d'argent
     if(this.email) {
       this.email=false;

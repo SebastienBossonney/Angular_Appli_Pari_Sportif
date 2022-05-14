@@ -15,7 +15,6 @@ import { DonneesPariComponent } from './donnees-pari/donnees-pari.component';
 import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utilisateur.component';
 import { HistoriquePariFootComponent } from './historique-pari-foot/historique-pari-foot.component';
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
-import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
 
@@ -24,6 +23,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
 import { AvertissementComponent } from './avertissement/avertissement.component';
+import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 
 @NgModule({
   declarations: [
