@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/fr';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +18,7 @@ import { DonneesUtilisateurComponent } from './donnees-utilisateur/donnees-utili
 import { HistoriquePariFootComponent } from './historique-pari-foot/historique-pari-foot.component';
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
 //import { LimiteInterfaceComponent } from './donnees-pari/limite-interface.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 import { UserService } from './utilisateur.service';
 import { AuthService } from './auth.service';
@@ -51,7 +53,7 @@ import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-ma
     AllUtilisateursComponent,
     AvertissementComponent,
     PariSportComponent,
-    PariSportMatchComponent
+     PariSportMatchComponent
 
     // LimiteInterfaceComponent
   ],
@@ -64,7 +66,7 @@ import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-ma
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [HttpClientModule, UserService, AuthService],
+  providers: [HttpClientModule, UserService, AuthService, DatePipe ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

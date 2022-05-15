@@ -26,10 +26,12 @@
         <div class="d-flex justify-content-between">
         <div class="bg-light">
           <label id="coteE1" for="coteE1" *ngIf="coteE1">{{coteE1.valeur}}</label>
-          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<input type="radio" class="form-check-input" name ="radioPari"  value="0" id="coteE1" formControlName="radioPari" ></div>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+          <input type="radio" class="form-check-input" name ="radioPari"  [value]="coteE1" id="coteE1" formControlName="radioPari" ></div>
         <div class="bg-light">
           &nbsp;&nbsp;<label id="coteE2" for="coteE2" *ngIf="coteE2">{{coteE2.valeur}}</label>
-          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<input type="radio" class="form-check-input" name ="radioPari" value="1" id="coteE2" formControlName="radioPari" ></div>
+          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+          <input type="radio" class="form-check-input" name ="radioPari" [value]="coteE2" id="coteE2" formControlName="radioPari" ></div>
         </div>
 <div class="row">
         <div class=" d-flex justify-content-center bg-light">
@@ -37,7 +39,7 @@
           <label id="coteMN" for="coteMN"  *ngIf="coteMN">{{coteMN.valeur}}</label>
           &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
           &nbsp; &nbsp;&nbsp;
-            <input type="radio" class="form-check-input" name ="radioPari" value="2" id="coteMN" formControlName="radioPari">
+            <input type="radio" class="form-check-input" name ="radioPari" [value]="coteMN" id="coteMN" formControlName="radioPari">
             </div>
           </div>
 
@@ -47,7 +49,7 @@
           </div>
          </div>
 
-        
+
     <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
             <button type="input"

@@ -1,7 +1,7 @@
 
 import { JsonpClientBackend } from '@angular/common/http';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, LOCALE_ID, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router, RouterStateSnapshot } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -12,7 +12,9 @@ import { Cote } from '../cote';
 import { Match } from '../match';
 import { MatchService } from '../match.service';
 import { Pari } from '../pari';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import { PariService } from '../pari.service';
 
 @Component({
   selector: 'app-pari-sport-match',
@@ -34,6 +36,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   coteE2!: Cote;
   coteMN!: Cote;
   user!: Utilisateur;
+  //pariDate! : DatePipe;
 
   //coteSelected!: number;
   pari!: Pari;
@@ -42,17 +45,21 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   messageSommeAParier: string = "Il faut remplir la somme à parier";
 
 
-  cote!: Cote;
+  //cote!: Cote;
 
-  today: Date = new Date();
-  pipe = new DatePipe('Europe/Paris');
-  todayWithPipe = null;
+  today: string;
+  heure: string;
+
+  //datePipe = new DatePipe('fr-FR')
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
 
-  constructor( private route: ActivatedRoute, private router: Router, private matchService: MatchService, private fb: FormBuilder) {
-
+  constructor( private route: ActivatedRoute, private router: Router, private matchService: MatchService,
+    private fb: FormBuilder, private datePipe: DatePipe, private pariService : PariService
+    ) {
+    this.today = this.datePipe.transform(new Date(), 'dd/MM/yyyy')!;
+    this.heure = this.datePipe.transform(new Date(),'HH:mm')!
   }
 
   pariForm = this.fb.group({
@@ -61,7 +68,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit(): void {
-      console.log('j entre');
+
       this.route.paramMap.subscribe(params => {
       this.sportId= +params.get('id')!;
 
@@ -79,13 +86,13 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
 
     onChange(event: Event)
      {
-       console.log("rezgui");
        if(this.matchSelectCH)
        {
 
            this.equipe1 = this.matchSelectCH.equipes[0];
           this.equipe2 = this.matchSelectCH.equipes[1];
-          this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {this.cotesM = data;
+          this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {
+            this.cotesM = data;
            if(this.cotesM.length == 3){
 
             this.coteE1 = this.cotesM.find(x => x.statut == 'GAGNANT')!;
@@ -111,18 +118,29 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
 
       const formValue = this.pariForm.value;
       const sommeAParier = formValue.sommeAParier;
-      this.user =  JSON.parse(sessionStorage.getItem("user")!);
-      if(sommeAParier > this.user.montantDisponible){
+      const user =  JSON.parse(sessionStorage.getItem("user")!);
+
+      ///ne peut pas parier
+      if(sommeAParier > user?.montantDisponible){
         this.swalWithBootstrapButtons.fire('',"Vous ne avez pas soufisant de mountant disponible pour faire cet pari", 'warning');
       }
+      //peut parier
       else{
-      const coteSelected = this.cotesM[formValue.radioPari];
-      this.pari.coteId= coteSelected.id;
-      const stringDate = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
-      //let dateResult = new Date(stringDate);
-      //this.pari.datePari = new Date(stringDate);
+
+        this.pari = {
+          id: -1,
+  montantJoue: sommeAParier,
+  datePari: this.today,
+  heurePari: this.heure,
+  resultat: formValue.radioPari.statut,
+  montantResultat: formValue.radioPari.valeur * sommeAParier,
+  utilisateurId: user?.id,
+  coteId : formValue.radioPari.id}
+console.log(this.pari);
+
+      this.pariService.addPari(this.pari).subscribe(()=> this.pari);
       }
-      console.log(sommeAParier);
+
     }
 
 
