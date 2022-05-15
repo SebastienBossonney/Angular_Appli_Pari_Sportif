@@ -69,7 +69,6 @@ export class AdminCreationComponent implements OnInit {
 
   submitSport() {}
   submitEquipe(id : String) {
-    createSport
   }
   submitMatch() {}
 }
