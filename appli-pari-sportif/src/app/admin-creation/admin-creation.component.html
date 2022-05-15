@@ -6,7 +6,6 @@
     <div class="card-body">
       <form [formGroup]="creationSport">
         <div><label for="nameSport">Creation d'un sport : </label></div>
-
         <input
           type="text"
           class="form-control"
@@ -25,22 +24,21 @@
           Confirmez
         </button>
       </form>
-      <form [formGroup]="creationEquipe">
-
-
-        <div><label for="nameEquipe">Creation d'une équipe : </label></div>
+      <!-- <form [formGroup]="creationEquipe"> -->
+        <!-- <div><label for="sportSelect">Creation d'une équipe : </label></div>
 
         <select
-        id="sportSelect"
-        name="sportSelect"
-        class="form-control"
-      >
-        <!-- <option disable hidden [value]="selectDefaultValue">--</option> -->
-        <option *ngFor="let s of sports" value="{{ s.id }}">
-          {{ s.nomSport }}
-        </option>
-      </select>
-
+          [(ngModel)]="sportSelect"
+          id="sportSelect"
+          name="sportSelect"
+          class="form-control"
+          (change)="onChange(sportSelect)"
+        >
+          <option disable hidden [value]="selectDefaultValue">--</option>
+          <option *ngFor="let s of sports" value="{{ s.id }}">
+            {{ s.nomSport }}
+          </option>
+        </select>
         <input
           type="text"
           class="form-control"
@@ -53,12 +51,46 @@
         <button
           type="button"
           class="btn btn-info"
-          [disabled]="!creationSport.valid"
-
+          [disabled]="!creationEquipe.valid"
+          (click)="submitEquipe(sportSelect)"
         >
           Confirmez
-        </button>
-      </form>
+        </button> -->
+
+          <div class="sportAParier">
+            <label for="sportSelect">Sport</label>
+            <select
+              [(ngModel)]="sportSelect"
+              id="sportSelect"
+              name="sportSelect"
+              class="form-select"
+              (change)="onChange(sportSelect)"
+            >
+              <option disable hidden [value]="selectDefaultValue">--</option>
+              <option *ngFor="let s of sports" value="{{ s.id }}">
+                {{ s.nomSport }}
+              </option>
+            </select>
+            </div>
+            <form [formGroup]="creationEquipe">
+            <input
+            type="text"
+            class="form-control"
+            id="nameEquipe"
+            name="nameEquipe"
+            formControlName="nameEquipe"
+            placeholder="Enter your equip name"
+            required
+          />
+            <button
+            type="button"
+            class="btn btn-info"
+            [disabled]="!creationEquipe.valid"
+            (click)="submitEquipe(sportSelect)"
+          >
+            Confirmez
+          </button>
+        </form>
       <form [formGroup]="creationMatch">
         <div><label for="match">Creation d'un match : </label></div>
 
@@ -116,5 +148,6 @@
           Confirmez
         </button>
       </form>
+    </div>
   </div>
 </div>

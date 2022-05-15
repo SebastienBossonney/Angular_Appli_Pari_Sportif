@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Equipe } from '../equipe-interface/equipe-interface.component';
+import { EquipeService } from '../equipe.service';
 import { Sport } from '../sport';
 import { AdminCreationService } from './admin-creation.service';
 
@@ -13,8 +15,9 @@ import { AdminCreationService } from './admin-creation.service';
 export class AdminCreationComponent implements OnInit {
   sports!: Sport[];
   selectDefaultValue: any;
-  s!: Sport;
-  sportSelect: any;
+  sport!: Sport;
+  sportSelect!: number;
+  equipe:Equipe | undefined;
 
   matchSelected: boolean = false;
   constructor(private builder: FormBuilder,private router: Router,private adminCreationService: AdminCreationService) {}
@@ -29,6 +32,7 @@ export class AdminCreationComponent implements OnInit {
     nameSport: ['', Validators.required],
   });
   creationEquipe = this.builder.group({
+    sportSelected: new FormControl(),
     nameEquipe: ['', Validators.required],
   });
 
@@ -43,7 +47,7 @@ export class AdminCreationComponent implements OnInit {
 
   onChange(sportSelected: number | undefined) {
     console.log(sportSelected);
-    this.router.navigateByUrl(`/sport/${sportSelected}`);
+    // this.router.navigateByUrl(`/sport/${sportSelected}`);
   }
   get nameSport(): AbstractControl {
     return this.creationSport.controls['nameSport'];
@@ -67,8 +71,37 @@ export class AdminCreationComponent implements OnInit {
     return this.creationSport.controls['pays'];
   }
 
-  submitSport() {}
-  submitEquipe(id : String) {
+  submitSport() {
+    this.sport =
+    {
+      id : -1,
+      version : 0,
+      nomSport :  this.creationSport.get('nameSport')?.value,
+    }
+    this.adminCreationService.createSport(this.sport).subscribe((sport) => this.gotoUserList());
+    window. location. reload();
+
   }
+
+  gotoUserList() {
+    this.router.navigate(['/creationSportEquipeMatch']);
+  }
+
+  submitEquipe(sportSelected: number | undefined) {
+      console.log('sport selectionne',sportSelected);
+      // this.router.navigateByUrl(`/sport/${sportSelected}`);
+
+    this.equipe =
+    {
+      id : -1,
+      nom :  this.creationEquipe.get('nameEquipe')?.value,
+    }
+    console.log(this.equipe);
+
+    this.adminCreationService.createEquipe(this.equipe,sportSelected).subscribe((equipe) => this.gotoUserList());
+    // window. location. reload();
+  }
+
+
   submitMatch() {}
 }
