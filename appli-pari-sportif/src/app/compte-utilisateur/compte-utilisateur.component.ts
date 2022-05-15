@@ -286,7 +286,6 @@ export class CompteUtilisateurComponent implements OnInit {
         this.profilForm.reset();
     }
   
- 
 
 }
 
