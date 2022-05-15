@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PariService } from './pari.service';
+import { PariService } from './parier/pari.service';
 
 describe('PariService', () => {
   let service: PariService;

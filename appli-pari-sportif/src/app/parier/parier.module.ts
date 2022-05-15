@@ -10,8 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
-    PariSportComponent,
-    PariSportMatchComponent
+    // PariSportComponent,
+    // PariSportMatchComponent
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,7 @@ import { HistoriquePariFootComponent } from './historique-pari-foot/historique-p
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 
-import { CompteUtilisateurResolverService } from './compte-utilisateur/compte-utilisateur-resolver';
+
 
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
@@ -26,10 +26,7 @@ const routes: Routes = [
   children: [
     {path:':id', component:CompteUtilisateurComponent}]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
-  {path: 'sport', component: PariSportComponent,
-  children: [
-    {path: ':id', component: PariSportMatchComponent}
-            ]},
+
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},
   {path: 'sport', component: PariSportComponent,
   children: [
