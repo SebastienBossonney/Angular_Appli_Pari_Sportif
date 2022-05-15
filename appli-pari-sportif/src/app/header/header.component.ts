@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,9 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  router: any;
-  
-  constructor(private authService: AuthService) {
+
+  constructor(private authService: AuthService,private router: Router) {
 
    }
 
@@ -20,6 +20,14 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     console.log('Deconnecte');
     this.router.navigate(['/connexion']);
+  }
+
+  directionCreation(){
+    this.router.navigate(['/creationSportEquipeMatch']);
+  }
+
+  directionModifierInformation(){
+    this.router.navigate(['/utilisateur']);
   }
 
 }

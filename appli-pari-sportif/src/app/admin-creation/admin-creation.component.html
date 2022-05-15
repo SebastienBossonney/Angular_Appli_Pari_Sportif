@@ -1,113 +1,120 @@
 <div class="container">
-  <div class="card mt-3" >
+  <div class="card mt-3">
     <div class="card-header bg-warning text-dark text-center">
-      <h3>Creation d'un sport, d'une équipe ou d'un match </h3>
+      <h3>Creation d'un sport, d'une équipe ou d'un match</h3>
     </div>
     <div class="card-body">
-      <form [formGroup]="loginForm">
-        <label for="identifiant">Identifiant</label>
+      <form [formGroup]="creationSport">
+        <div><label for="nameSport">Creation d'un sport : </label></div>
+
         <input
           type="text"
           class="form-control"
-          id="identifiant"
-          name="identifiant"
-          placeholder="Enter your identifiant"
-          formControlName="identifiant"
-
-          required/>
-        <div
-          class="help-block"
-          *ngIf="identifiant.touched && identifiant.invalid"
-          >Le nom d'utilisateur n'est pas valide</div
-        >
-        <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          name="email"
-          placeholder="Enter your email address"
-          formControlName="email"
-
+          id="nameSport"
+          name="nameSport"
+          placeholder="Enter your sport"
+          formControlName="nameSport"
           required
-          />
-          <div
-          class="help-block"
-          *ngIf="email.touched && email.invalid"
-          >Email non valide</div>
-        <label for="motDePasse">Mot de Passe :</label>
-        <input
-          type="password"
-          class="form-control"
-          id="motDePasse"
-          name="motDePasse"
-          placeholder="Enter your password"
-          formControlName="motDePasse"
-          required/>
-        <div
-          class="help-block"
-          *ngIf="motDePasse.touched && motDePasse.errors?.minlength"
-          >Le mot de passe doit etre au minimum de 8 characters </div
+        />
+        <button
+          type="button"
+          class="btn btn-info"
+          [disabled]="!creationSport.valid"
+          (click)="submitSport()"
         >
-        <div class="form-group">
-          <label for="salaire">Salaire (falcultatif):</label>
-          <input type="number" step="0.01" class="form-control" id="salaire"  name="salaire"
-          placeholder="Enter your salary to help us giving more helpful tips"
-          formControlName="salaire" />
-        </div>
-        <div class="form-check-inline">
-          <label class="form-check-label">
-            <input
-              type="radio"
-              name="profil"
-              id="risque"
-              class="form-check-input"
-              value="RISQUE"
-              formControlName="profil"
-              />
-            Risque
-          </label>
-        </div>
-        <div class="form-check-inline">
-          <label class="form-check-label">
-            <input
-              type="radio"
-              name="profil"
-              id="risque2"
-              class="form-check-input"
-              value="MIRISQUE"
-              formControlName="profil"
-              />
-            Mi-Risque
-          </label>
-        </div>
-        <div class="form-check-inline">
-          <label class="form-check-label">
-            <input
-              type="radio"
-              name="profil"
-              id="risque3"
-              class="form-check-input"
-              value="SANSRISQUE"
-              formControlName="profil"
-              />
-            Sans Risque
-          </label>
-        </div>
-        <div class="card-footer d-flex justify-content-center">
-          <div class="btn-group btn-group-lg">
-            <button
-              type="button"
-              class="btn btn-info"
-              [disabled]="!loginForm.valid"
-              (click)="onSubmit()"
-            >
-              Login
-            </button>
-          </div>
-        </div>
+          Confirmez
+        </button>
       </form>
-    </div>
+      <form [formGroup]="creationEquipe">
+
+
+        <div><label for="nameEquipe">Creation d'une équipe : </label></div>
+
+        <select
+        id="sportSelect"
+        name="sportSelect"
+        class="form-control"
+      >
+        <!-- <option disable hidden [value]="selectDefaultValue">--</option> -->
+        <option *ngFor="let s of sports" value="{{ s.id }}">
+          {{ s.nomSport }}
+        </option>
+      </select>
+
+        <input
+          type="text"
+          class="form-control"
+          id="nameEquipe"
+          name="nameEquipe"
+          placeholder="Enter your equip name"
+          formControlName="nameEquipe"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-info"
+          [disabled]="!creationSport.valid"
+          (click)="submitEquipe({{ s.id }})"
+        >
+          Confirmez
+        </button>
+      </form>
+      <form [formGroup]="creationMatch">
+        <div><label for="match">Creation d'un match : </label></div>
+
+        <input
+          type="text"
+          class="form-control"
+          id="lieu"
+          name="lieu"
+          formControlName="lieu"
+          placeholder="Enter place"
+          required
+        />
+        <input
+          type="text"
+          class="form-control"
+          id="ville"
+          name="ville"
+          formControlName="ville"
+          placeholder="Enter city"
+          required
+        />
+        <input
+          type="text"
+          class="form-control"
+          id="pays"
+          name="pays"
+          formControlName="pays"
+          placeholder="Enter country"
+          required
+        />
+        <label for="match">Date du match : </label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateMatch"
+          name="dateMatch"
+          formControlName="dateMatch"
+          required
+        />
+        <label for="match">Heure du match : </label>
+        <input
+          type="time"
+          class="form-control"
+          id="heureMatch"
+          name="heureMatch"
+          formControlName="heureMatch"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-info"
+          [disabled]="!creationSport.valid"
+          (click)="submitMatch()"
+        >
+          Confirmez
+        </button>
+      </form>
   </div>
 </div>
-

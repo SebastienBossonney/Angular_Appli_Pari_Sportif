@@ -14,6 +14,7 @@ import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.co
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
+import { AdminCreationComponent } from './admin-creation/admin-creation.component';
 
 
 
@@ -28,6 +29,11 @@ const routes: Routes = [
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
 
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},
+  {path:'creationSportEquipeMatch',component:AdminCreationComponent,
+  children: [
+    {path: ':id', component: PariSportMatchComponent}
+            ]},
+            
   {path: 'sport', component: PariSportComponent,
   children: [
     {path: ':id', component: PariSportMatchComponent}
