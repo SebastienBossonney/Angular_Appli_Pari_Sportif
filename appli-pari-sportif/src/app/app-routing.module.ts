@@ -9,7 +9,6 @@ import { HistoriquePariFootComponent } from './historique-pari-foot/historique-p
 import { HistoriquePariRugbyComponent } from './historique-pari-rugby/historique-pari-rugby.component';
 import { AllUtilisateursComponent } from './all-utilisateurs/all-utilisateurs.component';
 
-import { CompteUtilisateurResolverService } from './compte-utilisateur/compte-utilisateur-resolver';
 
 import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisateur.component';
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
