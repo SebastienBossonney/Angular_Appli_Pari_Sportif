@@ -21,6 +21,11 @@ export class MatchService {
     return this.http.get<Match[]>(this.matchUrl + '/sports/' +sportId+ '/matchs');
   }
 
+  public getMatches(sportId: number): Observable<Match[]> {
+     console.log();
+    return this.http.get<Match[]>(this.matchUrl + '/sports/' +sportId+ '/matchs-all');
+  }
+
   public getCotesByMatchId(matchId: number): Observable<Cote[]> {
      console.log();
     return this.http.get<Cote[]>(this.matchUrl + '/matchs/' +matchId+ '/cotes');

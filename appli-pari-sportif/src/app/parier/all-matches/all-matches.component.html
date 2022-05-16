@@ -1,0 +1,4 @@
+<div class="card-header bg-outline-warning" *ngFor="let match of matchs ">
+    <h3 class="text-success" [routerLink]="['./', match.id]">{{match?.lieu}},</h3>
+    <div [routerLink]="['./', match.id]"><strong>Id: </strong> {{match?.ville}},</div>
+</div>
