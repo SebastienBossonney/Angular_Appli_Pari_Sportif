@@ -129,6 +129,8 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       //peut parier
       else{
 
+        
+
         this.pari = {
           id: -1,
           montantJoue: sommeAParier,
@@ -152,9 +154,9 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
             {this.equipePari = "Match Nul"; break;}
           }
 
-          this.user.montantDisponible = this.user.montantDisponible - sommeAParier;
-          console.log(this.user.montantDisponible);
-          this.swalWithBootstrapButtons.fire('',"Bonne Chance! Vous venez de parier " + sommeAParier + "euros, il vous reste maintenant "+ this.user.montantDisponible+ "euros. Si la chance est de votre part, vous gagnierez" + this.pari.montantResultat, 'success')
+          user.montantDisponible = user.montantDisponible - sommeAParier;
+          console.log(user.montantDisponible);
+          this.swalWithBootstrapButtons.fire('',"Bonne Chance! Vous venez de parier " + sommeAParier + "euros, il vous reste maintenant "+ user.montantDisponible+ "euros. Si la chance est de votre part, vous gagnerez " + this.pari.montantResultat, 'success')
           //this.utilisateurService.editUtilisateur(this.user.id, this.user).subscribe(()=> this.user);
       }
 
