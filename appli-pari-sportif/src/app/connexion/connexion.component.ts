@@ -35,7 +35,9 @@ export class ConnexionComponent {
       .subscribe((user: Utilisateur) => {
         if (sessionStorage.getItem('user')) {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
-          this.router.navigate(['utilisateur' + '/' + userInfo?.id]);
+          this.router.navigate(['utilisateur' + '/' + userInfo?.id]).then(() => {
+            window.location.reload();
+          });
           console.log('Connecte');
         } else {
           console.log('Mauvais identifiant');
@@ -46,6 +48,10 @@ export class ConnexionComponent {
 
   mdpOublie(){
     this.router.navigate(['/motDePasseOublie'])
+  }
+
+  inscription(){
+    this.router.navigate(['/inscription'])
   }
 }
 

@@ -49,6 +49,7 @@ export class InscriptionComponent {
       montantTotalPerdu: 0,
       salaire: this.loginForm.get('salaire')?.value,
       montantDisponible: 0,
+
     };
     this.userService
       .createUtilisateur(this.user)

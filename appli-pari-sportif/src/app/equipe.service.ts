@@ -10,7 +10,7 @@ export class EquipeService {
 
   private equipeUrl:string;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     this.equipeUrl ='http://localhost:8080/sports'
   }
 
@@ -25,6 +25,7 @@ export class EquipeService {
 public getEquipeById(sportId: number, id:number): Observable<Equipe>{
     return this.http.get<Equipe>(this.equipeUrl +'/' + sportId + '/equipes/' + id);
   }
+
 
   public saveEquipe(sportId:number, equipe: Equipe) {
     return this.http.post<Equipe>(this.equipeUrl + '/' + sportId + '/equipes', equipe);

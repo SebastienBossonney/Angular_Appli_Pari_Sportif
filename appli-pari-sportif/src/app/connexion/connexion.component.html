@@ -1,7 +1,7 @@
  <div class="container">
   <div class="card mt-3" id="inscriptionForm">
     <div class="card-header bg-warning text-dark text-center">
-      <h3>Inscription</h3>
+      <h3>Connexion</h3>
     </div>
     <div class="card-body">
       <form [formGroup]="form">
@@ -33,10 +33,9 @@
             <button
             type="button"
             class="btn btn-success"
-            routerLink="/inscription"
-            routerLinkActive="active"
+            (click)="inscription()"
           >
-            Pas de compte ?
+            Inscription
           </button>
           </div>
         </div>

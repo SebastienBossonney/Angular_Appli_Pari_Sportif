@@ -29,21 +29,4 @@ export class UserService {
     return this.http.post<Utilisateur>(this.utilisateursUrl, user);
   }
 
-//   login(username:string, password:string) {
-//     return this.http.post<Utilisateur>(this.utilisateursUrl, { username, password })
-//         .pipe(map(user => {
-//             // store user details and jwt token in local storage to keep user logged in between page refreshes
-//             localStorage.setItem('user', JSON.stringify(user));
-//             this.userSubject.next(user);
-//             return user;
-//         }));
-// }
-
-// logout() {
-//   // remove user from local storage and set current user to null
-//   localStorage.removeItem('user');
-//   this.userSubject.next(null);
-//   this.router.navigate(['/account/login']);
-// }
-
 }

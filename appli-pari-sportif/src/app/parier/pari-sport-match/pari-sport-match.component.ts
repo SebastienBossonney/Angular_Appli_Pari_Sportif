@@ -91,7 +91,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
        if(this.matchSelectCH)
        {
 
-           this.equipe1 = this.matchSelectCH.equipes[0];
+          this.equipe1 = this.matchSelectCH.equipes[0];
           this.equipe2 = this.matchSelectCH.equipes[1];
           this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {
             this.cotesM = data;
@@ -129,7 +129,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       //peut parier
       else{
 
-        
+
 
         this.pari = {
           id: -1,
@@ -146,17 +146,22 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
 
           switch(formValue.radioPari.statut)
           {
-            case 'GAGNANTE' :
-             { this.equipePari = this.equipe1.nom; break;}
+            case 'GAGNANT' :
+             {  console.log(formValue.radioPari.statut);
+                this.equipePari = this.equipe1.nom; break;}
              case 'PERDANT' :
-             {this.equipePari = this.equipe2.nom; break;}
+             {
+              console.log(formValue.radioPari.statut);
+              this.equipePari = this.equipe2.nom; break;}
             case 'NUL' :
-            {this.equipePari = "Match Nul"; break;}
+            {
+              console.log(formValue.radioPari.statut);
+              this.equipePari = "Match Nul"; break;}
           }
 
           user.montantDisponible = user.montantDisponible - sommeAParier;
           console.log(user.montantDisponible);
-          this.swalWithBootstrapButtons.fire('',"Bonne Chance! Vous venez de parier " + sommeAParier + "euros, il vous reste maintenant "+ user.montantDisponible+ "euros. Si la chance est de votre part, vous gagnerez " + this.pari.montantResultat, 'success')
+          this.swalWithBootstrapButtons.fire('',"Bonne Chance! Vous venez de parier " + sommeAParier + " euros à " + this.equipePari  + " . Il vous reste maintenant " + user.montantDisponible + " euros. Si la chance est de votre côté, vous gagnerez " + this.pari.montantResultat + "!", 'success')
           //this.utilisateurService.editUtilisateur(this.user.id, this.user).subscribe(()=> this.user);
       }
 

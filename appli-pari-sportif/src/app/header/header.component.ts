@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -8,18 +8,23 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  role: string | undefined;
   constructor(private authService: AuthService,private router: Router) {
 
    }
 
   ngOnInit(): void {
+      var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+      this.role=userInfo?.role;
   }
 
   logout() {
     this.authService.logout();
     console.log('Deconnecte');
-    this.router.navigate(['/connexion']);
+    this.router.navigate(['/connexion']).then(() => {
+      window.location.reload();
+    });
+
   }
 
   directionCreation(){
@@ -27,7 +32,13 @@ export class HeaderComponent implements OnInit {
   }
 
   directionModifierInformation(){
-    this.router.navigate(['/utilisateur']);
+    var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.router.navigate(['utilisateur' + '/' + userInfo?.id]);
   }
+
+  directionAllUsers(){
+ this.router.navigate(['/utilisateurs']);
+  }
+
 
 }
