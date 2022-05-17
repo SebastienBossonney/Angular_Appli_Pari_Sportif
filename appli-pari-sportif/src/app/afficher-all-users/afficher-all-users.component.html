@@ -1,0 +1,12 @@
+<ul>
+  <div class="card-header bg-outline-warning" *ngFor="let utilisateur of utilisateurs ">
+      <h3 class="text-success" [routerLink]="['./', utilisateur.id]">{{utilisateur?.identifiant}},</h3>
+      <div ><strong>Id: </strong> {{utilisateur?.id}},</div>
+      <div ><strong>Email: </strong>{{utilisateur?.email}},</div>
+      <div ><strong>Mot de passe: </strong>{{utilisateur?.motDePasse}},</div>
+      <div ><strong>Limite d'argent: </strong>{{utilisateur?.limite}},</div>
+      <div ><strong>Salaire(facultatif): </strong>{{utilisateur?.salaire}},</div>
+      <div ><strong>Rôle: </strong>{{utilisateur?.role}},</div>
+      <div ><strong>Profil (Risque, Mi-Risque, Sans Risque): </strong>{{utilisateur?.profil}},</div>
+  </div>
+</ul>

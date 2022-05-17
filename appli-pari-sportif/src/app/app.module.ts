@@ -31,8 +31,10 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 import { AdminCreationComponent } from './admin-creation/admin-creation.component';
+import { AfficherAllUsersComponent } from './afficher-all-users/afficher-all-users.component';
 import { AllMatchesComponent } from './parier/all-matches/all-matches.component';
 import { EquipeComponent } from './equipe/equipe.component';
+
 
 
 
@@ -58,8 +60,10 @@ import { EquipeComponent } from './equipe/equipe.component';
     PariSportComponent,
      PariSportMatchComponent,
      AdminCreationComponent,
+     AfficherAllUsersComponent
      AllMatchesComponent,
      EquipeComponent,
+
 
     // LimiteInterfaceComponent
   ],

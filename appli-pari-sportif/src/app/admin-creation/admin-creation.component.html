@@ -4,76 +4,47 @@
       <h3>Creation d'un sport, d'une équipe ou d'un match</h3>
     </div>
     <div class="card-body">
-      <form [formGroup]="creationSport">
-        <div><label for="nameSport">Creation d'un sport : </label></div>
-        <input
-          type="text"
-          class="form-control"
-          id="nameSport"
-          name="nameSport"
-          placeholder="Enter your sport"
-          formControlName="nameSport"
-          required
-        />
-        <button
-          type="button"
-          class="btn btn-info"
-          [disabled]="!creationSport.valid"
-          (click)="submitSport()"
-        >
-          Confirmez
-        </button>
-      </form>
-      <!-- <form [formGroup]="creationEquipe"> -->
-        <!-- <div><label for="sportSelect">Creation d'une équipe : </label></div>
+      <div>
+        <!-- Creation d'un sport -->
+        <form [formGroup]="creationSport">
+          <div><label for="nameSport">Creation d'un sport : </label></div>
+          <input
+            type="text"
+            class="form-control"
+            id="nameSport"
+            name="nameSport"
+            placeholder="Enter your sport"
+            formControlName="nameSport"
+            required
+          />
+          <button
+            type="button"
+            class="btn btn-info"
+            [disabled]="!creationSport.valid"
+            (click)="submitSport()"
+          >
+            Confirmez
+          </button>
+        </form>
 
-        <select
-          [(ngModel)]="sportSelect"
-          id="sportSelect"
-          name="sportSelect"
-          class="form-control"
-          (change)="onChange(sportSelect)"
-        >
-          <option disable hidden [value]="selectDefaultValue">--</option>
-          <option *ngFor="let s of sports" value="{{ s.id }}">
-            {{ s.nomSport }}
-          </option>
-        </select>
-        <input
-          type="text"
-          class="form-control"
-          id="nameEquipe"
-          name="nameEquipe"
-          placeholder="Enter your equip name"
-          formControlName="nameEquipe"
-          required
-        />
-        <button
-          type="button"
-          class="btn btn-info"
-          [disabled]="!creationEquipe.valid"
-          (click)="submitEquipe(sportSelect)"
-        >
-          Confirmez
-        </button> -->
+        <!-- Creation d'une equipe -->
+        <div>
+          <label for="sportSelect">Creation d'un equipe : </label>
+          <select
+            [(ngModel)]="sportSelect"
+            id="sportSelect"
+            name="sportSelect"
+            class="form-select"
+          >
+            <option disable hidden [value]="selectDefaultValue">--</option>
+            <option *ngFor="let s of sports" value="{{ s.id }}">
+              {{ s.nomSport }}
+            </option>
+          </select>
+        </div>
 
-          <div class="sportAParier">
-            <label for="sportSelect">Sport</label>
-            <select
-              [(ngModel)]="sportSelect"
-              id="sportSelect"
-              name="sportSelect"
-              class="form-select"
-              (change)="onChange(sportSelect)"
-            >
-              <option disable hidden [value]="selectDefaultValue">--</option>
-              <option *ngFor="let s of sports" value="{{ s.id }}">
-                {{ s.nomSport }}
-              </option>
-            </select>
-            </div>
-            <form [formGroup]="creationEquipe">
-            <input
+        <form [formGroup]="creationEquipe">
+          <input
             type="text"
             class="form-control"
             id="nameEquipe"
@@ -82,7 +53,7 @@
             placeholder="Enter your equip name"
             required
           />
-            <button
+          <button
             type="button"
             class="btn btn-info"
             [disabled]="!creationEquipe.valid"
@@ -91,63 +62,112 @@
             Confirmez
           </button>
         </form>
-      <form [formGroup]="creationMatch">
+
+        <!-- Creation d'un match  -->
         <div><label for="match">Creation d'un match : </label></div>
 
-        <input
-          type="text"
-          class="form-control"
-          id="lieu"
-          name="lieu"
-          formControlName="lieu"
-          placeholder="Enter place"
-          required
-        />
-        <input
-          type="text"
-          class="form-control"
-          id="ville"
-          name="ville"
-          formControlName="ville"
-          placeholder="Enter city"
-          required
-        />
-        <input
-          type="text"
-          class="form-control"
-          id="pays"
-          name="pays"
-          formControlName="pays"
-          placeholder="Enter country"
-          required
-        />
-        <label for="match">Date du match : </label>
-        <input
-          type="date"
-          class="form-control"
-          id="dateMatch"
-          name="dateMatch"
-          formControlName="dateMatch"
-          required
-        />
-        <label for="match">Heure du match : </label>
-        <input
-          type="time"
-          class="form-control"
-          id="heureMatch"
-          name="heureMatch"
-          formControlName="heureMatch"
-          required
-        />
-        <button
-          type="button"
-          class="btn btn-info"
-          [disabled]="!creationSport.valid"
-          (click)="submitMatch()"
+        <select
+          [(ngModel)]="sportSelect"
+          id="sportSelect"
+          name="sportSelect"
+          class="form-select"
+
         >
-          Confirmez
-        </button>
-      </form>
+          <option disable hidden [value]="selectDefaultValue">--</option>
+          <option *ngFor="let s of sports" value="{{ s.id }}">
+            {{ s.nomSport }}
+          </option>
+        </select>
+
+        <div>
+          <select
+            [(ngModel)]="equipeSelect1"
+            id="equipeSelect1"
+            name="equipeSelect1"
+            class="form-select"
+            (click)="loadEquipes(sportSelect)"
+            
+
+          >
+            <option disable hidden [value]="selectDefaultValue">--</option>
+            <option *ngFor="let e1 of equipes" value="{{ e1.id }}" >
+              {{ e1.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <select
+            [(ngModel)]="equipeSelect2"
+            id="equipeSelect2"
+            name="equipeSelect2"
+            class="form-select"
+
+          >
+            <option disable hidden [value]="selectDefaultValue">--</option>
+            <option *ngFor="let e2 of equipes" value="{{ e2.id }}">
+              {{ e2.nom }}
+            </option>
+          </select>
+        </div>
+
+
+        <form [formGroup]="creationMatch">
+          <input
+            type="text"
+            class="form-control"
+            id="lieu"
+            name="lieu"
+            formControlName="lieu"
+            placeholder="Enter place"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="ville"
+            name="ville"
+            formControlName="ville"
+            placeholder="Enter city"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="pays"
+            name="pays"
+            formControlName="pays"
+            placeholder="Enter country"
+            required
+          />
+          <label for="match">Date du match : </label>
+          <input
+            type="date"
+            class="form-control"
+            id="dateMatch"
+            name="dateMatch"
+            formControlName="dateMatch"
+            required
+          />
+          <label for="match">Heure du match : </label>
+          <input
+            type="time"
+            class="form-control"
+            id="heureMatch"
+            name="heureMatch"
+            formControlName="heureMatch"
+            required
+          />
+          <button
+            type="button"
+            class="btn btn-info"
+            [disabled]="!creationMatch.valid"
+            (click)="submitMatch(sportSelect,equipeSelect1, equipeSelect2)"
+          >
+            Confirmez
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

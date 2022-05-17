@@ -23,7 +23,6 @@ export class AuthService {
 
 
   login(identifiant: string, password: string): Observable<Utilisateur> {
-
     return this.http
       .get<Utilisateur>(this.authUrl + '/' + identifiant + '/' + password)
       .pipe(map(user => {
@@ -38,7 +37,7 @@ export class AuthService {
     if(sessionStorage.getItem('user')){
       sessionStorage.removeItem('user');
     }
-    this.router.navigate(['/account/login']);
-    this.isLogged=false;;
+    this.isLogged=false;
+
   }
  }
