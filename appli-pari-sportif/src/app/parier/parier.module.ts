@@ -6,6 +6,7 @@ import { PariSportComponent } from './pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './pari-sport-match/pari-sport-match.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
   ],
   imports: [
+    AppRoutingModule,
     CommonModule,
     BrowserModule,
     ParierRoutingModule,
