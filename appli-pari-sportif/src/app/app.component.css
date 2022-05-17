@@ -1,1 +1,27 @@
+#sect1 {  
+    background-image: url('./image/5634934.jpg'); 
+    height: 100%;  
+    width:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+
+}  
+
+#sect2 {
+    background-image: url('./image/bence-balla-schottner-deGn9vSwXIM-unsplash.jpg'); 
+    height: 100%;  
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;  
+}
+
+#sect3 {
+    background-image: url('./image/emerson-vieira-V6kZMhjWveo-unsplash.jpg'); 
+    height: 100%;  
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;  
+}
 
