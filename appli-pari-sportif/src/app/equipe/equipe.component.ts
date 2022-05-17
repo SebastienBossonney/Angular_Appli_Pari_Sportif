@@ -58,17 +58,17 @@ choixEquipe: boolean=false;
     }
 
 
-editEquipes(equipe: Equipe){
-    const modifiedEquipe ={id : equipe.id, nom : String};
-    //const equipes = this.equipes;
-    this.equipeService.editEquipes(equipe.id, modifiedEquipe).subscribe(()=>{
-      let test = this.equipes.find(equipe$=>equipe$.id==modifiedEquipe.id) //hero$ crée  une nouvelle variable
-      if(test !== undefined){
-        test.nom = modifiedEquipe.nom
-}
-})
-   }
-    
+// editEquipes(equipe: Equipe){
+//     const modifiedEquipe ={id : equipe.id, nom : String};
+//     //const equipes = this.equipes;
+//     this.equipeService.editEquipes(equipe.id, modifiedEquipe).subscribe(()=>{
+//       let test = this.equipes.find(equipe$=>equipe$.id==modifiedEquipe.id) //hero$ crée  une nouvelle variable
+//       if(test !== undefined){
+//         test.nom = modifiedEquipe.nom
+// }
+// })
+//    }
+
 
 //   private getEquipe(){
 //     this.equipe$=this.equipeService.getEquipe()
@@ -90,5 +90,5 @@ editEquipes(equipe: Equipe){
 //       }
 //     })
 //   }
-    
+
 }
