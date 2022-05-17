@@ -15,6 +15,7 @@ import { Pari } from '../pari';
 import { DatePipe, DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import { PariService } from '../pari.service';
+import { UtilisateurService } from 'src/app/utilisateur-service.service';
 
 @Component({
   selector: 'app-pari-sport-match',
@@ -50,13 +51,14 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
   today: string;
   heure: string;
 
-  //datePipe = new DatePipe('fr-FR')
+  equipePari: string = '';
 
   matchSelected: boolean = false;
   //equipes: Equipe[];
 
   constructor( private route: ActivatedRoute, private router: Router, private matchService: MatchService,
-    private fb: FormBuilder, private datePipe: DatePipe, private pariService : PariService
+    private fb: FormBuilder, private datePipe: DatePipe, private pariService : PariService,
+    private utilisateurService:UtilisateurService
     ) {
     this.today = this.datePipe.transform(new Date(), 'dd/MM/yyyy')!;
     this.heure = this.datePipe.transform(new Date(),'HH:mm')!
@@ -127,18 +129,40 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       //peut parier
       else{
 
+
+
         this.pari = {
           id: -1,
-  montantJoue: sommeAParier,
-  datePari: this.today,
-  heurePari: this.heure,
-  resultat: formValue.radioPari.statut,
-  montantResultat: formValue.radioPari.valeur * sommeAParier,
-  utilisateurId: user?.id,
-  coteId : formValue.radioPari.id}
-console.log(this.pari);
+          montantJoue: sommeAParier,
+          datePari: this.today,
+          heurePari: this.heure,
+          resultat: formValue.radioPari.statut,
+          montantResultat: formValue.radioPari.valeur * sommeAParier,
+          utilisateurId: user?.id,
+          coteId : formValue.radioPari.id}
+          console.log(this.pari);
 
-      this.pariService.addPari(this.pari).subscribe(()=> this.pari);
+          this.pariService.addPari(this.pari).subscribe(()=> this.pari);
+
+          switch(formValue.radioPari.statut)
+          {
+            case 'GAGNANT' :
+             {  console.log(formValue.radioPari.statut);
+                this.equipePari = this.equipe1.nom; break;}
+             case 'PERDANT' :
+             {
+              console.log(formValue.radioPari.statut);
+              this.equipePari = this.equipe2.nom; break;}
+            case 'NUL' :
+            {
+              console.log(formValue.radioPari.statut);
+              this.equipePari = "Match Nul"; break;}
+          }
+
+          user.montantDisponible = user.montantDisponible - sommeAParier;
+          console.log(user.montantDisponible);
+          this.swalWithBootstrapButtons.fire('',"Bonne Chance! Vous venez de parier " + sommeAParier + " euros à " + this.equipePari  + " . Il vous reste maintenant " + user.montantDisponible + " euros. Si la chance est de votre côté, vous gagnerez " + this.pari.montantResultat + "!", 'success')
+          //this.utilisateurService.editUtilisateur(this.user.id, this.user).subscribe(()=> this.user);
       }
 
     }

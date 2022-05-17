@@ -16,6 +16,9 @@ import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 import { AdminCreationComponent } from './admin-creation/admin-creation.component';
 import { AfficherAllUsersComponent } from './afficher-all-users/afficher-all-users.component';
+import { AllMatchesComponent } from './parier/all-matches/all-matches.component';
+import { EquipeComponent } from './equipe/equipe.component';
+
 
 
 
@@ -29,16 +32,19 @@ const routes: Routes = [
   children: [
     {path:':id', component:CompteUtilisateurComponent}]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
-
+  {path:'matchs-all',component:AllMatchesComponent},
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},
+  {path:'equipes-all',component:EquipeComponent},
   {path:'creationSportEquipeMatch',component:AdminCreationComponent,
   children: [
+
     {path: ':id', component: PariSportMatchComponent}
             ]},
 
+
   {path: 'sport', component: PariSportComponent,
   children: [
-    {path: ':id', component: PariSportMatchComponent}
+    {path: ':id', component: PariSportMatchComponent},
             ]},
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

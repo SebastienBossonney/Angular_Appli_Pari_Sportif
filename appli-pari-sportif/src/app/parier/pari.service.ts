@@ -19,4 +19,6 @@ export class PariService {
 
      return this.http.post<Pari>(this.pariUrl + '/utilisateurs/' + pari.utilisateurId + '/paris', pari );
    }
+
+  
 }
