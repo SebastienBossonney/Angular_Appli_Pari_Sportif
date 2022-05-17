@@ -15,6 +15,7 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 import { AdminCreationComponent } from './admin-creation/admin-creation.component';
+import { AfficherAllUsersComponent } from './afficher-all-users/afficher-all-users.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
+  {path: 'utilisateurs', component:AfficherAllUsersComponent},
   {path: 'utilisateur', component:AllUtilisateursComponent,
   children: [
     {path:':id', component:CompteUtilisateurComponent}]},
@@ -33,7 +35,7 @@ const routes: Routes = [
   children: [
     {path: ':id', component: PariSportMatchComponent}
             ]},
-            
+
   {path: 'sport', component: PariSportComponent,
   children: [
     {path: ':id', component: PariSportMatchComponent}

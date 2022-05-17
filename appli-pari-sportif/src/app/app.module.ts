@@ -31,6 +31,7 @@ import { CompteUtilisateurComponent } from './compte-utilisateur/compte-utilisat
 import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 import { AdminCreationComponent } from './admin-creation/admin-creation.component';
+import { AfficherAllUsersComponent } from './afficher-all-users/afficher-all-users.component';
 
 
 
@@ -55,7 +56,8 @@ import { AdminCreationComponent } from './admin-creation/admin-creation.componen
     AvertissementComponent,
     PariSportComponent,
      PariSportMatchComponent,
-     AdminCreationComponent
+     AdminCreationComponent,
+     AfficherAllUsersComponent
 
     // LimiteInterfaceComponent
   ],

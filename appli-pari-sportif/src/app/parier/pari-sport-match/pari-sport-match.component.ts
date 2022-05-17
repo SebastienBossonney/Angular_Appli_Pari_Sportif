@@ -89,7 +89,7 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
        if(this.matchSelectCH)
        {
 
-           this.equipe1 = this.matchSelectCH.equipes[0];
+          this.equipe1 = this.matchSelectCH.equipes[0];
           this.equipe2 = this.matchSelectCH.equipes[1];
           this.matchService.getCotesByMatchId(this.matchSelectCH.id).subscribe(data => {
             this.cotesM = data;
