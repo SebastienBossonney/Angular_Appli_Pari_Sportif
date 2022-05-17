@@ -5,7 +5,7 @@
 <select [(ngModel)]="matchSelectCH" id="matchSelect" name="matchSelect" class="form-select" (ngModelChange)="onChange($event)">
 <option disable hidden [value]="selectDefaultValue">--</option>
 <option *ngFor="let m of matchs" [ngValue]="m">
-  {{ m.equipes[0].nom}} vs {{ m.equipes[1].nom}}
+  {{ m.equipes[0].nom}} vs {{ m.equipes[1].nom}} le {{m.dateMatch}} at {{m.heureMatch}}
 </option>
 </select>
 <br>
@@ -13,7 +13,7 @@
 <!-- PARI  /////////////////////////////////////////// -->
   <div class="card mt-3" *ngIf="matchSelected" id='cardPariMatch'>
     <div class="card-header bg-warning text-dark text-center">
-      <span class="h3" id="equipes">{{equipe1.nom}} vs {{equipe2.nom}}</span>
+      <span class="h3" id="equipes">{{equipe1.nom}} vs {{equipe2.nom}}    le {{matchSelectCH.dateMatch}} at {{matchSelectCH.heureMatch}}</span>
     </div>
 
     <div class="card-body">
