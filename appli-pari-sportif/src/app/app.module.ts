@@ -32,6 +32,7 @@ import { PariSportComponent } from './parier/pari-sport/pari-sport.component';
 import { PariSportMatchComponent } from './parier/pari-sport-match/pari-sport-match.component';
 import { AdminCreationComponent } from './admin-creation/admin-creation.component';
 import { AllMatchesComponent } from './parier/all-matches/all-matches.component';
+import { EquipeComponent } from './equipe/equipe.component';
 
 
 
@@ -57,7 +58,8 @@ import { AllMatchesComponent } from './parier/all-matches/all-matches.component'
     PariSportComponent,
      PariSportMatchComponent,
      AdminCreationComponent,
-     AllMatchesComponent
+     AllMatchesComponent,
+     EquipeComponent,
 
     // LimiteInterfaceComponent
   ],
