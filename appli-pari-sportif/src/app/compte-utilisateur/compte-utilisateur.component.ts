@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import {  FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService} from '../utilisateur-service.service';
 
@@ -31,12 +32,11 @@ export class CompteUtilisateurComponent implements OnInit {
 
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute, private builder: FormBuilder, private router:Router)  {}
 
-
   ngOnInit(){
   this.getUtilisateurById();
-
-
   }
+
+
 
   get nouveauMotDePasse(){
     return this.motDePasseForm.get('nouveauMotDePasse')
@@ -45,9 +45,6 @@ export class CompteUtilisateurComponent implements OnInit {
   get confirmeMotDePasse(){
     return this.motDePasseForm.get('confirmeMotDePasse')
   }
-
-
-
 
   emailForm= this.builder.group({
     //nouvelEmail = formControlName='nouvelEmail'
@@ -80,18 +77,14 @@ export class CompteUtilisateurComponent implements OnInit {
   },
   {validators: this.checkPassword})
 
-
-
- checkPassword(group: FormGroup){
-   let pass= group.controls.nouveauMotDePasse.value//nouveauMotDePasse.value;
+  checkPassword (group: FormGroup){
+   let pass = group.controls.nouveauMotDePasse.value; //nouveauMotDePasse.value;
    let confirmPass = group.controls.confirmeMotDePasse.value;
 
   return pass === confirmPass ? null : { notSame: true}
 
+
  }
-
-
-
 
  submit(){
     console.log(this.motDePasseForm.value);
@@ -107,6 +100,13 @@ export class CompteUtilisateurComponent implements OnInit {
     }),map(utilisateur => this.utilisateur= utilisateur)
     ).subscribe()
   }
+
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
 
   editEmail(){
     console.log(JSON.stringify(this.utilisateur))
@@ -127,6 +127,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"L'email a bien été mofifié.", 'success');
   }
 
 
@@ -150,6 +152,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"La limite a bien été mofifié.", 'success');
   }
 
 
@@ -173,6 +177,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"Le salaire a bien été mofifié.", 'success');
   }
 
   editMotDePasse(){
@@ -205,6 +211,7 @@ export class CompteUtilisateurComponent implements OnInit {
                   .editUtilisateur(this.utilisateur.id, this.utilisateur)
                   .subscribe((utilisateur) => this.gotoUtilisateurCompte());
 
+                  this.swalWithBootstrapButtons.fire('',"Le mote de pass a bien été mofifié.", 'success');
           }
         } else{
    return ;
@@ -231,6 +238,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"Le profil a bien été mofifié.", 'success');
   }
 
  gotoUtilisateurCompte() {

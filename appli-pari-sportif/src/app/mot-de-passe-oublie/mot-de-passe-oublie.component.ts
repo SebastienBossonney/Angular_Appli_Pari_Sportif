@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { Utilisateur } from '../utilisateur.model';
 import { MotDePasseOublieService } from './mot-de-passe-oublie.service';
 
@@ -19,15 +20,26 @@ export class MotDePasseOublieComponent {
     email: [''],
   });
 
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
+
   sendEmail() {
     this.mdpService
       .findEmail(this.form.get('email')?.value)
       .subscribe((user: Utilisateur) => {
-        if (user.id) {
+        if (user.id)
+        {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
           this.alert = true;
-        } else {
-          console.log('Email incorrect');
+          this.swalWithBootstrapButtons.fire('',"Un email a eté envoyé pour modifier le mot de pass.", 'success');
+        }
+        else
+        {
+          this.swalWithBootstrapButtons.fire('',"L'email n'est pas correct'.", 'error');
         }
       });
   }

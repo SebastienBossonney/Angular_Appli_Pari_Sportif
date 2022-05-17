@@ -1,3 +1,5 @@
+import { Match } from "./match";
+
 export interface Pari {
 
   id: number;
@@ -8,4 +10,5 @@ export interface Pari {
   montantResultat: number;
   utilisateurId: number;
   coteId : number;
+  matchDto : Match
 }

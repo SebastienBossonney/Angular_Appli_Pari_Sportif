@@ -9,13 +9,13 @@
 			<div class="card mt-3 border-success mt-2">
 				<div class="card-body">
 					<form>
-						<div class="form-connection p-2">
-							<h3><strong>Pari 1</strong></h3>
-							<h5><strong>Match :  VS </strong></h5>
-							<h6><strong>Montant joué :</strong></h6>
-							
-							<h6><strong>Date du pari :</strong></h6>
-							
+						<div class="form-connection p-2" *ngFor="let p of listPari">
+							<h3><strong>Pari:</strong></h3>
+							<h5><strong>{{p.matchDto.equipes[0].nom}} VS {{p.matchDto.equipes[1].nom}}</strong></h5>
+							<h6><strong>Montant joué : {{p.montantJoue}}</strong></h6>
+
+							<h6><strong>Date du pari : {{p.datePari}}</strong></h6>
+
 							<div class="form-check-inline form-switch">
 								<input class="form-check-input" type="checkbox" id="mySwitch"
 									name="Gagné" value="yes" checked disabled="disabled"> <label
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 
-			<div class="card mt-3 border-success mt-2">
+			<!-- <div class="card mt-3 border-success mt-2">
 				<div class="card-body ">
 					<form>
 						<div class="form-connection p-2">
@@ -79,7 +79,7 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> -->
 
 
 

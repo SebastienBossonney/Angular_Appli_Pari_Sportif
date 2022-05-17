@@ -20,5 +20,9 @@ export class PariService {
      return this.http.post<Pari>(this.pariUrl + '/utilisateurs/' + pari.utilisateurId + '/paris', pari );
    }
 
-  
+   public getPariByUtilisateur (userId: number): Observable<Pari[]>
+   {
+     return this.http.get<Pari[]>(this.pariUrl + '/utilisateurs/' + userId + '/paris');
+   }
+
 }

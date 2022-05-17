@@ -5,6 +5,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Utilisateur } from '../utilisateur.model';
 import { UserService } from '../utilisateur.service';
 import { reservedNameValidator } from './reserved-name.directive';
@@ -37,6 +38,13 @@ export class InscriptionComponent {
     salaire: [''],
   });
 
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
+
   onSubmit() {
     this.user = {
       id: -1,
@@ -54,6 +62,8 @@ export class InscriptionComponent {
     this.userService
       .createUtilisateur(this.user)
       .subscribe((utilisateur) => this.gotoUserList());
+
+      this.swalWithBootstrapButtons.fire('', this.user.identifiant + " Soit bienvenue à Bet Healthier", 'success');
   }
 
   gotoUserList() {

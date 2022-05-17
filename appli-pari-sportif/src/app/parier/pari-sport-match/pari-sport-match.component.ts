@@ -130,7 +130,6 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
       else{
 
 
-
         this.pari = {
           id: -1,
           montantJoue: sommeAParier,
@@ -139,7 +138,8 @@ export class PariSportMatchComponent implements OnInit, OnDestroy {
           resultat: formValue.radioPari.statut,
           montantResultat: formValue.radioPari.valeur * sommeAParier,
           utilisateurId: user?.id,
-          coteId : formValue.radioPari.id}
+          coteId : formValue.radioPari.id,
+          matchDto: this.matchSelectCH}
           console.log(this.pari);
 
           this.pariService.addPari(this.pari).subscribe(()=> this.pari);

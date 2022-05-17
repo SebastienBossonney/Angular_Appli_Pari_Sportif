@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
+import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService } from '../utilisateur-service.service';
@@ -41,10 +42,17 @@ export class AllUtilisateursComponent implements OnInit {
     this.utilisateurService.getUtilisateur().pipe(map(utilisateursObservable => this.utilisateurs = utilisateursObservable), takeUntil(this.utilisateurSub)).subscribe()
   }
 
-
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  })
 
  add(utilisateur: Utilisateur) {
     this.utilisateurService.saveUtilisateur(utilisateur).subscribe(utilisateur => this.utilisateurs.push(utilisateur))
+
+    this.swalWithBootstrapButtons.fire('',"L' utilisateur " + utilisateur.identifiant + " a bien été créé.", 'success');
   }
 
 
@@ -59,12 +67,15 @@ export class AllUtilisateursComponent implements OnInit {
         }
       });
      });
+
+     this.swalWithBootstrapButtons.fire('',"L' utilisateur " + utilisateur.identifiant + " a bien été modifié.", 'success');
   }
   // remove
   remove(utilisateur: Utilisateur) {
     this.utilisateurService.deleteUtilisateur(utilisateur.id).subscribe(() => {
       this.utilisateurs = this.utilisateurs.filter(selectUtilisateur => selectUtilisateur !== utilisateur)
-    })
+    });
+    this.swalWithBootstrapButtons.fire('',"L' utilisateur " + utilisateur.identifiant + " a bien été suprimé.", 'success');
   }
 
 
