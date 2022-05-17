@@ -19,12 +19,14 @@ export class EquipeService {
     return this.http.get<Equipe[]>(this.equipeUrl+ '/' + sportId + '/equipes-all');
   }
 
+
   public editEquipes(sportId:number, id:number, equipe: Equipe) {
     return this.http.put<Equipe>(this.equipeUrl + '/'+ sportId + '/equipes/'+ id, equipe);
   }
 public getEquipeById(sportId: number, id:number): Observable<Equipe>{
     return this.http.get<Equipe>(this.equipeUrl +'/' + sportId + '/equipes/' + id);
   }
+
 
 
   public saveEquipe(sportId:number, equipe: Equipe) {

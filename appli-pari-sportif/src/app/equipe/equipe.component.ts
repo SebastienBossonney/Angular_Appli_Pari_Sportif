@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './equipe.component.html',
   styleUrls: ['./equipe.component.css'],
 })
+
 export class EquipeComponent implements OnInit {
   equipe!: Equipe;
   equipes!: Equipe[];
