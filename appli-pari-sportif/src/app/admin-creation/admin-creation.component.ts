@@ -41,8 +41,6 @@ export class AdminCreationComponent implements OnInit {
   equipeSelect1!: number;
   equipeSelect2!: number;
 
-
-
   constructor(
     private builder: FormBuilder,
     private adminCreationService: AdminCreationService,
@@ -161,53 +159,51 @@ export class AdminCreationComponent implements OnInit {
   //   console.log(this.equipe1);
   // }
 
-  getEquipe1( sportSelected: number | undefined,equipeId : number | undefined) {
+  getEquipe1(sportSelected: number | undefined, equipeId: number | undefined) {
+
     this.adminCreationService
-    .getEquipeById(sportSelected,equipeId)
-    .subscribe((equipe: Equipe) => {
-      console.log('getEquipe 1 ' +equipe);
-     this.equipe1=equipe
-    });
+      .getEquipeById(sportSelected, equipeId)
+      .subscribe((equipe: Equipe) => {
+        console.log('getEquipe 1 ' + equipe);
+        this.equipe1 = equipe;
+      });
     console.log(this.equipe1);
   }
 
-  getEquipe2( sportSelected: number | undefined,equipeId : number) {
+  getEquipe2(sportSelected: number | undefined, equipeId: number) {
     this.adminCreationService
-    .getEquipeById(sportSelected,equipeId)
-    .subscribe((equipe: Equipe) => {
-      console.log('getEquipe 2 ' +equipe.nom);
-      console.log(equipe);
-     this.equipe2=equipe
-    });
+      .getEquipeById(sportSelected, equipeId)
+      .subscribe((equipe: Equipe) => {
+        console.log('getEquipe 2 ' + equipe.nom);
+        console.log(equipe);
+        this.equipe2 = equipe;
+      });
     console.log(this.equipe2);
-
   }
   submitMatch(
     sportSelected: number | undefined,
     equipeSelected1: number | undefined,
     equipeSelected2: number | undefined
   ) {
-
-
-
-
     this.adminCreationService
-    .getEquipeById(sportSelected,equipeSelected1)
-    .subscribe((equipe: Equipe) => {
-
-     this.equipe1=equipe
-     console.log(this.equipe1.nom);
-    });
+      .getEquipeById(sportSelected, equipeSelected1)
+      .subscribe((equipe: Equipe) => {
+        this.equipe1 = equipe;
+        console.log(this.equipe1.nom);
+      });
     this.adminCreationService
-    .getEquipeById(sportSelected,equipeSelected2)
-    .subscribe((equipe: Equipe) => {
+      .getEquipeById(sportSelected, equipeSelected2)
+      .subscribe((equipe: Equipe) => {
+        this.equipe2 = equipe;
+        console.log(this.equipe2.nom);
+      });
 
-     this.equipe2=equipe
-     console.log(this.equipe2.nom);
-    });
-
-    console.log('getMatch 1  ' +this.equipe1.id+'       '+this.equipe1.nom);
-    console.log('getmatch 2  ' +this.equipe2.id+'       '+this.equipe2.nom);
+    console.log(
+      'getMatch 1  ' + this.equipe1.id + '       ' + this.equipe1.nom
+    );
+    console.log(
+      'getmatch 2  ' + this.equipe2.id + '       ' + this.equipe2.nom
+    );
     this.match = {
       id: -1,
       version: 0,
@@ -216,22 +212,19 @@ export class AdminCreationComponent implements OnInit {
       lieu: this.creationMatch.get('lieu')?.value,
       ville: this.creationMatch.get('ville')?.value,
       pays: this.creationMatch.get('pays')?.value,
-      equipes : [
-        {id:this.equipe1.id,
-        nom:this.equipe1.nom},
-        {id:this.equipe2.id,
-          nom:this.equipe2.nom}
+      equipes: [
+        { id: this.equipe1.id, nom: this.equipe1.nom },
+        { id: this.equipe2.id, nom: this.equipe2.nom },
       ],
-
     };
     console.log(this.match);
     this.adminCreationService
       .createMatch(this.match, sportSelected)
       .subscribe((match) => this.samePage());
 
+
       this.swalWithBootstrapButtons.fire('',"Le Match entre " + this.equipe1.nom + " et " + this.equipe2.nom + " a bien été créé.", 'success').then(() => {
         window.location.reload();})
-
 
   }
   samePage() {
