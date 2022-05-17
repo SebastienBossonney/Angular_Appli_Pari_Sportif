@@ -71,7 +71,6 @@
           id="sportSelect"
           name="sportSelect"
           class="form-select"
-
         >
           <option disable hidden [value]="selectDefaultValue">--</option>
           <option *ngFor="let s of sports" value="{{ s.id }}">
@@ -86,11 +85,9 @@
             name="equipeSelect1"
             class="form-select"
             (click)="loadEquipes(sportSelect)"
-            
-
           >
             <option disable hidden [value]="selectDefaultValue">--</option>
-            <option *ngFor="let e1 of equipes" value="{{ e1.id }}" >
+            <option *ngFor="let e1 of equipes" value="{{ e1.id }}">
               {{ e1.nom }}
             </option>
           </select>
@@ -102,7 +99,6 @@
             id="equipeSelect2"
             name="equipeSelect2"
             class="form-select"
-
           >
             <option disable hidden [value]="selectDefaultValue">--</option>
             <option *ngFor="let e2 of equipes" value="{{ e2.id }}">
@@ -110,7 +106,6 @@
             </option>
           </select>
         </div>
-
 
         <form [formGroup]="creationMatch">
           <input
@@ -162,7 +157,7 @@
             type="button"
             class="btn btn-info"
             [disabled]="!creationMatch.valid"
-            (click)="submitMatch(sportSelect,equipeSelect1, equipeSelect2)"
+            (click)="submitMatch(sportSelect, equipeSelect1, equipeSelect2)"
           >
             Confirmez
           </button>

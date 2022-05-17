@@ -10,7 +10,7 @@ export class EquipeService {
 
   private equipeUrl:string;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     this.equipeUrl ='http://localhost:8080/sports'
   }
 
@@ -19,9 +19,9 @@ export class EquipeService {
     return this.http.get<Equipe[]>(this.equipeUrl+ '/' + sportId + '/equipes-all');
   }
 
-  public editEquipes(id:number, equipe: Equipe) {
-    return this.http.put<Equipe>(this.equipeUrl + '/'+ id + '/equipes-all');
-  }
+  // public editEquipes(id:number, equipe: Equipe) {
+  //   return this.http.put<Equipe>(this.equipeUrl + '/'+ id + '/equipes-all');
+  // }
 
 
 }

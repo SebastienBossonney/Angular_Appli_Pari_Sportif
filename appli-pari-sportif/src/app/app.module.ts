@@ -60,7 +60,7 @@ import { EquipeComponent } from './equipe/equipe.component';
     PariSportComponent,
      PariSportMatchComponent,
      AdminCreationComponent,
-     AfficherAllUsersComponent
+     AfficherAllUsersComponent,
      AllMatchesComponent,
      EquipeComponent,
 
