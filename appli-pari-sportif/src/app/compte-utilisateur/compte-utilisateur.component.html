@@ -1,13 +1,11 @@
 
 <div class="container">
+  <span class="h3 text-warning">Données d'utilisateur</span>
   <div class="card mt-3">
-    <div class="card-header bg-warning text-dark text-center">
-      <span class="h3">Données d'utilisateur</span>
-    </div>
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="emailCompte">Adresse email: </label> <input
+          <label for="emailCompte" style="color:rgb(255, 207, 0)">Adresse email: </label> <input
             type="text" class="form-control" id="emailCompte" placeholder={{utilisateur?.email}}
             disabled="disabled">
         </div>
@@ -27,7 +25,7 @@
     <div class="card-body">
       <form [formGroup]="emailForm">
           <div class="form-connection">
-          <label for="nouvelEmail">Nouvelle adresse email: </label> <input
+          <label for="nouvelEmail" style="color:rgb(255, 207, 0)">Nouvelle adresse email: </label> <input
           type="email" class="form-control" formControlName='nouvelEmail' id="nouvelEmail" placeholder="maNouvelleAdresseEmail@site.com">
           </div>
         <div class="card-footer d-flex justify-content-end">
@@ -52,7 +50,7 @@
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="motDePasseCompte">Mot de passe </label> <input
+          <label for="motDePasseCompte" style="color:rgb(255, 207, 0)">Mot de passe </label> <input
             type="password" class="form-control" value='*******' placeholder={{utilisateur?.motDePasse}} id="motDePasseCompte"
             disabled="disabled">
         </div>
@@ -71,15 +69,15 @@
       <div class="card-body">
         <form [formGroup]="motDePasseForm" >
           <div class="form-connection">
-            <label for="ancienMotDePasse">Ancien mot de passe: </label> <input
+            <label for="ancienMotDePasse" style="color:rgb(255, 207, 0)">Ancien mot de passe: </label> <input
               type="password" class="form-control" id="ancienMotDePasse" formControlName="ancienMotDePasse" placeholder="Mon ancien mot de passe">
             </div>
           <div class="form-connection">
-            <label for="nouveauMotDePasse">Nouveau mot de passe: </label> <input
+            <label for="nouveauMotDePasse" style="color:rgb(255, 207, 0)">Nouveau mot de passe: </label> <input
               type="password" class="form-control"  placeholder="Mon nouveau mot de passe" formControlName='nouveauMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.nouveauMotDePasse.errors }">
             </div>
           <div class="form-connection">
-            <label for="confirmationNouvelMdp">Confirmation du nouveau
+            <label for="confirmationNouvelMdp" style="color:rgb(255, 207, 0)">Confirmation du nouveau
               mot de passe: </label> <input type="password" class="form-control"
                placeholder="Mon nouveau mot de passe" formControlName='confirmeMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.confirmMotDePasse.errors }">
 
@@ -107,14 +105,12 @@
 </div>
 
 <div class="container">
+  <span class="h3 text-warning">Données de Pari</span>
   <div class="card mt-3">
-    <div class="card-header bg-warning text-dark text-center">
-      <span class="h3">Données de Pari</span>
-    </div>
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="limiteArgent">Limite d'argent: </label> <input
+          <label for="limiteArgent" style="color:rgb(255, 207, 0)">Limite d'argent: </label> <input
             type="text" class="form-control" id="limiteArgent" placeholder={{utilisateur?.limite}}
             disabled="disabled">
         </div>
@@ -133,7 +129,7 @@
     <div class="card-body">
       <form [formGroup]="limiteForm">
         <div class="form-connection" >
-          <label for="newLimite">Nouvelle limite d'argent: </label> <input
+          <label for="newLimite" style="color:rgb(255, 207, 0)">Nouvelle limite d'argent: </label> <input
             type="number" class="form-control" id="nouvelleLimite" formControlName='nouvelleLimite'  min="0" max="10000">
         </div>
 
@@ -157,7 +153,7 @@
     <div class="card-body">
       <form>
         <div class="form-connection" >
-          <label for="salaireCompte">Salaire (facultatif) </label> <input
+          <label for="salaireCompte" style="color:rgb(255, 207, 0)">Salaire (facultatif) </label> <input
                         type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur?.salaire}}
             disabled="disabled">
         </div>
@@ -176,7 +172,7 @@
     <div class="card-body">
       <form [formGroup]="salaireForm">
         <div class="form-connection">
-          <label for="newSalaire">Nouveau salaire: </label> <input
+          <label for="newSalaire" style="color:rgb(255, 207, 0)">Nouveau salaire: </label> <input
           type="number" class="form-control" formControlName='nouveauSalaire' id="nouveauSalaire"  min="0" max="10000">
         </div>
 
@@ -197,13 +193,26 @@
 
 
     </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-connection" >
+          <label for="salaireCompte" style="color:rgb(255, 207, 0)">MontantDisponible </label> <input
+                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur?.montantDisponible}}
+            disabled="disabled">
+        </div>
+
+      </form>
     </div>
+  </div>
 
     <div class="card mt-3">
       <div class="card-body">
         <form>
           <div class="form-connection">
-          <label for="newSalaire">Profil du joueur: </label><input
+          <label for="newSalaire" style="color:rgb(255, 207, 0)">Profil du joueur: </label><input
           type="text" class="form-control" id="newSalaire" placeholder={{utilisateur?.profil}} disabled=disabled>
           </div>
         </form>
@@ -218,13 +227,15 @@
       </div>
     </div>
 
+    
+
     <div class="card mt-3" id="newSeuilRisque" *ngIf="risque">
 
       <div class="card-body">
 
         <form [formGroup]="profilForm">
           <div class="form-check-inline">
-            <label class="form-check-label">
+            <label class="form-check-label" style="color:rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -237,7 +248,7 @@
             </label>
           </div>
           <div class="form-check-inline">
-            <label class="form-check-label">
+            <label class="form-check-label" style="color:rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -250,7 +261,7 @@
             </label>
           </div>
           <div class="form-check-inline">
-            <label class="form-check-label">
+            <label class="form-check-label" style="color:rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -263,6 +274,7 @@
             </label>
           </div>
         </form>
+
 
         <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
@@ -277,12 +289,16 @@
         </div>
 
       </div>
+      
 
     </div>
 
-    <div class="card mt-3 d-flex flex-row" id="DonneesPari">
+  </div>  
+  <div class="card mt-3">
+
+    <div class="card mt-2 d-flex flex-row" id="DonneesPari">
       <div
-        class="card-header bg-outline-success bordur-success text-dark text-left"
+        class="card-header bg-outline-success bordur-success text-warning text-left"
       >
         <h5>Historique des paris</h5>
       </div>
@@ -307,6 +323,6 @@
         </button>
       </div>
     </div>
-  </div>
 
+  </div> 
 <router-outlet></router-outlet>

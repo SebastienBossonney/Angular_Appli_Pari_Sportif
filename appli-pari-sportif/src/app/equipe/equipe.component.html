@@ -1,38 +1,71 @@
-<div class="container">
 
-<form>
-    <div class="sportAParier">
+<div class="container" >
+  <div class="sportAParier">
+    <form>
       <label for="sportSelect">Sport</label>
       <select
         [(ngModel)]="sportSelect"
         id="sportSelect"
         name="sportSelect"
         class="form-select"
-        (click)="onChange(sportSelect)">
-
-      <option disable hidden [value]="selectDefaultValue">--</option>
-            <option *ngFor="let s of sports" value="{{ s.id }}">
-              {{ s.nomSport }}
-            </option>
-        </select>
+        (click)="onChange(sportSelect)"
+      >
+        <option disable hidden [value]="selectDefaultValue">--</option>
+        <option *ngFor="let s of sports" value="{{ s.id }}">
+          {{ s.nomSport }}
+        </option>
+      </select>
+    </form>
+  </div>
+</div>
+<div class="card-mt-3" *ngIf="sportSelected" >
+  <div class="card mt-3" class="bg-text text-center">
+    <div class="card-body" *ngFor="let equipe of equipes" >
+      <form>
+        <div class="form-connection" >
+          <label class="text-warning " for="equipe" id="equipeId"><strong>{{ equipe.nom }}</strong></label>
         </div>
-        <div  class="card-mt-3" *ngIf="sportSelected">
-            
-            <div>
-                <ul id="equipes" *ngFor="let equipe of equipes">
-                <li >{{equipe?.nom}}</li>
-                <td class="card-footer text-left ">
-                    <button type="button"
-                      class="btn btn-outline-warning btn-sm float-left" id="equipeModif"
-                      (click)="editEquipes()">Modifier</button>
-            
-            
-                </td>
-                </ul>
+
+        <div class="card-footer ">
+          <button
+            type="button"
+            (click)="changeEquipe(equipe.id)"
+            class="btn btn-outline-warning btn-sm "
+            id="equipeId"
+            value="{{ equipe.id }}"
+          >
+            Modifier
+          </button>
+        </div>
+      </form>
+
+      <div class="card mt-3 " id="choixEquipe" *ngIf="choixEquipe"  >
+        <div class="card-body " >
+          <form [formGroup]="equipeForm">
+            <div class="form-connection">
+              <label class="text-warning " for="nouvelleEquipe">Nouvelle equipe:</label>
+              <input
+                type="text"
+                class="text"
+                formControlName="nouvelleEquipe"
+                id="nouvelleEquipe"
+              />
+              <div class="btn-group btn-group-sml j">
+                <button type="button" class="btn btn-success">
+                  <i class="bi bi-check-square" (click)="editEquipes(equipe.id)"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="onDelete(equipe.id)">
+                  <i class="bi bi-backspace"></i>
+                </button>
+              </div>
             </div>
+
+          </form>
         </div>
-        </form>
-
+      </div>
     </div>
-
-
+  </div>
+</div>
