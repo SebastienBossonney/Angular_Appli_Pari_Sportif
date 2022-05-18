@@ -5,6 +5,7 @@ import { UserService } from '../utilisateur.service';
 import { AuthService } from '../auth.service';
 import { Utilisateur } from '../utilisateur.model';
 import { first } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-connexion',
@@ -26,6 +27,13 @@ export class ConnexionComponent {
     motDePasse: [''],
   });
 
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
+
   submit() {
     this.authService
       .login(
@@ -38,10 +46,8 @@ export class ConnexionComponent {
           this.router.navigate(['utilisateur' + '/' + userInfo?.id]).then(() => {
             window.location.reload();
           });
-          console.log('Connecte');
         } else {
-          console.log('Mauvais identifiant');
-          this.router.navigate(['/connexion']);
+          this.router.navigate(['/connexion'])
         }
       });
   }
