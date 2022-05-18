@@ -13,8 +13,6 @@ export class HistoriquePariFootComponent implements OnInit {
 
   user!: Utilisateur;
   listPari!: Pari[];
-  lesParis: boolean=false;
-  utilisateurId!: number;
 
   constructor(private pariService: PariService, private utilisateurService: UtilisateurService) { }
 
@@ -27,14 +25,6 @@ export class HistoriquePariFootComponent implements OnInit {
     console.log(this.listPari.length);});
   }
 
-voirParis(){
 
-    if (this.lesParis) {
-      this.lesParis = false;
-    } else {
-      this.lesParis = true;
-    }
-
-  }
 
 }

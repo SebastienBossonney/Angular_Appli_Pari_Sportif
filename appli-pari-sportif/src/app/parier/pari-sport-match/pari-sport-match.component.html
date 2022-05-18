@@ -1,75 +1,131 @@
-
-  <!-- <div class="card mt-3">
-    <form> -->
-<label for="matchSelect">Matches </label>
-<select [(ngModel)]="matchSelectCH" id="matchSelect" name="matchSelect" class="form-select" (ngModelChange)="onChange($event)">
-<option disable hidden [value]="selectDefaultValue">--</option>
-<option *ngFor="let m of matchs" [ngValue]="m">
-  {{ m.equipes[0].nom}} vs {{ m.equipes[1].nom}} le {{m.dateMatch}} at {{m.heureMatch}}
-</option>
-</select>
-<br>
-<form [formGroup]="pariForm">
-<!-- PARI  /////////////////////////////////////////// -->
-  <div class="card mt-3" *ngIf="matchSelected" id='cardPariMatch'>
-    <div class="card-header bg-warning text-dark text-center">
-      <span class="h3" id="equipes">{{equipe1.nom}} vs {{equipe2.nom}}    le {{matchSelectCH.dateMatch}} at {{matchSelectCH.heureMatch}}</span>
-    </div>
-
-    <div class="card-body">
-
-        <div class="d-flex justify-content-between">
-        <div><label  id='equipe1' class="h6">{{equipe1.nom}}</label></div>
-        <div><label id='equipe2' class="h6">{{equipe2.nom}}</label></div>
+<div class="card mt-3">
+  <form>
+    <label for="matchSelect">Matches </label>
+    <select
+      [(ngModel)]="matchSelectCH"
+      id="matchSelect"
+      name="matchSelect"
+      class="form-select"
+      (ngModelChange)="onChange($event)"
+    >
+      <option disable hidden [value]="selectDefaultValue">--</option>
+      <option *ngFor="let m of matchs" [ngValue]="m">
+        {{ m.equipes[0].nom }} vs {{ m.equipes[1].nom }} le {{ m.dateMatch }} à
+        {{ m.heureMatch }}
+      </option>
+    </select>
+    <br />
+    <form [formGroup]="pariForm">
+      <!-- PARI  /////////////////////////////////////////// -->
+      <div class="card mt-3" *ngIf="matchSelected" id="cardPariMatch">
+        <div class="card-header text-center">
+          <span class="h3" id="equipes"
+            >{{ equipe1.nom }} vs {{ equipe2.nom }} le
+            {{ matchSelectCH.dateMatch }} à {{ matchSelectCH.heureMatch }}</span
+          >
         </div>
 
-        <div class="d-flex justify-content-between">
-        <div class="bg-light">
-          <label id="coteE1" for="coteE1" *ngIf="coteE1">{{coteE1.valeur}}</label>
-          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-          <input type="radio" class="form-check-input" name ="radioPari"  [value]="coteE1" id="coteE1" formControlName="radioPari" ></div>
-        <div class="bg-light">
-          &nbsp;&nbsp;<label id="coteE2" for="coteE2" *ngIf="coteE2">{{coteE2.valeur}}</label>
-          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-          <input type="radio" class="form-check-input" name ="radioPari" [value]="coteE2" id="coteE2" formControlName="radioPari" ></div>
-        </div>
-<div class="row">
-        <div class=" d-flex justify-content-center bg-light">
-
-          <label id="coteMN" for="coteMN"  *ngIf="coteMN">{{coteMN.valeur}}</label>
-          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-          &nbsp; &nbsp;&nbsp;
-            <input type="radio" class="form-check-input" name ="radioPari" [value]="coteMN" id="coteMN" formControlName="radioPari">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <label id="equipe1" class="h6">{{ equipe1.nom }}</label>
+            </div>
+            <div>
+              <label id="equipe2" class="h6">{{ equipe2.nom }}</label>
             </div>
           </div>
 
-        <br/>
-          <div class="row">
-          <div class="d-flex justify-content-center"><input type="number" class="text-end" id="sommeAParier" placeholder="Somme à Parier   €" formControlName="sommeAParier"></div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <label id="coteE1" for="coteE1" *ngIf="coteE1">{{
+                coteE1.valeur
+              }}</label>
+              &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+              <input
+                type="radio"
+                class="form-check-input"
+                name="radioPari"
+                [value]="coteE1"
+                id="coteE1"
+                formControlName="radioPari"
+              />
+            </div>
+            <div>
+              &nbsp;&nbsp;<label id="coteE2" for="coteE2" *ngIf="coteE2">{{
+                coteE2.valeur
+              }}</label>
+              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+              <input
+                type="radio"
+                class="form-check-input"
+                name="radioPari"
+                [value]="coteE2"
+                id="coteE2"
+                formControlName="radioPari"
+              />
+            </div>
           </div>
-         </div>
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <label>Match Nul</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <label
+                style="color: rgb(255, 207, 0)"
+                id="coteMN"
+                for="coteMN"
+                *ngIf="coteMN"
+                >{{ coteMN.valeur }}</label
+              >
+             &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+              <input
+                type="radio"
+                class="form-check-input"
+                name="radioPari"
+                [value]="coteMN"
+                id="coteMN"
+                formControlName="radioPari"
+              />
+            </div>
+          </div>
 
+          <br />
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <input
+                type="number"
+                class="text-end"
+                id="sommeAParier"
+                placeholder="Somme à Parier   €"
+                formControlName="sommeAParier"
+              />
+            </div>
+          </div>
+        </div>
 
-    <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button type="input"
-               class="btn btn-success" (click)="parier()" [disabled]="pariForm.invalid"><i class="bi bi-check-square" ></i>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg">
+            <button
+              type="input"
+              class="btn btn-outline-success"
+              (click)="parier()"
+              [disabled]="pariForm.invalid"
+            >
+              <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" id="cancelPari"
-              class="btn btn-warning"><i class="bi bi-backspace" routerLink="/sport" routerLinkActive="active"></i>
+            <button type="button" id="cancelPari" class="btn btn-outline-warning">
+              <i
+                class="bi bi-backspace"
+                routerLink="/sport"
+                routerLinkActive="active"
+              ></i>
             </button>
           </div>
         </div>
-</div></form>
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
+    </form>
+  </form>
+</div>
