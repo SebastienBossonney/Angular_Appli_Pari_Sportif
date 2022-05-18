@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card mt-3" id="inscriptionForm">
-    <div class="card-header bg-warning text-dark text-center">
+    <div class="card-header  text-center"  >
       <h3>Inscription</h3>
     </div>
     <div class="card-body">
@@ -11,10 +11,11 @@
           class="form-control"
           id="identifiant"
           name="identifiant"
-          placeholder="Enter your identifiant"
+          placeholder="Entrez votre identifiant"
           formControlName="identifiant"
 
           required/>
+          <br>
         <div
           class="help-block"
           *ngIf="identifiant.touched && identifiant.invalid"
@@ -26,11 +27,12 @@
           class="form-control"
           id="email"
           name="email"
-          placeholder="Enter your email address"
+          placeholder="Entrez votre adresse e-mail"
           formControlName="email"
 
           required
           />
+          <br>
           <div
           class="help-block"
           *ngIf="email.touched && email.invalid"
@@ -41,7 +43,7 @@
           class="form-control"
           id="motDePasse"
           name="motDePasse"
-          placeholder="Enter your password"
+          placeholder="Entrez votre mot-de-passe"
           formControlName="motDePasse"
           required/>
         <div
@@ -49,10 +51,11 @@
           *ngIf="motDePasse.touched && motDePasse.errors?.minlength"
           >Le mot de passe doit etre au minimum de 8 characters </div
         >
+        <br>
         <div class="form-group">
           <label for="salaire">Salaire (falcultatif):</label>
           <input type="number" step="0.01" class="form-control" id="salaire"  name="salaire"
-          placeholder="Enter your salary to help us giving more helpful tips"
+          placeholder="Entrez votre salaire pour nous aider à vous conseiller"
           formControlName="salaire" />
         </div>
         <div class="form-check-inline">
@@ -94,32 +97,11 @@
             Sans Risque
           </label>
         </div>
-        <div>
-        <label for="valeur">Limite :</label>
-        <input
-          type="number"
-          class="form-control"
-          id="valeur"
-          name="valeur"
-          placeholder="Entrer votre limite a ne pas dépasser"
-          formControlName="valeur"
-          required/>
-
-          <label for="duree">Date de la limite : </label>
-          <input
-            type="date"
-            class="form-control"
-            id="duree"
-            name="duree"
-            formControlName="duree"
-            required
-          />
-        </div>
         <div class="card-footer d-flex justify-content-center">
           <div class="btn-group btn-group-lg">
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-outline-warning"
               [disabled]="!loginForm.valid"
               (click)="onSubmit()"
             >
@@ -127,10 +109,10 @@
             </button>
             <button
             type="button"
-            class="btn btn-success"
+            class="btn btn-outline-success"
             [routerLink]="['/connexion']"
           >
-            Connexion
+            Retour
           </button>
           </div>
         </div>

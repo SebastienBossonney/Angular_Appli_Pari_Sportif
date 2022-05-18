@@ -1,0 +1,10 @@
+.couleur{
+
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: rgb(255, 207, 0);
+}
+
+.couleurIdentifiant{
+    color:rgb(182, 237, 62);
+}
