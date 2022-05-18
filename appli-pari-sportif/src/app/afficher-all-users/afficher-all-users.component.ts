@@ -11,7 +11,6 @@ import { Utilisateur } from '../donnees-utilisateur/utilisateur';
   styleUrls: ['./afficher-all-users.component.css']
 })
 export class AfficherAllUsersComponent implements OnInit {
-
   utilisateurs!: Utilisateur[];
   private utilisateurSub = new Subject<void>()
   filteredUtilisateur$!: Observable<Utilisateur[]>;
@@ -24,7 +23,7 @@ export class AfficherAllUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUtilisateur();
-    this.route.queryParamMap.subscribe(params=>{console.log(params.get('sortOrder'));
+    this.route.queryParamMap.subscribe(params=>{params.get('sortOrder');
       })
     this.filteredUtilisateur$ = this.identifiant.valueChanges.pipe(
       map(identifiant=> this.utilisateurs.filter(utilisateur => utilisateur.identifiant.startsWith(identifiant)))
@@ -39,4 +38,5 @@ export class AfficherAllUsersComponent implements OnInit {
    private getUtilisateur() {
     this.utilisateurService.getUtilisateur().pipe(map(utilisateursObservable => this.utilisateurs = utilisateursObservable), takeUntil(this.utilisateurSub)).subscribe()
   }
+
 }

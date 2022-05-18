@@ -4,8 +4,8 @@ import { Equipe } from "../equipe-interface/equipe-interface.component";
 export interface Match {
   id : number;
   version : number;
-  dateMatch : Date;
-  heureMatch : Time;
+  dateMatch : string;
+  heureMatch : string;
   lieu:  string;
   ville : string;
 	pays : string;
