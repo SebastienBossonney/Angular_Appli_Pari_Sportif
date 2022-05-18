@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject,map, Observable, pipe,} from 'rxjs';
+import Swal from 'sweetalert2';
 import { UtilisateurService } from './utilisateur-service.service';
 import { Utilisateur } from './utilisateur.model';
 
@@ -21,6 +22,13 @@ export class AuthService {
 
   }
 
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
+
 
   login(identifiant: string, password: string): Observable<Utilisateur> {
     return this.http
@@ -29,6 +37,7 @@ export class AuthService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         sessionStorage.setItem('user', JSON.stringify(user));
         this.isLogged=true;
+        this.swalWithBootstrapButtons.fire('', user.identifiant + " Bienvenue à Bet Healthier", 'success');
         return user;
     }));
   }

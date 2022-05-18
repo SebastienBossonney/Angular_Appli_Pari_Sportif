@@ -12,7 +12,7 @@
 <form [formGroup]="pariForm">
 <!-- PARI  /////////////////////////////////////////// -->
   <div class="card mt-3" *ngIf="matchSelected" id='cardPariMatch'>
-    <div class="card-header bg-warning text-dark text-center">
+    <div class="card-header text-center">
       <span class="h3" id="equipes">{{equipe1.nom}} vs {{equipe2.nom}}    le {{matchSelectCH.dateMatch}} at {{matchSelectCH.heureMatch}}</span>
     </div>
 
@@ -53,10 +53,10 @@
     <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
             <button type="input"
-               class="btn btn-success" (click)="parier()" [disabled]="pariForm.invalid"><i class="bi bi-check-square" ></i>
+               class="btn btn-outline-success" (click)="parier()" [disabled]="pariForm.invalid"><i class="bi bi-check-square" ></i>
             </button>
             <button type="button" id="cancelPari"
-              class="btn btn-warning"><i class="bi bi-backspace" routerLink="/sport" routerLinkActive="active"></i>
+              class="btn btn-outline-warning"><i class="bi bi-backspace" routerLink="/sport" routerLinkActive="active"></i>
             </button>
           </div>
         </div>
