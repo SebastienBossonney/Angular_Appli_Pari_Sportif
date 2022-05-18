@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: 'motDePasseOublie', component: MotDePasseOublieComponent },
   {path: 'utilisateur', component:AllUtilisateursComponent,
   children: [
-    {path:':id', component:CompteUtilisateurComponent}]},
+    {path:':id', component:CompteUtilisateurComponent},
+    {path:':id/historiquePariFoot',component:HistoriquePariFootComponent},
+    {path:':id/historiquePariRugby',component:HistoriquePariRugbyComponent},]},
   {path:'historiquePariFoot',component:HistoriquePariFootComponent},
   {path:'matchs-all',component:AllMatchesComponent},
   {path:'historiquePariRugby',component:HistoriquePariRugbyComponent},

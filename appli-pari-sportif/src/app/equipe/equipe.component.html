@@ -2,7 +2,7 @@
 <div class="container" >
   <div class="sportAParier">
     <form>
-      <label for="sportSelect">Sport</label>
+      <label for="sportSelect" sytle="border-radius: 30px; border-color: rgb(182, 237, 62); ">Sport</label>
       <select
         [(ngModel)]="sportSelect"
         id="sportSelect"
@@ -11,7 +11,7 @@
         (click)="onChange(sportSelect)"
       >
         <option disable hidden [value]="selectDefaultValue">--</option>
-        <option *ngFor="let s of sports" value="{{ s.id }}">
+        <option style="color: rgb (182, 237, 62);" *ngFor="let s of sports" value="{{ s.id }}">
           {{ s.nomSport }}
         </option>
       </select>

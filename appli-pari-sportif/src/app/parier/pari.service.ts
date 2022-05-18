@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Sport } from '../sport';
 import { Pari } from './pari';
 
 @Injectable({
@@ -13,6 +12,11 @@ export class PariService {
 
   constructor(private http: HttpClient) {
     this.pariUrl = 'http://localhost:8080';
+   }
+
+  public getPariByUtilisateur (userId: number): Observable<Pari[]>
+   {
+     return this.http.get<Pari[]>(this.pariUrl + '/utilisateurs/' + userId + '/paris');
    }
 
   public addPari(pari: Pari): Observable<Pari> {

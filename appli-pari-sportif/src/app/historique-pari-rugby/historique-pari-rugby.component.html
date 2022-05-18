@@ -1,29 +1,28 @@
 <div id="navigationBar"></div>
 	<div class="container">
 		<div class="card mt-3">
-			<div class="card-header bg-outlline-warning text-warning text-center ">
-				<span class="h2"><i class="fa-solid fa-football text-warning "></i>
+			<div class="card-header bg-outlline-warning text-center " style="color:rgb(247, 217, 67);">
+				<span class="h2"><i class="fa-solid fa-football " style="color:rgb(247, 217, 67);"></i>
 					Historique des paris sportifs sur le rugby</span>
 			</div>
+			<button type="submit" class="btn btn-outline" style="color:rgb(247, 217, 67); border-color:rgb(247, 217, 67)" (click)="voirParis(utilisateur.id)">Voir mes paris</button>
+		
+			<div  id="lesParis" *ngIf="lesParis">	
 			<div class="card mt-3 border-warning mt-2">
 				<div class="card-body">
 					<form>
 						<div class="form-connection p-2">
-							<h3>Pari 1</h3>
-							<h5>Match :</h5>
-							<h6>Montant joué :</h6>
-							<h6>Date du pari :</h6>
-							<div class="form-check-inline form-switch">
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" checked disabled="disabled"> <label
-									class="form-check-label text-success" for="mySwitch">Gagné</label>
-							</div>
-							<div class="form-check-inline form-switch" d-flex-inline>
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" disabled="disabled"> <label
-									class="form-check-label text-danger" for="mySwitch">Perdu</label>
-							</div>
-
+							<h3><strong>Date du pari : {{pari.datePari}}</strong></h3>
+							<br>
+							<h3 ><strong>Heure du pari : {{pari.heurePari}}</strong></h3>
+							<br>
+							<h5><strong >Match:      VS      </strong></h5>
+							<br>
+							<h6><strong >Montant joué : {{pari.montantJoue}</strong></h6>
+							<br>
+							<h6><strong >Résulat du pari :{{pari.resultat}}</strong></h6>
+							<br>
+							<h6><strong >Résultat du pari : {{pari.montantResultat}}</strong></h6>
 						</div>
 					</form>
 				</div>
@@ -33,20 +32,15 @@
 				<div class="card-body ">
 					<form>
 						<div class="form-connection p-2">
-							<h3>Pari 2</h3>
-							<h5>Match :</h5>
-							<h6>Montant joué :</h6>
-							<h6>Date du pari :</h6>
-							<div class="form-check-inline form-switch">
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" disabled="disabled"> <label
-									class="form-check-label text-success" for="mySwitch">Gagné</label>
-							</div>
-							<div class="form-check-inline form-switch" d-flex-inline>
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" checked disabled="disabled">  <label
-									class="form-check-label text-danger" for="mySwitch" >Perdu</label>
-							</div>
+							<h3><strong >Pari 2</strong></h3>
+							<br>
+							<h5><strong >Match:      VS      </strong></h5>
+							<br>
+							<h6><strong >Montant joué :</strong></h6>
+							<br>
+							<h6><strong >Date du pari :</strong></h6>
+							<br>
+							<h6><strong >Résulat du pari : GAGNANT</strong></h6>
 
 						</div>
 					</form>
@@ -58,35 +52,31 @@
 				<div class="card-body ">
 					<form>
 						<div class="form-connection p-2 ">
-							<h3>Pari 3</h3>
-							<h5>Match :</h5>
-							<h6>Montant joué :</h6>
-							<h6>Date du pari :</h6>
-							<div class="form-check-inline form-switch">
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" disabled="disabled"> <label
-									class="form-check-label text-success" for="mySwitch" >Gagné</label>
-							</div>
-							<div class="form-check-inline form-switch" d-flex-inline>
-								<input class="form-check-input" type="checkbox" id="mySwitch"
-									name="Gagné" value="yes" checked disabled="disabled"> <label
-									class="form-check-label text-danger" for="mySwitch">Perdu</label>
-							</div>
+							<h3> <strong>Pari 3</strong></h3>
+							<br>
+							<h5><strong>Match:      VS      </strong></h5>
+							<br>
+							<h6><strong>Montant joué :</strong></h6>
+							<br>
+							<h6><strong>Date du pari :</strong></h6>
+							<br>
+							<h6><strong >Résulat du pari : PERDANT</strong></h6>
 
 						</div>
 					</form>
 				</div>
 			</div>
-
+			<nav>
+				<ul class="pagination pagination-sm justify-content-center">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>
+		</div>
+		</div>
 		</div>
 		
-		<nav>
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-
-		</nav>
+		

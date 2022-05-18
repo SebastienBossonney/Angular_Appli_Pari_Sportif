@@ -276,7 +276,6 @@ export class CompteUtilisateurComponent implements OnInit {
       this.email= true;
     }}
 
-   
   onReset() {
         this.submitted= false;
         this.emailForm.reset();
