@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,11 @@ export class HeaderComponent implements OnInit {
   });
   logout() {
     this.authService.logout();
-    this.swalWithBootstrapButtons.fire('',"Deconnecté", 'success');
+    this.router.navigate(['/connexion'])
+    this.swalWithBootstrapButtons.fire('',"Deconnecté", 'success').then(() => {
+      window.location.reload();
+    });;
+
   }
 
   directionCreation() {

@@ -8,9 +8,8 @@ describe('HistoriquePariFootComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoriquePariFootComponent ]
-    })
-    .compileComponents();
+      declarations: [HistoriquePariFootComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

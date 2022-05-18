@@ -8,9 +8,8 @@ describe('HistoriquePariRugbyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoriquePariRugbyComponent ]
-    })
-    .compileComponents();
+      declarations: [HistoriquePariRugbyComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

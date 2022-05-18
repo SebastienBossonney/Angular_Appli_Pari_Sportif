@@ -10,7 +10,7 @@ import { Sport } from '../sport';
 @Component({
   selector: 'app-all-matches',
   templateUrl: './all-matches.component.html',
-  styleUrls: ['./all-matches.component.css']
+  styleUrls: ['./all-matches.component.css'],
 })
 export class AllMatchesComponent implements OnInit {
   today: string;
@@ -18,32 +18,34 @@ export class AllMatchesComponent implements OnInit {
   matchs!: Match[];
   match!: Match;
   sports!: Sport[];
-  sport!:Sport;
+  sport!: Sport;
   sportId!: number;
 
-  constructor( private route: ActivatedRoute, private router: Router, private matchService: MatchService,
-   private datePipe: DatePipe, private pariSportService: PariSportService
-    
-    ) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private matchService: MatchService,
+    private datePipe: DatePipe,
+    private pariSportService: PariSportService
+  ) {
     this.today = this.datePipe.transform(new Date(), 'dd/MM/yyyy')!;
-    this.heure = this.datePipe.transform(new Date(),'HH:mm')!
+    this.heure = this.datePipe.transform(new Date(), 'HH:mm')!;
   }
 
   ngOnInit(): void {
     this.getSports();
-    
-    this.route.paramMap.subscribe(params => {
-      this.sportId= +params.get('id')!;
-      this.matchService.getMatches(this.sportId).subscribe(data => {this.matchs = data;
+
+    this.route.paramMap.subscribe((params) => {
+      this.sportId = +params.get('id')!;
+      this.matchService.getMatches(this.sportId).subscribe((data) => {
+        this.matchs = data;
+      });
     });
-    })
   }
 
-  getSports(){
+  getSports() {
     this.pariSportService.getSports().subscribe((data) => {
       this.sports = data;
     });
   }
-
-
 }

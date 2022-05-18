@@ -1,168 +1,223 @@
-	<div class="container">
-		<div class="card mt-3">
-			<div class="card-header bg-warning text-dark text-center">
-				<span class="h3">Données de Pari</span>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="form-connection">
-						<label for="limiteArgent">Limite d'argent: </label> <input
-							type="text" class="form-control" id="limiteArgent"
-							disabled="disabled">
-					</div>
+<div class="container">
+  <div class="card mt-3">
+    <div class="card-header bg-warning text-dark text-center">
+      <span class="h3">Données de Pari</span>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="limiteArgent">Limite d'argent: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="limiteArgent"
+            disabled="disabled"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="limiteModif"
+        (click)="changeLimite()"
+      >
+        Modifier
+      </button>
+    </div>
+  </div>
 
-				</form>
-			</div>
-			<div class="card-footer text-left ">
-				<button  type="button"
-					class="btn btn-outline-warning btn-sm float-left" id="limiteModif"
-					(click)="changeLimite()" >Modifier</button>
+  <div class="card mt-3" id="newLimite" *ngIf="limiteArg">
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="newLimite">Nouvelle limite d'argent: </label>
+          <input
+            type="number"
+            class="form-control"
+            id="new Limite"
+            min="0"
+            max="10000"
+          />
+        </div>
 
-			</div>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-success" onclick="save()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning">
+              <i class="bi bi-backspace"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="salaireCompte">Salaire (facultatif) </label>
+          <input
+            type="text"
+            class="form-control"
+            id="salaireCompte"
+            disabled="disabled"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        (click)="changeSalaire()"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="salaireModif"
+      >
+        Modifier
+      </button>
+    </div>
+  </div>
+  <div class="card mt-3" id="newSalaire" *ngIf="salaire">
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="newSalaire">Nouveau salaire: </label>
+          <input
+            type="number"
+            class="form-control"
+            id="newSalaire"
+            min="0"
+            max="10000"
+          />
+        </div>
 
-		</div>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-success" onclick="save()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning">
+              <i class="bi bi-backspace"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
-		<div class="card mt-3" id='newLimite' *ngIf="limiteArg" >
-			<div class="card-body">
-				<form >
-					<div class="form-connection" >
-						<label for="newLimite">Nouvelle limite d'argent: </label> <input
-							type="number" class="form-control" id="new Limite" min="0" max="10000">
-					</div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="Risque"
+              checked
+              disabled
+            />
+            Risque
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="miRisque"
+              disabled
+            />
+            Mi-Risque
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input
+              type="radio"
+              name="profil"
+              id="risque"
+              class="form-check-input"
+              value="sansRisque"
+              disabled
+            />
+            Sans Risque
+          </label>
+        </div>
+      </form>
 
-					<div class="card-footer d-flex justify-content-end">
-						<div class="btn-group btn-group-lg ">
-							<button   type="button" class="btn btn-success" onclick="save()">
-								<i class="bi bi-check-square"></i>
-							</button>
-							<button type="button" class="btn btn-warning">
-								<i class="bi bi-backspace"></i>
-							</button>
+      <div class="card-footer text-left">
+        <button
+          type="button"
+          class="btn btn-outline-warning btn-sm float-left"
+          id="seuilModif"
+          (click)="changeRisque()"
+        >
+          Modifier
+        </button>
+      </div>
+    </div>
 
-						</div>
-					</div>
-				</form>
+    <div class="card mt-3" id="newSeuilRisque" *ngIf="risque">
+      <div class="card-body">
+        <form>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque"
+                class="form-check-input"
+                value="Risque"
+                checked
+              />
+              Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque"
+                class="form-check-input"
+                value="miRisque"
+              />
+              Mi-Risque
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input
+                type="radio"
+                name="profil"
+                id="risque"
+                class="form-check-input"
+                value="sansRisque"
+              />
+              Sans Risque
+            </label>
+          </div>
+        </form>
 
-			</div>
-
-		</div>
-		<div class="card mt-3">
-			<div class="card-body">
-				<form>
-					<div class="form-connection" >
-						<label for="salaireCompte">Salaire (facultatif) </label> <input
-                          type="text" class="form-control" id="salaireCompte"
-							disabled="disabled">
-					</div>
-
-				</form>
-			</div>
-			<div class="card-footer text-left " >
-				<button type="button" (click)="changeSalaire()"
-                class="btn btn-outline-warning btn-sm float-left" id="salaireModif"
-					>Modifier</button>
-
-
-			</div>
-		</div>
-		<div class="card mt-3" id='newSalaire' *ngIf="salaire">
-			<div class="card-body">
-				<form >
-					<div class="form-connection">
-						<label for="newSalaire">Nouveau salaire: </label> <input
-						type="number" class="form-control" id="newSalaire" min="0" max="10000">
-					</div>
-
-					<div class="card-footer d-flex justify-content-end">
-						<div class="btn-group btn-group-lg ">
-							<button type="button" class="btn btn-success" onclick="save()">
-								<i class="bi bi-check-square"></i>
-							</button>
-							<button type="button" class="btn btn-warning">
-								<i class="bi bi-backspace"></i>
-							</button>
-
-						</div>
-					</div>
-
-				</form>
-
-
-			</div>
-			</div>
-
-			<div class="card mt-3">
-				<div class="card-body">
-
-					<form>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="Risque" checked disabled> Risque
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="miRisque" disabled> Mi-Risque
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="sansRisque" disabled> Sans Risque
-							</label>
-						</div>
-					</form>
-
-
-				<div class="card-footer text-left ">
-					<button type="button"
-						class="btn btn-outline-warning btn-sm float-left" id="seuilModif"
-						(click)="changeRisque()">Modifier</button>
-
-
-				</div>
-			</div>
-
-			<div class="card mt-3" id="newSeuilRisque" *ngIf="risque">
-
-				<div class="card-body">
-
-					<form>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="Risque" checked> Risque
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="miRisque"> Mi-Risque
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label"> <input type="radio"
-								name="profil" id="risque" class="form-check-input"
-								value="sansRisque"> Sans Risque
-							</label>
-						</div>
-					</form>
-
-					<div class="card-footer d-flex justify-content-end">
-						<div class="btn-group btn-group-lg ">
-							<button type="button" class="btn btn-success" onclick="save()">
-								<i class="bi bi-check-square"></i>
-							</button>
-							<button type="button" class="btn btn-warning">
-								<i class="bi bi-backspace"></i>
-							</button>
-
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-		</div>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg">
+            <button type="button" class="btn btn-success" onclick="save()">
+              <i class="bi bi-check-square"></i>
+            </button>
+            <button type="button" class="btn btn-warning">
+              <i class="bi bi-backspace"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

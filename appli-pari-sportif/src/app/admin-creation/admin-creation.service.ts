@@ -11,7 +11,7 @@ import { Sport } from '../sport';
 })
 export class AdminCreationService {
   sportUrl: string;
-  matchUrl:string;
+  matchUrl: string;
 
   constructor(private http: HttpClient) {
     this.sportUrl = 'http://localhost:8080/sports';
@@ -22,8 +22,10 @@ export class AdminCreationService {
     return this.http.get<Sport[]>(this.sportUrl);
   }
 
-  public getEquipes(sportSelected: number|undefined): Observable<Equipe[]> {
-    return this.http.get<Equipe[]>(this.sportUrl + '/' + sportSelected + '/equipes');
+  public getEquipes(sportSelected: number | undefined): Observable<Equipe[]> {
+    return this.http.get<Equipe[]>(
+      this.sportUrl + '/' + sportSelected + '/equipes'
+    );
   }
 
   public createSport(sport: Sport): Observable<Sport> {
@@ -40,9 +42,13 @@ export class AdminCreationService {
     );
   }
 
-  public getEquipeById( sportSelected: number | undefined,equipeId:number| undefined):Observable<Equipe>{
+  public getEquipeById(
+    sportSelected: number | undefined,
+    equipeId: number | undefined
+  ): Observable<Equipe> {
     return this.http.get<Equipe>(
-      this.sportUrl + '/' + sportSelected + '/' + 'equipes' + '/' + equipeId );
+      this.sportUrl + '/' + sportSelected + '/' + 'equipes' + '/' + equipeId
+    );
   }
   public createMatch(
     match: Match,
@@ -53,16 +59,16 @@ export class AdminCreationService {
       match
     );
   }
-public getMatchs( sportSelected: number | undefined):Observable<Match[]>{
-  return this.http.get<Match[]>(
-    this.sportUrl + '/' + sportSelected + '/matchs-all');
-}
+  public getMatchs(sportSelected: number | undefined): Observable<Match[]> {
+    return this.http.get<Match[]>(
+      this.sportUrl + '/' + sportSelected + '/matchs-all'
+    );
+  }
 
-createCote(cotes:Cote[],matchId:number|undefined):Observable<Cote[]>{
-  return this.http.post<Cote[]>(
-    this.matchUrl + '/' + matchId + '/cotesList',cotes );
-}
-
-
-
+  createCote(cotes: Cote[], matchId: number | undefined): Observable<Cote[]> {
+    return this.http.post<Cote[]>(
+      this.matchUrl + '/' + matchId + '/cotesList',
+      cotes
+    );
+  }
 }

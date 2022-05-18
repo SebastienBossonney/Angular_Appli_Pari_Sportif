@@ -1,107 +1,172 @@
-
 <div class="container">
   <span class="h3 text-warning">Données d'utilisateur</span>
   <div class="card mt-3">
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="emailCompte" style="color:rgb(255, 207, 0)">Adresse email: </label> <input
-            type="text" class="form-control" id="emailCompte" placeholder={{utilisateur?.email}}
-            disabled="disabled">
+          <label for="emailCompte" style="color: rgb(255, 207, 0)"
+            >Adresse email:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="emailCompte"
+            placeholder="{{ utilisateur?.email }}"
+            disabled="disabled"
+          />
         </div>
-
       </form>
     </div>
-    <div class="card-footer text-left ">
-      <button type="button"
-        class="btn btn-outline-warning btn-sm float-left" id="emailModif"
-        (click)="changeEmail()">Modifier</button>
-
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="emailModif"
+        (click)="changeEmail()"
+      >
+        Modifier
+      </button>
     </div>
-
   </div>
 
-  <div class="card mt-3" id='newEmail' *ngIf="email">
+  <div class="card mt-3" id="newEmail" *ngIf="email">
     <div class="card-body">
       <form [formGroup]="emailForm">
-          <div class="form-connection">
-          <label for="nouvelEmail" style="color:rgb(255, 207, 0)">Nouvelle adresse email: </label> <input
-          type="email" class="form-control" formControlName='nouvelEmail' id="nouvelEmail" placeholder="maNouvelleAdresseEmail@site.com">
-          </div>
+        <div class="form-connection">
+          <label for="nouvelEmail" style="color: rgb(255, 207, 0)"
+            >Nouvelle adresse email:
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="nouvelEmail"
+            id="nouvelEmail"
+            placeholder="maNouvelleAdresseEmail@site.com"
+          />
+        </div>
         <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button type="submit"
+          <div class="btn-group btn-group-lg">
+            <button
+              type="submit"
               class="btn btn-outline-success"
               [disabled]="!emailForm.valid"
-              (click)="editEmail()"><i class="bi bi-check-square"></i>
+              (click)="editEmail()"
+            >
+              <i class="bi bi-check-square"></i>
             </button>
-            <button type="button"
-              class="btn btn-outline-warning"><i class="bi bi-backspace"></i>
+            <button type="button" class="btn btn-outline-warning">
+              <i class="bi bi-backspace"></i>
             </button>
-
           </div>
         </div>
       </form>
-
     </div>
-
   </div>
   <div class="card mt-3">
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="motDePasseCompte" style="color:rgb(255, 207, 0)">Mot de passe </label> <input
-            type="password" class="form-control" value='*******' placeholder={{utilisateur?.motDePasse}} id="motDePasseCompte"
-            disabled="disabled">
+          <label for="motDePasseCompte" style="color: rgb(255, 207, 0)"
+            >Mot de passe
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            value="*******"
+            placeholder="{{ utilisateur?.motDePasse }}"
+            id="motDePasseCompte"
+            disabled="disabled"
+          />
         </div>
-
       </form>
     </div>
-    <div class="card-footer text-left ">
-      <button type="button"
-        class="btn btn-outline-warning btn-sm float-left" id="mdpModif"
-        (click)="changeMdp()">Modifier</button>
-
-
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="mdpModif"
+        (click)="changeMdp()"
+      >
+        Modifier
+      </button>
     </div>
-    </div>
-    <div class="card mt-3" id='newMdp' *ngIf="mdp">
-      <div class="card-body">
-        <form [formGroup]="motDePasseForm" >
-          <div class="form-connection">
-            <label for="ancienMotDePasse" style="color:rgb(255, 207, 0)">Ancien mot de passe: </label> <input
-              type="password" class="form-control" id="ancienMotDePasse" formControlName="ancienMotDePasse" placeholder="Mon ancien mot de passe">
-            </div>
-          <div class="form-connection">
-            <label for="nouveauMotDePasse" style="color:rgb(255, 207, 0)">Nouveau mot de passe: </label> <input
-              type="password" class="form-control"  placeholder="Mon nouveau mot de passe" formControlName='nouveauMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.nouveauMotDePasse.errors }">
-            </div>
-          <div class="form-connection">
-            <label for="confirmationNouvelMdp" style="color:rgb(255, 207, 0)">Confirmation du nouveau
-              mot de passe: </label> <input type="password" class="form-control"
-               placeholder="Mon nouveau mot de passe" formControlName='confirmeMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.confirmMotDePasse?.errors }">
-
-
-            </div>
-            <div class="form-error text-danger" *ngIf="motDePasseForm?.hasError('notSame') && f.confirmeMotDePasse.dirty"> Le mot de passe de confirmation ne correspond pas avec le nouveau mot de passe! </div>
-          <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button type="submit"
+  </div>
+  <div class="card mt-3" id="newMdp" *ngIf="mdp">
+    <div class="card-body">
+      <form [formGroup]="motDePasseForm">
+        <div class="form-connection">
+          <label for="ancienMotDePasse" style="color: rgb(255, 207, 0)"
+            >Ancien mot de passe:
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            id="ancienMotDePasse"
+            formControlName="ancienMotDePasse"
+            placeholder="Mon ancien mot de passe"
+          />
+        </div>
+        <div class="form-connection">
+          <label for="nouveauMotDePasse" style="color: rgb(255, 207, 0)"
+            >Nouveau mot de passe:
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Mon nouveau mot de passe"
+            formControlName="nouveauMotDePasse"
+            placeholder="Mon nouveau mot de passe"
+            [ngClass]="{
+              'is-invalid': submitted && f.nouveauMotDePasse.errors
+            }"
+          />
+        </div>
+        <div class="form-connection">
+          <label for="confirmationNouvelMdp" style="color: rgb(255, 207, 0)"
+            >Confirmation du nouveau mot de passe:
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Mon nouveau mot de passe"
+            formControlName="confirmeMotDePasse"
+            placeholder="Mon nouveau mot de passe"
+            [ngClass]="{
+              'is-invalid': submitted && f.confirmMotDePasse?.errors
+            }"
+          />
+        </div>
+        <div
+          class="form-error text-danger"
+          *ngIf="
+            motDePasseForm?.hasError('notSame') && f.confirmeMotDePasse.dirty
+          "
+        >
+          Le mot de passe de confirmation ne correspond pas avec le nouveau mot
+          de passe!
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <div class="btn-group btn-group-lg">
+            <button
+              type="submit"
               class="btn btn-outline-success"
               [disabled]="!motDePasseForm.valid"
-              (click)="editMotDePasse()"><i class="bi bi-check-square"></i>
+              (click)="editMotDePasse()"
+            >
+              <i class="bi bi-check-square"></i>
             </button>
-            <button type="button"
-              class="btn btn-outline-warning" (click)="onReset()"><i class="bi bi-backspace"></i>
+            <button
+              type="button"
+              class="btn btn-outline-warning"
+              (click)="onReset()"
+            >
+              <i class="bi bi-backspace"></i>
             </button>
-
           </div>
         </div>
-
-        </form>
-
-      </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <div class="container">
@@ -110,133 +175,190 @@
     <div class="card-body">
       <form>
         <div class="form-connection">
-          <label for="limiteArgent" style="color:rgb(255, 207, 0)">Limite d'argent: </label> <input
-            type="text" class="form-control" id="limiteArgent" placeholder={{utilisateur?.limite}}
-            disabled="disabled">
+          <label for="limiteArgent" style="color: rgb(255, 207, 0)"
+            >Limite d'argent:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="limiteArgent"
+            placeholder="{{ utilisateur?.limite }}"
+            disabled="disabled"
+          />
         </div>
-
       </form>
     </div>
-    <div class="card-footer text-left ">
-      <button  type="button"
-        class="btn btn-outline-warning btn-sm float-left" id="limiteModif"
-        (click)="changeLimite()" >Modifier</button>
-
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="limiteModif"
+        (click)="changeLimite()"
+      >
+        Modifier
+      </button>
     </div>
   </div>
 
-  <div class="card mt-3" id='newLimite' *ngIf="limiteArg" >
+  <div class="card mt-3" id="newLimite" *ngIf="limiteArg">
     <div class="card-body">
       <form [formGroup]="limiteForm">
-        <div class="form-connection" >
-          <label for="newLimite" style="color:rgb(255, 207, 0)">Nouvelle limite d'argent: </label> <input
-            type="number" class="form-control" id="nouvelleLimite" formControlName='nouvelleLimite'  min="0" max="10000">
+        <div class="form-connection">
+          <label for="newLimite" style="color: rgb(255, 207, 0)"
+            >Nouvelle limite d'argent:
+          </label>
+          <input
+            type="number"
+            class="form-control"
+            id="nouvelleLimite"
+            formControlName="nouvelleLimite"
+            min="0"
+            max="10000"
+          />
         </div>
 
         <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button   type="button" class="btn btn-outline-success" [disabled]="!limiteForm.valid" (click)="editLimite()">
+          <div class="btn-group btn-group-lg">
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              [disabled]="!limiteForm.valid"
+              (click)="editLimite()"
+            >
               <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" class="btn btn-outline-warning" (click)="onReset()">
+            <button
+              type="button"
+              class="btn btn-outline-warning"
+              (click)="onReset()"
+            >
               <i class="bi bi-backspace"></i>
             </button>
-
           </div>
         </div>
       </form>
-
     </div>
-
   </div>
   <div class="card mt-3">
     <div class="card-body">
       <form>
-        <div class="form-connection" >
-          <label for="salaireCompte" style="color:rgb(255, 207, 0)">Salaire (facultatif) </label> <input
-                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur?.salaire}}
-            disabled="disabled">
+        <div class="form-connection">
+          <label for="salaireCompte" style="color: rgb(255, 207, 0)"
+            >Salaire (facultatif)
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="salaireCompte"
+            placeholder="{{ utilisateur?.salaire }}"
+            disabled="disabled"
+          />
         </div>
-
       </form>
     </div>
-    <div class="card-footer text-left " >
-      <button type="button" (click)="changeSalaire()"
-              class="btn btn-outline-warning btn-sm float-left" id="salaireModif"
-        >Modifier</button>
-
-
+    <div class="card-footer text-left">
+      <button
+        type="button"
+        (click)="changeSalaire()"
+        class="btn btn-outline-warning btn-sm float-left"
+        id="salaireModif"
+      >
+        Modifier
+      </button>
     </div>
   </div>
-  <div class="card mt-3" id='newSalaire' *ngIf="salaire">
+  <div class="card mt-3" id="newSalaire" *ngIf="salaire">
     <div class="card-body">
       <form [formGroup]="salaireForm">
         <div class="form-connection">
-          <label for="newSalaire" style="color:rgb(255, 207, 0)">Nouveau salaire: </label> <input
-          type="number" class="form-control" formControlName='nouveauSalaire' id="nouveauSalaire"  min="0" max="10000">
+          <label for="newSalaire" style="color: rgb(255, 207, 0)"
+            >Nouveau salaire:
+          </label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="nouveauSalaire"
+            id="nouveauSalaire"
+            min="0"
+            max="10000"
+          />
         </div>
 
         <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button type="button" class="btn btn-outline-success" [disabled]="!salaireForm.valid" (click)="editSalaire()">
+          <div class="btn-group btn-group-lg">
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              [disabled]="!salaireForm.valid"
+              (click)="editSalaire()"
+            >
               <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" class="btn btn-outline-warning"
-            (click)="onReset()">
+            <button
+              type="button"
+              class="btn btn-outline-warning"
+              (click)="onReset()"
+            >
               <i class="bi bi-backspace"></i>
             </button>
-
           </div>
         </div>
-
       </form>
-
-
     </div>
   </div>
 
   <div class="card mt-3">
     <div class="card-body">
       <form>
-        <div class="form-connection" >
-          <label for="salaireCompte" style="color:rgb(255, 207, 0)">MontantDisponible </label>
-           <input
-                        type="text" class="form-control" id="salaireCompte" placeholder={{utilisateur?.montantDisponible}}
-            disabled="disabled">
+        <div class="form-connection">
+          <label for="salaireCompte" style="color: rgb(255, 207, 0)"
+            >MontantDisponible
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="salaireCompte"
+            placeholder="{{ utilisateur?.montantDisponible }}"
+            disabled="disabled"
+          />
         </div>
-
       </form>
     </div>
   </div>
 
-    <div class="card mt-3">
-      <div class="card-body">
-        <form>
-          <div class="form-connection">
-          <label for="newSalaire" style="color:rgb(255, 207, 0)">Profil du joueur: </label><input
-          type="text" class="form-control" id="newSalaire" placeholder={{utilisateur?.profil}} disabled=disabled>
-          </div>
-        </form>
+  <div class="card mt-3">
+    <div class="card-body">
+      <form>
+        <div class="form-connection">
+          <label for="newSalaire" style="color: rgb(255, 207, 0)"
+            >Profil du joueur: </label
+          ><input
+            type="text"
+            class="form-control"
+            id="newSalaire"
+            placeholder="{{ utilisateur?.profil }}"
+            disabled="disabled"
+          />
+        </div>
+      </form>
 
-
-      <div class="card-footer text-left ">
-        <button type="button"
-          class="btn btn-outline-warning btn-sm float-left" id="seuilModif"
-          (click)="changeRisque()">Modifier</button>
-
-
+      <div class="card-footer text-left">
+        <button
+          type="button"
+          class="btn btn-outline-warning btn-sm float-left"
+          id="seuilModif"
+          (click)="changeRisque()"
+        >
+          Modifier
+        </button>
       </div>
     </div>
 
-
-
     <div class="card mt-3" id="newSeuilRisque" *ngIf="risque">
-
       <div class="card-body">
-
         <form [formGroup]="profilForm">
           <div class="form-check-inline">
-            <label class="form-check-label" style="color:rgb(255, 207, 0)">
+            <label class="form-check-label" style="color: rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -244,12 +366,12 @@
                 class="form-check-input"
                 value="RISQUE"
                 formControlName="nouveauProfil"
-                />
+              />
               Risque
             </label>
           </div>
           <div class="form-check-inline">
-            <label class="form-check-label" style="color:rgb(255, 207, 0)">
+            <label class="form-check-label" style="color: rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -257,12 +379,12 @@
                 class="form-check-input"
                 value="MIRISQUE"
                 formControlName="nouveauProfil"
-                />
+              />
               Mi-Risque
             </label>
           </div>
           <div class="form-check-inline">
-            <label class="form-check-label" style="color:rgb(255, 207, 0)">
+            <label class="form-check-label" style="color: rgb(255, 207, 0)">
               <input
                 type="radio"
                 name="nouveauProfil"
@@ -270,33 +392,34 @@
                 class="form-check-input"
                 value="SANSRISQUE"
                 formControlName="nouveauProfil"
-                />
+              />
               Sans Risque
             </label>
           </div>
         </form>
 
-
         <div class="card-footer d-flex justify-content-end">
-          <div class="btn-group btn-group-lg ">
-            <button type="button" class="btn btn-outline-success" (click)="editProfil()">
+          <div class="btn-group btn-group-lg">
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              (click)="editProfil()"
+            >
               <i class="bi bi-check-square"></i>
             </button>
-            <button type="button" class="btn btn-outline-warning" (click)="onReset()">
+            <button
+              type="button"
+              class="btn btn-outline-warning"
+              (click)="onReset()"
+            >
               <i class="bi bi-backspace"></i>
             </button>
-
           </div>
         </div>
-
       </div>
-
-
     </div>
-
   </div>
   <div class="card mt-3">
-
     <div class="card mt-2 d-flex flex-row" id="DonneesPari">
       <div
         class="card-header bg-outline-success bordur-success text-warning text-left"
@@ -306,24 +429,30 @@
       <div class="btn-group btn-group-lg">
         <button
           type="button"
-          class="btn btn float-right " style="color:rgb(182, 237, 62)"
+          class="btn btn float-right"
+          style="color: rgb(182, 237, 62)"
           title="Football"
-      routerLink="/historiquePariFoot"
-          routerLinkActive="active">
-          <i class="fa-solid fa-futbol" style="color:rgb(182, 237, 62)"></i> Visualiser
+          routerLink="/historiquePariFoot"
+          routerLinkActive="active"
+        >
+          <i class="fa-solid fa-futbol" style="color: rgb(182, 237, 62)"></i>
+          Visualiser
         </button>
       </div>
       <div class="btn-group btn-group-lg">
         <button
           type="button"
-          class="btn btn float-right" style="color:rgb(255, 207, 0)"
+          class="btn btn float-right"
+          style="color: rgb(255, 207, 0)"
           title="Basketball"
-        routerLink="/historiquePariRugby"
-          routerLinkActive="active">
-          <i class="fa-solid fa-football" style="color:rgb(255, 207, 0)"></i> Visualiser
+          routerLink="/historiquePariRugby"
+          routerLinkActive="active"
+        >
+          <i class="fa-solid fa-football" style="color: rgb(255, 207, 0)"></i>
+          Visualiser
         </button>
       </div>
     </div>
-
   </div>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

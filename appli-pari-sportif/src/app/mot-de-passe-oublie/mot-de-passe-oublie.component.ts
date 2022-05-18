@@ -35,11 +35,7 @@ export class MotDePasseOublieComponent {
         {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
           this.alert = true;
-          this.swalWithBootstrapButtons.fire('',"Un email a eté envoyé pour modifier le mot de pass.", 'success');
-        }
-        else
-        {
-          this.swalWithBootstrapButtons.fire('',"L'email n'est pas correct'.", 'error');
+          this.swalWithBootstrapButtons.fire('',"Un email a été envoyé pour modifier le mot de passe.", 'success');
         }
       });
   }

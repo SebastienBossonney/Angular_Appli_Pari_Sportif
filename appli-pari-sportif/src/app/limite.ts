@@ -1,6 +1,5 @@
 export interface Limite {
-
-  valeur:number;
-	duree:string;
-  utilisateurId:number;
+  valeur: number;
+  duree: string;
+  utilisateurId: number;
 }

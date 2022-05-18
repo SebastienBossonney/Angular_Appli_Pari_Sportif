@@ -1,15 +1,13 @@
-
-
-.ng-touched:not(form){
+.ng-touched:not(form) {
   border: 3px solid lightblue;
 }
 
-.ng-dirty.ng-valid:not(form){
+.ng-dirty.ng-valid:not(form) {
   border: 5px solid green;
   border-radius: 2px;
 }
 
-.ng-dirty.ng-invalid:not(form){
+.ng-dirty.ng-invalid:not(form) {
   border: 5px solid red;
   border-radius: 1px;
 }
@@ -23,6 +21,13 @@ input:focus {
   font-weight: 700;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

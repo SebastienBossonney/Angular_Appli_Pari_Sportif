@@ -1,12 +1,26 @@
 <ul>
-  <div class="card-header bg-outline-warning" *ngFor="let utilisateur of utilisateurs ">
-      <h2 class="couleurIdentifiant"  [routerLink]="['./', utilisateur.id]">{{utilisateur?.identifiant}},</h2>
-      <div class="couleur"><strong>Id: </strong> {{utilisateur?.id}},</div>
-      <div class="couleur"><strong>Email: </strong>{{utilisateur?.email}},</div>
-      <div class="couleur"><strong>Mot de passe: </strong>{{utilisateur?.motDePasse}},</div>
-      <div class="couleur"><strong>Limite d'argent: </strong>{{utilisateur?.limite}},</div>
-      <div class="couleur"><strong>Salaire(facultatif): </strong>{{utilisateur?.salaire}},</div>
-      <div class="couleur"><strong>Rôle: </strong>{{utilisateur?.role}},</div>
-      <div class="couleur"><strong>Profil (Risque, Mi-Risque, Sans Risque): </strong>{{utilisateur?.profil}},</div>
+  <div
+    class="card-header bg-outline-warning"
+    *ngFor="let utilisateur of utilisateurs"
+  >
+    <h2 class="couleurIdentifiant" [routerLink]="['./', utilisateur.id]">
+      {{ utilisateur?.identifiant }},
+    </h2>
+    <div class="couleur"><strong>Id: </strong> {{ utilisateur?.id }},</div>
+    <div class="couleur"><strong>Email: </strong>{{ utilisateur?.email }},</div>
+    <div class="couleur">
+      <strong>Mot de passe: </strong>{{ utilisateur?.motDePasse }},
+    </div>
+    <div class="couleur">
+      <strong>Limite d'argent: </strong>{{ utilisateur?.limite }},
+    </div>
+    <div class="couleur">
+      <strong>Salaire(facultatif): </strong>{{ utilisateur?.salaire }},
+    </div>
+    <div class="couleur"><strong>Rôle: </strong>{{ utilisateur?.role }},</div>
+    <div class="couleur">
+      <strong>Profil (Risque, Mi-Risque, Sans Risque): </strong
+      >{{ utilisateur?.profil }},
+    </div>
   </div>
 </ul>

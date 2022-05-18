@@ -6,11 +6,8 @@ import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { Limite } from './limite';
 
-
-
 @Injectable()
 export class UserService {
-
   private utilisateursUrl!: string;
   private userSubject!: BehaviorSubject<Utilisateur>;
   public utilisateur!: Observable<Utilisateur>;
@@ -23,7 +20,7 @@ export class UserService {
     return this.http.get<Utilisateur[]>(this.utilisateursUrl);
   }
 
-  public save(user: Utilisateur):Observable<Utilisateur> {
+  public save(user: Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(this.utilisateursUrl, user.id);
   }
 
@@ -37,6 +34,4 @@ export class UserService {
       limite
     );
   }
-
-
 }
