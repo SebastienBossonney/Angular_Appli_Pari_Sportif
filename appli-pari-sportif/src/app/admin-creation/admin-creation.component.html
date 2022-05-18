@@ -1,13 +1,13 @@
 <div class="container">
   <div class="card mt-3">
-    <div class="card-header bg-warning text-dark text-center">
+    <div class="card-header text-center">
       <h3>Creation d'un sport, d'une équipe ou d'un match</h3>
     </div>
     <div class="card-body">
       <div>
         <!-- Creation d'un sport -->
         <form [formGroup]="creationSport">
-          <div><label for="nameSport">Creation d'un sport : </label></div>
+          <div><h4 for="nameSport">Creation d'un sport : </h4></div>
           <input
             type="text"
             class="form-control"
@@ -19,17 +19,18 @@
           />
           <button
             type="button"
-            class="btn btn-info"
+            class="btn btn-info btn-outline-warning "
             [disabled]="!creationSport.valid"
             (click)="submitSport()"
           >
             Confirmez
           </button>
         </form>
-
+        <br>
+        <br>
         <!-- Creation d'une equipe -->
         <div>
-          <label for="sportSelect">Creation d'un equipe : </label>
+          <h4 for="sportSelect">Creation d'un equipe : </h4>
           <select
             [(ngModel)]="sportSelect"
             id="sportSelect"
@@ -55,16 +56,18 @@
           />
           <button
             type="button"
-            class="btn btn-info"
+            class="btn btn-info btn-outline-warning"
             [disabled]="!creationEquipe.valid"
             (click)="submitEquipe(sportSelect)"
           >
             Confirmez
           </button>
         </form>
+        <br>
+        <br>
 
         <!-- Creation d'un match  -->
-        <div><label for="match">Creation d'un match : </label></div>
+        <div><h4 for="match">Creation d'un match : </h4></div>
 
         <select
           [(ngModel)]="sportSelect"
@@ -137,6 +140,7 @@
             placeholder="Enter country"
             required
           />
+          <br>
           <label for="match">Date du match : </label>
           <input
             type="date"
@@ -146,6 +150,7 @@
             formControlName="dateMatch"
             required
           />
+          <br>
           <label for="match">Heure du match : </label>
           <input
             type="time"
@@ -157,7 +162,7 @@
           />
           <button
             type="button"
-            class="btn btn-info"
+            class="btn btn-info btn-outline-warning"
             [disabled]="!creationMatch.valid"
             (click)="submitMatch(sportSelect, equipeSelect1, equipeSelect2)"
           >
@@ -165,8 +170,10 @@
           </button>
         </form>
       </div>
+      <br>
+      <br>
       <!-- Creation d'une cote  -->
-      <div><label for="match">Creation des cotes : </label></div>
+      <div><h4 for="match">Création des cotes : </h4></div>
       <div>
         <select
           [(ngModel)]="sportSelect"
@@ -181,6 +188,7 @@
           </option>
         </select>
       </div>
+      <br>
       <label for="matchSelectCH">Matches </label>
       <select
         [(ngModel)]="matchSelectCH"
@@ -196,7 +204,7 @@
           {{ m.dateMatch }} at {{ m.heureMatch }}
         </option>
       </select>
-
+      <br>
       <form [formGroup]="creationCotes">
         <label> Saisir la cote en cas de VICTOIRE  </label>
         <input
@@ -208,7 +216,8 @@
           placeholder="Enter cote"
           required
         />
-         <label> Saisir la cote en cas de défaite </label>
+        <br>
+         <label> Saisir la cote de l'équipe 1 </label>
       <input
         type="text"
         class="form-control"
@@ -218,7 +227,8 @@
         placeholder="Enter cote"
         required
       />
-      <label> Saisir la cote en cas de match nul </label>
+      <br>
+      <label> Saisir la cote de l'équipe 2 </label>
     <input
       type="text"
       class="form-control"
@@ -228,9 +238,10 @@
       placeholder="Enter cote"
       required
     />
+    <br>
         <button
           type="button"
-          class="btn btn-info"
+          class="btn btn-info btn-outline-warning"
           [disabled]="!creationCotes.valid"
           (click)="createCote(matchSelectCH.id)"
         > Validez cote match
