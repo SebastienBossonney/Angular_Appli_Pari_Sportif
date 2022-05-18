@@ -113,13 +113,12 @@ export class AdminCreationComponent implements OnInit {
 
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-       confirmButton: 'btn btn-success'
-                 },
-    buttonsStyling: false
-  })
+      confirmButton: 'btn btn-success',
+    },
+    buttonsStyling: false,
+  });
 
-  submitSport()
-  {
+  submitSport() {
     this.sport = {
       id: -1,
       version: 0,
@@ -130,9 +129,11 @@ export class AdminCreationComponent implements OnInit {
       .createSport(this.sport)
       .subscribe((sport) => this.samePage());
 
-      //window.location.reload();
+    //window.location.reload();
 
-      this.swalWithBootstrapButtons.fire('',"Le Sport a bien été créé.", 'success').then(() => {
+    this.swalWithBootstrapButtons
+      .fire('', 'Le Sport a bien été créé.', 'success')
+      .then(() => {
         window.location.reload();
       });
   }
@@ -147,10 +148,12 @@ export class AdminCreationComponent implements OnInit {
       .createEquipe(this.equipe, sportSelected)
       .subscribe((equipe) => this.samePage());
     //window.location.reload();
-    this.swalWithBootstrapButtons.fire('',"L'equipe a bien été créé.", 'success').then(() => {
-      window.location.reload();
-  });
-}
+    this.swalWithBootstrapButtons
+      .fire('', "L'equipe a bien été créé.", 'success')
+      .then(() => {
+        window.location.reload();
+      });
+  }
 
   loadEquipes(sportSelected: number | undefined) {
     this.adminCreationService
@@ -159,7 +162,6 @@ export class AdminCreationComponent implements OnInit {
         this.equipes = data;
       });
   }
-
 
   // getEquipes( sportSelected: number | undefined,equipeSelected1 : number | undefined) {
   //   this.adminCreationService
@@ -171,9 +173,7 @@ export class AdminCreationComponent implements OnInit {
   //   console.log(this.equipe1);
   // }
 
-
   getEquipe1(sportSelected: number | undefined, equipeId: number | undefined) {
-
     this.adminCreationService
       .getEquipeById(sportSelected, equipeId)
       .subscribe((equipe: Equipe) => {
@@ -235,14 +235,24 @@ export class AdminCreationComponent implements OnInit {
         { id: this.equipe2.id, nom: this.equipe2.nom },
       ],
     };
+
     this.adminCreationService
       .createMatch(this.match, sportSelected)
       .subscribe((match) => this.samePage());
 
-
-      this.swalWithBootstrapButtons.fire('',"Le Match entre " + this.equipe1.nom + " et " + this.equipe2.nom + " a bien été créé.", 'success').then(() => {
-        window.location.reload();})
-
+    this.swalWithBootstrapButtons
+      .fire(
+        '',
+        'Le Match entre ' +
+          this.equipe1.nom +
+          ' et ' +
+          this.equipe2.nom +
+          ' a bien été créé.',
+        'success'
+      )
+      .then(() => {
+        window.location.reload();
+      });
   }
   samePage() {
     this.router.navigate(['/creationSportEquipeMatch']);
@@ -267,32 +277,30 @@ export class AdminCreationComponent implements OnInit {
     }
   }
 
-  createCote(matchSelected: number | undefined){
-    this.cotes = [ {
-      id: -1,
-      statut: 'GAGNANT',
-      valeur: this.creationCotes.get('valeurE1')?.value,
-    },
-    this.coteE2 = {
-      id: -1,
-      statut: 'PERDANT',
-      valeur: this.creationCotes.get('valeurE2')?.value,
-    },
-    this.coteMN = {
-      id: -1,
-      statut: 'NUL',
-      valeur: this.creationCotes.get('valeurMN')?.value,
-    }
-  ]
-
-  console.log(this.cotes);
-
-
-
+  createCote(matchSelected: number | undefined) {
+    this.cotes = [
+      {
+        id: -1,
+        statut: 'GAGNANT',
+        valeur: this.creationCotes.get('valeurE1')?.value,
+      },
+      (this.coteE2 = {
+        id: -1,
+        statut: 'PERDANT',
+        valeur: this.creationCotes.get('valeurE2')?.value,
+      }),
+      (this.coteMN = {
+        id: -1,
+        statut: 'NUL',
+        valeur: this.creationCotes.get('valeurMN')?.value,
+      }),
+    ];
 
     this.adminCreationService
       .createCote(this.cotes, matchSelected)
-      .subscribe((match) => this.samePage());
+      .subscribe((data) => {
+        this.cotes = data;
+      });
+      window.location.reload();
   }
-
 }
