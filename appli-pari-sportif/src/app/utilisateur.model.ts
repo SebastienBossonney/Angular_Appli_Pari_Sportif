@@ -9,5 +9,6 @@ export interface Utilisateur {
   montantTotalPerdu : number,
   salaire : number,
   montantDisponible : number,
+
 }
 

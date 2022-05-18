@@ -19,23 +19,23 @@ export class CompteUtilisateurComponent implements OnInit {
   utilisateur!:Utilisateur;
   limiteArg=false;//Pour le bouton modifier de limite d'argent
   salaire=false; //Pour le bouton modifier le salaire
-  risque=false;//Pour le bouton modifier le seuil de risque 
-  mdp=false;//Pour le bouton modifier le mot de passe 
-  email=false;//Pour le bouton modifier l'email 
+  risque=false;//Pour le bouton modifier le seuil de risque
+  mdp=false;//Pour le bouton modifier le mot de passe
+  email=false;//Pour le bouton modifier l'email
   utilisateurs!:Utilisateur[];
   utilisateurProfilSelect:any;
   selectDefaultValue:any;
   submitted = false;
-  
-  
+
+
 
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute, private builder: FormBuilder, private router:Router)  {}
 
- 
+
   ngOnInit(){
   this.getUtilisateurById();
- 
-  
+
+
   }
 
   get nouveauMotDePasse(){
@@ -45,9 +45,9 @@ export class CompteUtilisateurComponent implements OnInit {
   get confirmeMotDePasse(){
     return this.motDePasseForm.get('confirmeMotDePasse')
   }
-  
 
-  
+
+
 
   emailForm= this.builder.group({
     //nouvelEmail = formControlName='nouvelEmail'
@@ -71,13 +71,13 @@ export class CompteUtilisateurComponent implements OnInit {
   profilForm= this.builder.group({
     nouveauProfil: ['',[Validators.required]],
   })
- 
+
   motDePasseForm= this.builder.group({
     nouveauMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
     confirmeMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
     ancienMotDePasse:['', [Validators.required]],
-    
-  }, 
+
+  },
   {validators: this.checkPassword})
 
 
@@ -89,10 +89,10 @@ export class CompteUtilisateurComponent implements OnInit {
   return pass === confirmPass ? null : { notSame: true}
 
  }
-  
- 
 
- 
+
+
+
  submit(){
     console.log(this.motDePasseForm.value);
   }
@@ -123,6 +123,7 @@ export class CompteUtilisateurComponent implements OnInit {
       salaire: this.utilisateur.salaire,
       montantDisponible: this.utilisateur.montantDisponible,
     };
+    sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
@@ -145,7 +146,7 @@ export class CompteUtilisateurComponent implements OnInit {
       montantDisponible: this.utilisateur.montantDisponible,
     };
 
-    
+    sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
@@ -168,6 +169,7 @@ export class CompteUtilisateurComponent implements OnInit {
       salaire: this.salaireForm.get('nouveauSalaire')?.value,
       montantDisponible: this.utilisateur.montantDisponible,
     };
+    sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
@@ -175,16 +177,16 @@ export class CompteUtilisateurComponent implements OnInit {
 
   editMotDePasse(){
     console.log(JSON.stringify(this.utilisateur))
-    
+
     this.submitted = true;
        if(this.motDePasseForm.get('ancienMotDePasse')?.value===this.utilisateur.motDePasse){
-         
+
         // stop here if form is invalid
         if (this.motDePasseForm.invalid) {
             return;
         }else{
 
-          
+
             this.utilisateur= {
                   id: this.utilisateur.id,
                   identifiant: this.utilisateur.identifiant,
@@ -198,14 +200,15 @@ export class CompteUtilisateurComponent implements OnInit {
                   salaire: this.utilisateur.salaire,
                   montantDisponible: this.utilisateur.montantDisponible,
                 };
+                sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
                 this.utilisateurService
                   .editUtilisateur(this.utilisateur.id, this.utilisateur)
                   .subscribe((utilisateur) => this.gotoUtilisateurCompte());
-  
+
           }
         } else{
    return ;
-    
+
   }
   }
 
@@ -224,11 +227,12 @@ export class CompteUtilisateurComponent implements OnInit {
       salaire: this.utilisateur.salaire,
       montantDisponible: this.utilisateur.montantDisponible,
     };
+    sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
   }
- 
+
  gotoUtilisateurCompte() {
     var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
     this.router.navigate(['/utilisateur' + '/' + userInfo.id]);
@@ -242,7 +246,7 @@ export class CompteUtilisateurComponent implements OnInit {
       this.limiteArg= true;
     }
   }
-  
+
   changeSalaire() {
     if (this.salaire){
       this.salaire=false;
@@ -268,13 +272,14 @@ export class CompteUtilisateurComponent implements OnInit {
     } else {
       this.mdp= true;
     }}
-  
+
   changeEmail() { //Pour le bouton modifier de limite d'argent
     if(this.email) {
       this.email=false;
     } else {
       this.email= true;
     }}
+
 
   onReset() {
         this.submitted= false;
@@ -284,7 +289,7 @@ export class CompteUtilisateurComponent implements OnInit {
         this.motDePasseForm.reset();
         this.profilForm.reset();
     }
-  
+
 
 }
 

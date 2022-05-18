@@ -103,6 +103,7 @@ export class EquipeComponent implements OnInit {
   saveEquipe(sportId: number, equipe: Equipe) {
     this.sportId = sportId;
 
+
     equipe = {
       id: Number(uuidv4()),
       nom: this.equipeForm.get('nouvelleEquipe')?.value,
@@ -127,4 +128,5 @@ export class EquipeComponent implements OnInit {
       );
     });
   }
+
 }

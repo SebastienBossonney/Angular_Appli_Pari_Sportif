@@ -23,7 +23,6 @@ export class MotDePasseOublieComponent {
     this.mdpService
       .findEmail(this.form.get('email')?.value)
       .subscribe((user: Utilisateur) => {
-        console.log(user.id);
         if (user.id) {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
           this.alert = true;
