@@ -119,12 +119,19 @@
           <div class="btn-group btn-group-lg">
             <button
               type="button"
-              class="btn btn-info"
+              class="btn btn-warning"
               [disabled]="!loginForm.valid"
               (click)="onSubmit()"
             >
               Confirmez
             </button>
+            <button
+            type="button"
+            class="btn btn-success"
+            [routerLink]="['/connexion']"
+          >
+            Connexion
+          </button>
           </div>
         </div>
       </form>

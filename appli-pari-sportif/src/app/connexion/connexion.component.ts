@@ -46,9 +46,6 @@ export class ConnexionComponent {
       });
   }
 
-  mdpOublie(){
-    this.router.navigate(['/motDePasseOublie'])
-  }
 
   inscription(){
     this.router.navigate(['/inscription'])

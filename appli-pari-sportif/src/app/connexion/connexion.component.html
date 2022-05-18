@@ -15,7 +15,7 @@
           formControlName="identifiant"
           required/>
         <label for="motDePasse">Mot de Passe :</label>
-        <a class="btn btn-link"  (click)="mdpOublie()">Mot de passe oublié ?</a>
+        <a class="btn btn-link"  [routerLink]="['/motDePasseOublie']" routerLinkActive="router-link-active" >Mot de passe oublié ?</a>
         <input
           type="password"
           class="form-control"
