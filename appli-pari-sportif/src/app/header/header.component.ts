@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ export class HeaderComponent implements OnInit {
   role: string | undefined;
   montantDisponible: number | undefined;
 
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -18,13 +20,15 @@ export class HeaderComponent implements OnInit {
     this.role = userInfo?.role;
     this.montantDisponible = userInfo?.montantDisponible;
   }
-
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
   logout() {
     this.authService.logout();
-    console.log('Deconnecte');
-    this.router.navigate(['/connexion']).then(() => {
-      window.location.reload();
-    });
+    this.swalWithBootstrapButtons.fire('',"Deconnecté", 'success');
   }
 
   directionCreation() {

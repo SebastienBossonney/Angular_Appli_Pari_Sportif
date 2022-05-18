@@ -1,18 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
   <div class="container-fluid">
-    <a class="navbar-brand text-warning">Bet Healthier</a>
+    <a *ngIf="role"class="navbar-brand text-warning" routerLink="/connexion">Bet Healthier</a>
+    <a *ngIf="!role"class="navbar-brand text-warning" routerLink="/connexion">Bet Healthier</a>
+    <div  *ngIf="role"  class="nav-link text-warning small"  > Montant Disponible : {{montantDisponible}}</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
           <form class="d-flex">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <p><a  *ngIf="role" routerLink="/creationSportEquipeMatch" class="nav-link active text-warning" (click)=" directionParier()"> Parier</a></p>
 
-        <div  *ngIf="role"  class="nav-link text-warning" > Montant Disponible : {{montantDisponible}}</div>
-        <div *ngIf="role"> <a class="nav-link active text-warning"  (click)="logout()">Deconnexion</a></div>
-        <li class="nav-item">
-          <a class="nav-link active text-warning" href="#">Home</a>
-        </li>
+        <a *ngIf="role" class="nav-link active active text-warning"  routerLink="/connexion" (click)="logout()">Deconnexion</a>
+          <a *ngIf="role" class="nav-link active text-warning" routerLink="/sport">Home</a>
+          <a *ngIf="!role" class="nav-link active text-warning" routerLink="/connexion">Home</a>
         <div *ngIf="role==='ADMIN' || role==='PARIEUR'">
           <!-- <div> Montant Total Gagne : {{montantTotalGagne}}</div>
           <div> Montant Disponible : {{montantTotalPerdu}}</div> -->
@@ -21,12 +22,11 @@
              <button class="btn btn-warning" type="submit"><i class="bi bi-person-circle"></i></button>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li ><a class="dropdown-item" (click)=" directionParier()"></a>
             <li ><a class="dropdown-item" (click)=" directionModifierInformation()">Modifier les informations</a></li>
-            <li><a class="dropdown-item">Historique des paris</a></li>
-            <li><a class="dropdown-item">Historique des avertissements</a></li>
-            <li *ngIf="role==='ADMIN'"><a class="dropdown-item" (click)="directionCreation()">Creation de sport, equipe, match</a></li>
-            <li *ngIf="role==='ADMIN'"><a class="dropdown-item" (click)="directionAllUsers()">Tous les utilisateurs</a></li>
+            <li><a class="dropdown-item" routerLink="">Historique des paris</a></li>
+            <li><a class="dropdown-item" routerLink="">Historique des avertissements</a></li>
+            <li *ngIf="role==='ADMIN'"><a class="dropdown-item" routerLink="/creationSportEquipeMatch">Creation de sport, equipe, match, cote</a></li>
+            <li *ngIf="role==='ADMIN'"><a class="dropdown-item" routerLink="/allUsers">Tous les utilisateurs</a></li>
           </ul>
         </li>
       </div>
