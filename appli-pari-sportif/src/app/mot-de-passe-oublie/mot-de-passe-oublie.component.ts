@@ -11,6 +11,7 @@ import { MotDePasseOublieService } from './mot-de-passe-oublie.service';
 })
 export class MotDePasseOublieComponent {
   user!: Utilisateur;
+  alert: Boolean = false;
   constructor(
     private mdpService: MotDePasseOublieService,
     private formBuilder: FormBuilder
@@ -27,16 +28,22 @@ export class MotDePasseOublieComponent {
   });
 
   sendEmail() {
-    console.log('test')
     this.mdpService
       .findEmail(this.form.get('email')?.value)
       .subscribe((user: Utilisateur) => {
         if (user.id)
         {
           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+          this.alert = true;
+          this.swalWithBootstrapButtons.fire('',"Un email a eté envoyé pour modifier le mot de pass.", 'success');
         }
-        this.swalWithBootstrapButtons.fire('',"Vous recevrez un mail si l'email est correct", 'error');
+        else
+        {
+          this.swalWithBootstrapButtons.fire('',"L'email n'est pas correct'.", 'error');
+        }
       });
   }
-
+  closeAlert() {
+    this.alert = false;
+  }
 }
