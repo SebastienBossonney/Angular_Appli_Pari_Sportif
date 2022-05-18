@@ -29,9 +29,9 @@ export class ConnexionComponent {
 
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-       confirmButton: 'btn btn-success'
-                 },
-    buttonsStyling: false
+      confirmButton: 'btn btn-success',
+    },
+    buttonsStyling: false,
   });
 
   submit() {
@@ -40,28 +40,37 @@ export class ConnexionComponent {
         this.form.get('identifiant')?.value,
         this.form.get('motDePasse')?.value
       )
-      .subscribe((user: Utilisateur) => {
-         // this.swalWithBootstrapButtons.fire('', user.identifiant+ " Bienvenue à Bet Healthier", 'success');
+      .subscribe(
+        (user: Utilisateur) => {
+          // this.swalWithBootstrapButtons.fire('', user.identifiant+ " Bienvenue à Bet Healthier", 'success');
 
-         if (sessionStorage.getItem('user')) {
+          if (sessionStorage.getItem('user')) {
+            var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
 
-           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
-
-          this.router.navigate(['utilisateur' + '/' + userInfo?.id]);
+            this.router
+              .navigate(['utilisateur' + '/' + userInfo?.id])
+              .then(() => {
+                window.location.reload();
+              });
           }
 
-      //  else {
-      //      //console.log('Mauvais identifiant');
-      //     //this.router.navigate(['/connexion']);
+          //  else {
+          //      //console.log('Mauvais identifiant');
+          //     //this.router.navigate(['/connexion']);
 
-      //    }
-        }, (error) =>{this.swalWithBootstrapButtons.fire('', "Les identifiants ne sont pas corrects", 'error');}
-    );
+          //    }
+        },
+        (error) => {
+          this.swalWithBootstrapButtons.fire(
+            '',
+            'Les identifiants ne sont pas corrects',
+            'error'
+          );
+        }
+      );
   }
 
-
-  inscription(){
-    this.router.navigate(['/inscription'])
+  inscription() {
+    this.router.navigate(['/inscription']);
   }
 }
-

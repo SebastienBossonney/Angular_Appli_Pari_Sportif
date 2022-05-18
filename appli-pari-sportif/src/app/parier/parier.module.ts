@@ -8,13 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 
-
 @NgModule({
   declarations: [
-
     // PariSportComponent,
     // PariSportMatchComponent
-
   ],
   imports: [
     AppRoutingModule,
@@ -23,7 +20,7 @@ import { AppRoutingModule } from '../app-routing.module';
     ParierRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class ParierModule { }
+export class ParierModule {}

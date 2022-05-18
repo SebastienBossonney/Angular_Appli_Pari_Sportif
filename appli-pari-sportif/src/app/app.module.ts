@@ -35,9 +35,6 @@ import { AllMatchesComponent } from './parier/all-matches/all-matches.component'
 import { EquipeComponent } from './equipe/equipe.component';
 import { BackgroundImageComponent } from './background-image/background-image.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,13 +54,12 @@ import { BackgroundImageComponent } from './background-image/background-image.co
     AllUtilisateursComponent,
     AvertissementComponent,
     PariSportComponent,
-     PariSportMatchComponent,
-     AdminCreationComponent,
-     AfficherAllUsersComponent,
-     AllMatchesComponent,
-     EquipeComponent,
-     BackgroundImageComponent,
-
+    PariSportMatchComponent,
+    AdminCreationComponent,
+    AfficherAllUsersComponent,
+    AllMatchesComponent,
+    EquipeComponent,
+    BackgroundImageComponent,
 
     // LimiteInterfaceComponent
   ],
@@ -76,7 +72,7 @@ import { BackgroundImageComponent } from './background-image/background-image.co
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [HttpClientModule, UserService, AuthService, DatePipe ],
+  providers: [HttpClientModule, UserService, AuthService, DatePipe],
   bootstrap: [AppComponent, BackgroundImageComponent],
 })
 export class AppModule {}

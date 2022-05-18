@@ -4,35 +4,36 @@ import { Observable } from 'rxjs';
 import { Utilisateur } from './donnees-utilisateur/utilisateur';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UtilisateurService{
+export class UtilisateurService {
+  private utilisateurUrl: string;
 
-  private utilisateurUrl:string;
-
-  constructor(private http:HttpClient) { 
-
-    this.utilisateurUrl ='http://localhost:8080/utilisateurs'
+  constructor(private http: HttpClient) {
+    this.utilisateurUrl = 'http://localhost:8080/utilisateurs';
   }
 
   public getUtilisateur(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>(this.utilisateurUrl);
   }
 
-  public getUtilisateurById(id:number): Observable<Utilisateur>{
-    return this.http.get<Utilisateur>(this.utilisateurUrl +'/'+id);
+  public getUtilisateurById(id: number): Observable<Utilisateur> {
+    return this.http.get<Utilisateur>(this.utilisateurUrl + '/' + id);
   }
 
   public saveUtilisateur(utilisateur: Utilisateur) {
     return this.http.post<Utilisateur>(this.utilisateurUrl, utilisateur);
   }
 
-  public editUtilisateur(id:number, utilisateur: Utilisateur) {
-    return this.http.put<Utilisateur>(this.utilisateurUrl + '/'+ id, utilisateur);
-  }
-  
-  public deleteUtilisateur(id : string |number):Observable <any>{ // <any> car on renvoi pas un type Hero, on récupère pas un objet/élément, o na juste besoin de savoir que ça s'est bien passé. 
-    return this.http.delete(this.utilisateurUrl+ '/' + id)
+  public editUtilisateur(id: number, utilisateur: Utilisateur) {
+    return this.http.put<Utilisateur>(
+      this.utilisateurUrl + '/' + id,
+      utilisateur
+    );
   }
 
+  public deleteUtilisateur(id: string | number): Observable<any> {
+    // <any> car on renvoi pas un type Hero, on récupère pas un objet/élément, o na juste besoin de savoir que ça s'est bien passé.
+    return this.http.delete(this.utilisateurUrl + '/' + id);
+  }
 }

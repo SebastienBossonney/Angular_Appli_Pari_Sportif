@@ -8,9 +8,8 @@ describe('DonneesPariComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DonneesPariComponent ]
-    })
-    .compileComponents();
+      declarations: [DonneesPariComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,19 +1,19 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EquipeComponent } from '../equipe/equipe.component';
 import { PariSportMatchComponent } from './pari-sport-match/pari-sport-match.component';
 import { PariSportComponent } from './pari-sport/pari-sport.component';
 
-
 const routes: Routes = [
-  {path: 'sport', component: PariSportComponent,
-  children: [
-    {path: ':id', component: PariSportMatchComponent},
-            ]
-  }];
+  {
+    path: 'sport',
+    component: PariSportComponent,
+    children: [{ path: ':id', component: PariSportMatchComponent }],
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class ParierRoutingModule { }
+export class ParierRoutingModule {}

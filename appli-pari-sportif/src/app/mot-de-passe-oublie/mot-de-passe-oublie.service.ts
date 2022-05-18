@@ -8,10 +8,9 @@ import { Utilisateur } from '../utilisateur.model';
 })
 export class MotDePasseOublieService {
   motDePasseOublieUrl: string;
-  constructor(
-    private http: HttpClient,
-  ) {
-    this.motDePasseOublieUrl = 'http://localhost:8080/utilisateurs/motDePasseOublie';
+  constructor(private http: HttpClient) {
+    this.motDePasseOublieUrl =
+      'http://localhost:8080/utilisateurs/motDePasseOublie';
   }
 
   findEmail(email: string): Observable<Utilisateur> {

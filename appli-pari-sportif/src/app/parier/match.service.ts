@@ -5,29 +5,33 @@ import { Cote } from './cote';
 import { Match } from './match';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MatchService {
-
-  private matchUrl : string;
-
+  private matchUrl: string;
 
   constructor(private http: HttpClient) {
     this.matchUrl = 'http://localhost:8080';
-   }
+  }
 
-   public getMatchs(sportId: number): Observable<Match[]> {
-     console.log();
-    return this.http.get<Match[]>(this.matchUrl + '/sports/' +sportId+ '/matchs');
+  public getMatchs(sportId: number): Observable<Match[]> {
+    console.log();
+    return this.http.get<Match[]>(
+      this.matchUrl + '/sports/' + sportId + '/matchs'
+    );
   }
 
   public getMatches(sportId: number): Observable<Match[]> {
-     console.log();
-    return this.http.get<Match[]>(this.matchUrl + '/sports/' +sportId+ '/matchs-all');
+    console.log();
+    return this.http.get<Match[]>(
+      this.matchUrl + '/sports/' + sportId + '/matchs-all'
+    );
   }
 
   public getCotesByMatchId(matchId: number): Observable<Cote[]> {
-     console.log();
-    return this.http.get<Cote[]>(this.matchUrl + '/matchs/' +matchId+ '/cotes');
+    console.log();
+    return this.http.get<Cote[]>(
+      this.matchUrl + '/matchs/' + matchId + '/cotes'
+    );
   }
 }

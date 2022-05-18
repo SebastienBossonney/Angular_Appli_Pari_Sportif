@@ -149,7 +149,7 @@ export class AdminCreationComponent implements OnInit {
       .subscribe((equipe) => this.samePage());
     //window.location.reload();
     this.swalWithBootstrapButtons
-      .fire('', "L'equipe a bien été créé.", 'success')
+      .fire('', "L'equipe a bien été créée.", 'success')
       .then(() => {
         window.location.reload();
       });
@@ -301,6 +301,10 @@ export class AdminCreationComponent implements OnInit {
       .subscribe((data) => {
         this.cotes = data;
       });
-      window.location.reload();
+    this.swalWithBootstrapButtons
+      .fire('', 'Les cotes ont bien étées saisies', 'success')
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

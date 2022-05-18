@@ -47,9 +47,9 @@ export class InscriptionComponent {
 
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-       confirmButton: 'btn btn-success'
-                 },
-    buttonsStyling: false
+      confirmButton: 'btn btn-success',
+    },
+    buttonsStyling: false,
   });
 
   onSubmit() {
@@ -65,7 +65,6 @@ export class InscriptionComponent {
       salaire: this.loginForm.get('salaire')?.value,
       montantDisponible: 0,
     };
-
 
     this.userService.createUtilisateur(this.user).subscribe((data) => {
       this.user = data;
@@ -83,8 +82,11 @@ export class InscriptionComponent {
       });
     });
     this.gotoUserList();
-     this.swalWithBootstrapButtons.fire('', this.user.identifiant + " Soit bienvenue à Bet Healthier", 'success');
-
+    this.swalWithBootstrapButtons.fire(
+      '',
+      this.user.identifiant + ', bienvenue à Bet Healthier',
+      'success'
+    );
   }
 
   gotoUserList() {
