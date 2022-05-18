@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Utilisateur } from '../donnees-utilisateur/utilisateur';
 import { UtilisateurService } from '../utilisateur-service.service';
 
@@ -30,9 +31,11 @@ export class CompteUtilisateurComponent implements OnInit {
     private router: Router
   ) {}
 
+
   ngOnInit() {
     this.getUtilisateurById();
   }
+
 
   get nouveauMotDePasse() {
     return this.motDePasseForm.get('nouveauMotDePasse');
@@ -42,7 +45,9 @@ export class CompteUtilisateurComponent implements OnInit {
     return this.motDePasseForm.get('confirmeMotDePasse');
   }
 
-  emailForm = this.builder.group({
+
+  emailForm= this.builder.group({
+
     //nouvelEmail = formControlName='nouvelEmail'
     nouvelEmail: [
       '',
@@ -59,30 +64,30 @@ export class CompteUtilisateurComponent implements OnInit {
 
   salaireForm = this.builder.group({
     nouveauSalaire: ['', [Validators.maxLength(4)]],
-  });
 
-  profilForm = this.builder.group({
-    nouveauProfil: ['', [Validators.required]],
-  });
+  })
 
-  motDePasseForm = this.builder.group(
-    {
-      nouveauMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
-      confirmeMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
-      ancienMotDePasse: ['', [Validators.required]],
-    },
-    { validators: this.checkPassword }
-  );
+  profilForm= this.builder.group({
+    nouveauProfil: ['',[Validators.required]],
+  })
 
-  checkPassword(group: FormGroup) {
-    let pass = group.controls.nouveauMotDePasse.value; //nouveauMotDePasse.value;
-    let confirmPass = group.controls.confirmeMotDePasse.value;
-    if (pass === confirmPass) {
-      return null;
-    } else {
-      return { notSame: true };
-    }
-  }
+  motDePasseForm= this.builder.group({
+    nouveauMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
+    confirmeMotDePasse: ['', [Validators.required, Validators.minLength(8)]],
+    ancienMotDePasse:['', [Validators.required]],
+
+  },
+  {validators: this.checkPassword})
+
+  checkPassword (group: FormGroup){
+   let pass = group.controls.nouveauMotDePasse.value; //nouveauMotDePasse.value;
+   let confirmPass = group.controls.confirmeMotDePasse.value;
+
+  return pass === confirmPass ? null : { notSame: true}
+
+
+ }
+
 
   submit() {
     console.log(this.motDePasseForm.value);
@@ -105,8 +110,17 @@ export class CompteUtilisateurComponent implements OnInit {
       .subscribe();
   }
 
-  editEmail() {
-    this.utilisateur = {
+
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  });
+
+  editEmail(){
+    this.utilisateur= {
+
       id: this.utilisateur.id,
       identifiant: this.utilisateur.identifiant,
       email: this.emailForm.get('nouvelEmail')?.value,
@@ -123,6 +137,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"L'email a bien été mofifié.", 'success');
   }
 
   editLimite() {
@@ -144,6 +160,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"La limite a bien été mofifié.", 'success');
   }
 
   editSalaire() {
@@ -164,39 +182,46 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"Le salaire a bien été mofifié.", 'success');
   }
 
   editMotDePasse() {
     this.submitted = true;
-    if (
-      this.motDePasseForm.get('ancienMotDePasse')?.value ===
-      this.utilisateur.motDePasse
-    ) {
-      // stop here if form is invalid
-      if (this.motDePasseForm.invalid) {
-        return;
-      } else {
-        this.utilisateur = {
-          id: this.utilisateur.id,
-          identifiant: this.utilisateur.identifiant,
-          email: this.utilisateur.email,
-          motDePasse: this.motDePasseForm.get('nouveauMotDePasse')?.value,
-          limite: this.utilisateur.limite,
-          role: 'PARIEUR',
-          profil: this.utilisateur.profil,
-          montantTotalGagne: this.utilisateur.montantTotalGagne,
-          montantTotalPerdu: this.utilisateur.montantTotalPerdu,
-          salaire: this.utilisateur.salaire,
-          montantDisponible: this.utilisateur.montantDisponible,
-        };
-        sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
-        this.utilisateurService
-          .editUtilisateur(this.utilisateur.id, this.utilisateur)
-          .subscribe((utilisateur) => this.gotoUtilisateurCompte());
-      }
-    } else {
-      return;
-    }
+
+       if(this.motDePasseForm.get('ancienMotDePasse')?.value===this.utilisateur.motDePasse){
+
+        // stop here if form is invalid
+        if (this.motDePasseForm.invalid) {
+            return;
+        }else{
+
+
+            this.utilisateur= {
+                  id: this.utilisateur.id,
+                  identifiant: this.utilisateur.identifiant,
+                  email: this.utilisateur.email,
+                  motDePasse: this.motDePasseForm.get('nouveauMotDePasse')?.value,
+                  limite: this.utilisateur.limite,
+                  role: 'PARIEUR',
+                  profil: this.utilisateur.profil,
+                  montantTotalGagne: this.utilisateur.montantTotalGagne,
+                  montantTotalPerdu: this.utilisateur.montantTotalPerdu,
+                  salaire: this.utilisateur.salaire,
+                  montantDisponible: this.utilisateur.montantDisponible,
+                };
+                sessionStorage.setItem('user', JSON.stringify(this.utilisateur));
+                this.utilisateurService
+                  .editUtilisateur(this.utilisateur.id, this.utilisateur)
+                  .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+                  this.swalWithBootstrapButtons.fire('',"Le mote de pass a bien été mofifié.", 'success');
+          }
+        } else{
+   return ;
+
+  }
+
   }
 
   editProfil() {
@@ -217,6 +242,8 @@ export class CompteUtilisateurComponent implements OnInit {
     this.utilisateurService
       .editUtilisateur(this.utilisateur.id, this.utilisateur)
       .subscribe((utilisateur) => this.gotoUtilisateurCompte());
+
+      this.swalWithBootstrapButtons.fire('',"Le profil a bien été mofifié.", 'success');
   }
 
   gotoUtilisateurCompte() {

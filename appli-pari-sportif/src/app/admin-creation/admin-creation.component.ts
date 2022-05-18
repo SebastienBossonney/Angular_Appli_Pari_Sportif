@@ -16,6 +16,7 @@ import { MatchService } from '../parier/match.service';
 import { PariService } from '../parier/pari.service';
 import { Sport } from '../sport';
 import { AdminCreationService } from './admin-creation.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-creation',
@@ -58,9 +59,11 @@ export class AdminCreationComponent implements OnInit {
       this.sports = data;
     });
   }
+
   creationSport = this.builder.group({
     nameSport: ['', Validators.required],
   });
+
   creationEquipe = this.builder.group({
     sportSelected: new FormControl(),
     nameEquipe: ['', Validators.required],
@@ -108,16 +111,30 @@ export class AdminCreationComponent implements OnInit {
     return this.creationSport.controls['pays'];
   }
 
-  submitSport() {
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       confirmButton: 'btn btn-success'
+                 },
+    buttonsStyling: false
+  })
+
+  submitSport()
+  {
     this.sport = {
       id: -1,
       version: 0,
       nomSport: this.creationSport.get('nameSport')?.value,
     };
+
     this.adminCreationService
       .createSport(this.sport)
       .subscribe((sport) => this.samePage());
-    window.location.reload();
+
+      //window.location.reload();
+
+      this.swalWithBootstrapButtons.fire('',"Le Sport a bien été créé.", 'success').then(() => {
+        window.location.reload();
+      });
   }
 
   submitEquipe(sportSelected: number | undefined) {
@@ -129,8 +146,11 @@ export class AdminCreationComponent implements OnInit {
     this.adminCreationService
       .createEquipe(this.equipe, sportSelected)
       .subscribe((equipe) => this.samePage());
-    window.location.reload();
-  }
+    //window.location.reload();
+    this.swalWithBootstrapButtons.fire('',"L'equipe a bien été créé.", 'success').then(() => {
+      window.location.reload();
+  });
+}
 
   loadEquipes(sportSelected: number | undefined) {
     this.adminCreationService
@@ -140,7 +160,20 @@ export class AdminCreationComponent implements OnInit {
       });
   }
 
+
+  // getEquipes( sportSelected: number | undefined,equipeSelected1 : number | undefined) {
+  //   this.adminCreationService
+  //   .getEquipeById(sportSelected,equipeSelected1)
+  //   .subscribe((equipe: Equipe) => {
+  //     console.log(equipe);
+  //    this.equipe1=equipe
+  //   });
+  //   console.log(this.equipe1);
+  // }
+
+
   getEquipe1(sportSelected: number | undefined, equipeId: number | undefined) {
+
     this.adminCreationService
       .getEquipeById(sportSelected, equipeId)
       .subscribe((equipe: Equipe) => {
@@ -205,6 +238,11 @@ export class AdminCreationComponent implements OnInit {
     this.adminCreationService
       .createMatch(this.match, sportSelected)
       .subscribe((match) => this.samePage());
+
+
+      this.swalWithBootstrapButtons.fire('',"Le Match entre " + this.equipe1.nom + " et " + this.equipe2.nom + " a bien été créé.", 'success').then(() => {
+        window.location.reload();})
+
   }
   samePage() {
     this.router.navigate(['/creationSportEquipeMatch']);

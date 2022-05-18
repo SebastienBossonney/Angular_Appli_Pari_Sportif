@@ -1,94 +1,133 @@
 import { Component, OnInit } from '@angular/core';
 import { Equipe } from '../equipe-interface/equipe-interface.component';
 import { EquipeService } from '../equipe.service';
-import {map, Observable, Subject, takeUntil} from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { map, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PariSportService } from '../parier/pariSportService';
 import { Sport } from '../sport';
 import { getSafePropertyAccessString } from '@angular/compiler';
+import { FormBuilder, Validators } from '@angular/forms';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-equipe',
   templateUrl: './equipe.component.html',
-  styleUrls: ['./equipe.component.css']
+  styleUrls: ['./equipe.component.css'],
 })
+
 export class EquipeComponent implements OnInit {
+  equipe!: Equipe;
+  equipes!: Equipe[];
+  sport!: Sport;
+  sports!: Sport[];
+  sportId!: number;
+  private sportSub = new Subject<void>();
+  selectDefaultValue: any;
+  sportSelect!: any;
+  s!: Sport;
+  sportSelected: boolean = false;
+  choixEquipe: boolean = false;
+  // modifEquip: boolean=false;
+  equipeId!: number;
+  newEquipe: boolean = false;
 
-equipe!: Equipe;
-equipes!: Equipe[];
-sport!:Sport;
-sports!: Sport[];
-sportId!: number;
-private sportSub = new Subject<void>()
-selectDefaultValue:any;
-sportSelect!:any;
-s!: Sport;
-sportSelected: boolean=false;
-choixEquipe: boolean=false;
-
-
-  constructor(private route: ActivatedRoute, private router: Router, private equipeService: EquipeService,
-    private pariSportService : PariSportService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private equipeService: EquipeService,
+    private pariSportService: PariSportService,
+    private builder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.pariSportService.getSports().subscribe((data) => {
       this.sports = data;
     });
+  }
+  equipeForm = this.builder.group({
+    nouvelleEquipe: ['', [Validators.required]],
+  });
 
-  //  this.route.paramMap.subscribe(params => {
-  //     this.sportId= +params.get('id')!;
+  onChange(sportId: number) {
+    this.sportId = sportId;
+    console.log(this.sportId);
 
-  //     this.equipeService.getEquipes(this.sportId).subscribe(data => {this.equipes = data})
-  // })
+    this.equipeService.getEquipes(sportId).subscribe((data) => {
+      this.equipes = data;
+      this.sportSelected = true;
+      console.log(this.equipes);
+    });
   }
 
+  editEquipes(equipeId: number) {
+    const modifiedHero = {
+      id: equipeId,
+      nom: this.equipeForm.get('nouvelleEquipe')?.value,
+    };
+    this.equipeService
+      .editEquipes(this.sportId, equipeId, modifiedHero)
+      .subscribe(() => {
+        this.equipes.forEach((mec) => {
+          if (mec.id === equipeId) {
+            let index = this.equipes.indexOf(mec);
+            this.equipes[index] = modifiedHero;
+          }
+        });
+      });
+  }
 
-  onChange(sportId:number)
-     {
-       if (this.choixEquipe){
-      this.choixEquipe=false;
+  gotoEquipeAll(sportId: number) {
+    var equipeInfo = JSON.parse(sessionStorage.getItem('equipe') || '{}');
+    this.router.navigate(['/sport' + '/' + sportId + '/equipes-all']);
+  }
+
+  changeEquipe(equipeId: number) {
+    this.equipeId = equipeId;
+
+    console.log(this.equipeId);
+
+    if (this.choixEquipe) {
+      this.choixEquipe = false;
     } else {
-      this.choixEquipe= true;
+      this.choixEquipe = true;
     }
-       this.sportId= sportId;
-       this.sportSelected=true;
+  }
 
-       this.equipeService.getEquipes(sportId).subscribe(data => {this.equipes = data})
-       console.log(this.equipes)
+  ajoutEquipe() {
+    if (this.newEquipe) {
+      this.newEquipe = false;
+    } else {
+      this.newEquipe = true;
     }
+  }
+
+  saveEquipe(sportId: number, equipe: Equipe) {
+    this.sportId = sportId;
 
 
-// editEquipes(equipe: Equipe){
-//     const modifiedEquipe ={id : equipe.id, nom : String};
-//     //const equipes = this.equipes;
-//     this.equipeService.editEquipes(equipe.id, modifiedEquipe).subscribe(()=>{
-//       let test = this.equipes.find(equipe$=>equipe$.id==modifiedEquipe.id) //hero$ crée  une nouvelle variable
-//       if(test !== undefined){
-//         test.nom = modifiedEquipe.nom
-// }
-// })
-//    }
+    equipe = {
+      id: Number(uuidv4()),
+      nom: this.equipeForm.get('nouvelleEquipe')?.value,
+    };
 
+    this.equipeService
+      .saveEquipe(this.sportId, equipe)
+      .subscribe((equipe) => this.equipes.push(equipe));
 
-//   private getEquipe(){
-//     this.equipe$=this.equipeService.getEquipe()
-//   }
+    var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.router.navigate(['sports' + this.sportId + '/equipes']);
+  }
 
-//   add(name: string){
-//   this.equipe$ = this.equipeService.createHero(name)
-//   this.equipe$.subscribe()
-//   this.getEquipe()
-//   }
-
-// rename(equipe : Equipe) {
-//     const modifiedEquipe ={id : equipe.id, name : String};
-//     //const equipes = this.equipes;
-//     this.equipeService.editHero(equipe.id,modifiedEquipe).subscribe(()=>{
-//       let test = this.heroes.find(hero$=>hero$.id==modifiedHero.id) //hero$ crée  une nouvelle variable
-//       if(test !== undefined){
-//         test.name = modifiedHero.name
-//       }
-//     })
-//   }
+  onDelete(equipeId: number) {
+    this.equipe = {
+      id: equipeId,
+      nom: this.equipe?.nom,
+    };
+    this.equipeService.deleteEquipe(this.sportId, equipeId).subscribe(() => {
+      this.equipes = this.equipes.filter(
+        (selectEquipe) => selectEquipe !== this.equipe
+      );
+    });
+  }
 
 }

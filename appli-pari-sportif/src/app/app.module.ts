@@ -33,6 +33,7 @@ import { AdminCreationComponent } from './admin-creation/admin-creation.componen
 import { AfficherAllUsersComponent } from './afficher-all-users/afficher-all-users.component';
 import { AllMatchesComponent } from './parier/all-matches/all-matches.component';
 import { EquipeComponent } from './equipe/equipe.component';
+import { BackgroundImageComponent } from './background-image/background-image.component';
 
 
 
@@ -61,6 +62,7 @@ import { EquipeComponent } from './equipe/equipe.component';
      AfficherAllUsersComponent,
      AllMatchesComponent,
      EquipeComponent,
+     BackgroundImageComponent,
 
 
     // LimiteInterfaceComponent
@@ -75,6 +77,6 @@ import { EquipeComponent } from './equipe/equipe.component';
     ReactiveFormsModule,
   ],
   providers: [HttpClientModule, UserService, AuthService, DatePipe ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, BackgroundImageComponent],
 })
 export class AppModule {}
