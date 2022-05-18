@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject,map, Observable, pipe,} from 'rxjs';
+import { BehaviorSubject,map, Observable, of, pipe,} from 'rxjs';
 import Swal from 'sweetalert2';
 import { UtilisateurService } from './utilisateur-service.service';
 import { Utilisateur } from './utilisateur.model';
@@ -36,8 +36,12 @@ export class AuthService {
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         sessionStorage.setItem('user', JSON.stringify(user));
-        this.isLogged=true;
-        this.swalWithBootstrapButtons.fire('', user.identifiant + " Bienvenue à Bet Healthier", 'success');
+        if(user){
+          this.isLogged=true;
+        }
+        else{
+          this.isLogged=false;
+        }
         return user;
     }));
   }

@@ -41,21 +41,22 @@ export class ConnexionComponent {
         this.form.get('motDePasse')?.value
       )
       .subscribe((user: Utilisateur) => {
-        this.swalWithBootstrapButtons.fire('', user.identifiant+ " Bienvenue à Bet Healthier", 'success');
-        if (sessionStorage.getItem('user')) {
-          var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+         // this.swalWithBootstrapButtons.fire('', user.identifiant+ " Bienvenue à Bet Healthier", 'success');
 
-          console.log('entre');
-          this.router.navigate(['utilisateur' + '/' + userInfo?.id]).then(() => {
-            window.location.reload();
-          });
-          console.log('Connecte');
-        } else {
-          this.swalWithBootstrapButtons.fire('', "Les credentiales ne sont pas correct", 'error');
-          console.log('Mauvais identifiant');
-          this.router.navigate(['/connexion']);
-        }
-      });
+         if (sessionStorage.getItem('user')) {
+
+           var userInfo = JSON.parse(sessionStorage.getItem('user') || '{}');
+
+          this.router.navigate(['utilisateur' + '/' + userInfo?.id]);
+          }
+
+      //  else {
+      //      //console.log('Mauvais identifiant');
+      //     //this.router.navigate(['/connexion']);
+
+      //    }
+        }, (error) =>{this.swalWithBootstrapButtons.fire('', "Les identifiants ne sont pas corrects", 'error');}
+    );
   }
 
 
