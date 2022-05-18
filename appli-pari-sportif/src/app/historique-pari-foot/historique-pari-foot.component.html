@@ -9,7 +9,7 @@
 					Historique des paris sportifs sur le football</span>
 			</div>
 
-			<button type="submit" class="btn btn-outline" style="color:rgb(182, 237, 62); border-color:rgb(182, 237, 62)" (click)="voirParis(utilisateur.id)">Voir mes paris</button>
+			<button type="submit" class="btn btn-outline" style="color:rgb(182, 237, 62); border-color:rgb(182, 237, 62)" (click)="voirParis()">Voir mes paris</button>
 		<div id="lesParis" *ngIf="lesParis">	
 	<div class="card mt-3  mt-2" style="border-color:rgb(182, 237, 62)"  *ngFor="let p of listPari">
 				<div class="card-body" >
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 
-			<div class="card mt-3  mt-2" style="border-color:rgb(182, 237, 62)" >
+			<!-- <div class="card mt-3  mt-2" style="border-color:rgb(182, 237, 62)" >
 				<div class="card-body " >
 					<form>
 						<div class="form-connection p-2">
@@ -69,7 +69,7 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> -->
 
 			<nav>
 				<ul class="pagination pagination-sm justify-content-center">
