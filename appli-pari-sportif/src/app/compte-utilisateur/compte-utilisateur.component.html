@@ -79,11 +79,11 @@
           <div class="form-connection">
             <label for="confirmationNouvelMdp" style="color:rgb(255, 207, 0)">Confirmation du nouveau
               mot de passe: </label> <input type="password" class="form-control"
-               placeholder="Mon nouveau mot de passe" formControlName='confirmeMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.confirmMotDePasse.errors }">
+               placeholder="Mon nouveau mot de passe" formControlName='confirmeMotDePasse' placeholder="Mon nouveau mot de passe" [ngClass]="{ 'is-invalid': submitted && f.confirmMotDePasse?.errors }">
 
-          
+
             </div>
-            <div class="form-error text-danger" *ngIf="motDePasseForm.hasError('notSame') && f.confirmeMotDePasse.dirty"> Le mot de passe de confirmation ne correspond pas avec le nouveau mot de passe! </div>
+            <div class="form-error text-danger" *ngIf="motDePasseForm?.hasError('notSame') && f.confirmeMotDePasse.dirty"> Le mot de passe de confirmation ne correspond pas avec le nouveau mot de passe! </div>
           <div class="card-footer d-flex justify-content-end">
           <div class="btn-group btn-group-lg ">
             <button type="submit"

@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { Limite } from '../limite';
+import { LimiteService } from '../limite.service';
+
 import Swal from 'sweetalert2';
+
 import { Utilisateur } from '../utilisateur.model';
 import { UserService } from '../utilisateur.service';
 import { reservedNameValidator } from './reserved-name.directive';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-inscription',
@@ -17,12 +19,15 @@ import { reservedNameValidator } from './reserved-name.directive';
 })
 export class InscriptionComponent {
   user!: Utilisateur;
+  limite!: Limite;
 
   constructor(
     // private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private limiteService: LimiteService,
+    private datePipe: DatePipe
   ) {}
   loginForm = this.builder.group({
     identifiant: ['', Validators.required],
@@ -36,6 +41,8 @@ export class InscriptionComponent {
     motDePasse: ['', [Validators.required, Validators.minLength(8)]],
     profil: ['', Validators.required],
     salaire: [''],
+    valeur: [''],
+    duree: [''],
   });
 
   swalWithBootstrapButtons = Swal.mixin({
@@ -57,13 +64,27 @@ export class InscriptionComponent {
       montantTotalPerdu: 0,
       salaire: this.loginForm.get('salaire')?.value,
       montantDisponible: 0,
-
     };
-    this.userService
-      .createUtilisateur(this.user)
-      .subscribe((utilisateur) => this.gotoUserList());
 
-      this.swalWithBootstrapButtons.fire('', this.user.identifiant + " Soit bienvenue à Bet Healthier", 'success');
+
+    this.userService.createUtilisateur(this.user).subscribe((data) => {
+      this.user = data;
+      this.limite = {
+        valeur: this.loginForm.get('valeur')?.value,
+        duree: this.datePipe.transform(
+          this.loginForm.get('duree')?.value,
+          'dd/MM/yyyy'
+        )!,
+        utilisateurId: this.user.id,
+      };
+
+      this.limiteService.createLimite(this.limite).subscribe((data) => {
+        this.limite = data;
+      });
+    });
+    this.gotoUserList();
+     this.swalWithBootstrapButtons.fire('', this.user.identifiant + " Soit bienvenue à Bet Healthier", 'success');
+
   }
 
   gotoUserList() {

@@ -4,6 +4,7 @@ import { Utilisateur } from './utilisateur.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Limite } from './limite';
 
 
 @Injectable()
@@ -28,5 +29,13 @@ export class UserService {
   public createUtilisateur(user: Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(this.utilisateursUrl, user);
   }
+
+  createLimite(limite: Limite) {
+    return this.http.post<Limite>(
+      this.utilisateursUrl + '/' + limite.utilisateurId + '/limite',
+      limite
+    );
+  }
+
 
 }

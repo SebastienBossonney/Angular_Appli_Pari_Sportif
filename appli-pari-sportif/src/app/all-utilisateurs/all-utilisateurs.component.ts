@@ -26,7 +26,7 @@ export class AllUtilisateursComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUtilisateur();
-    this.route.queryParamMap.subscribe(params=>{console.log(params.get('sortOrder'));
+    this.route.queryParamMap.subscribe(params=>{params.get('sortOrder');
       })
     this.filteredUtilisateur$ = this.identifiant.valueChanges.pipe(
       map(identifiant=> this.utilisateurs.filter(utilisateur => utilisateur.identifiant.startsWith(identifiant)))

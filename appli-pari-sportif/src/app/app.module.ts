@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
-import { UtilisateurListComponent } from './utilisateur-list/utilisateur-list.component';
 import { MotDePasseOublieComponent } from './mot-de-passe-oublie/mot-de-passe-oublie.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DonneesPariComponent } from './donnees-pari/donnees-pari.component';
@@ -45,7 +44,6 @@ import { BackgroundImageComponent } from './background-image/background-image.co
     HeaderComponent,
     ConnexionComponent,
     InscriptionComponent,
-    UtilisateurListComponent,
     MotDePasseOublieComponent,
     PageNotFoundComponent,
     DonneesPariComponent,

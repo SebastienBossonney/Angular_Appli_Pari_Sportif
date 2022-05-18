@@ -85,6 +85,7 @@
             name="equipeSelect1"
             class="form-select"
             (click)="loadEquipes(sportSelect)"
+            (click)="getEquipe1(sportSelect, equipeSelect1)"
           >
             <option disable hidden [value]="selectDefaultValue">--</option>
             <option *ngFor="let e1 of equipes" value="{{ e1.id }}">
@@ -99,6 +100,7 @@
             id="equipeSelect2"
             name="equipeSelect2"
             class="form-select"
+            (click)="getEquipe2(sportSelect, equipeSelect2)"
           >
             <option disable hidden [value]="selectDefaultValue">--</option>
             <option *ngFor="let e2 of equipes" value="{{ e2.id }}">
@@ -163,6 +165,77 @@
           </button>
         </form>
       </div>
+      <!-- Creation d'une cote  -->
+      <div><label for="match">Creation des cotes : </label></div>
+      <div>
+        <select
+          [(ngModel)]="sportSelect"
+          id="sportSelect"
+          name="sportSelect"
+          class="form-select"
+          (click)="loadMatchs(sportSelect)"
+        >
+          <option disable hidden [value]="selectDefaultValue">--</option>
+          <option *ngFor="let s of sports" value="{{ s.id }}">
+            {{ s.nomSport }}
+          </option>
+        </select>
+      </div>
+      <label for="matchSelectCH">Matches </label>
+      <select
+        [(ngModel)]="matchSelectCH"
+        id="matchSelectCH"
+        name="matchSelectCH"
+        class="form-select"
+        (ngModelChange)="onChange($event)"
+
+      >
+        <option disable hidden [value]="selectDefaultValue">--</option>
+        <option *ngFor="let m of matchs" [ngValue]="m">
+          {{ m.equipes[0].nom }} vs {{ m.equipes[1].nom }} le
+          {{ m.dateMatch }} at {{ m.heureMatch }}
+        </option>
+      </select>
+
+      <form [formGroup]="creationCotes">
+        <label> Saisir la cote en cas de VICTOIRE  </label>
+        <input
+          type="text"
+          class="form-control"
+          id="valeurE1"
+          name="valeurE1"
+          formControlName="valeurE1"
+          placeholder="Enter cote"
+          required
+        />
+         <label> Saisir la cote en cas de défaite </label>
+      <input
+        type="text"
+        class="form-control"
+        id="valeurE2"
+        name="valeurE2"
+        formControlName="valeurE2"
+        placeholder="Enter cote"
+        required
+      />
+      <label> Saisir la cote en cas de match nul </label>
+    <input
+      type="text"
+      class="form-control"
+      id="valeurMN"
+      name="valeurE1"
+      formControlName="valeurMN"
+      placeholder="Enter cote"
+      required
+    />
+        <button
+          type="button"
+          class="btn btn-info"
+          [disabled]="!creationCotes.valid"
+          (click)="createCote(matchSelectCH.id)"
+        > Validez cote match
+        </button>
+        </form>
     </div>
   </div>
 </div>

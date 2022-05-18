@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Equipe } from '../equipe-interface/equipe-interface.component';
+import { Cote } from '../parier/cote';
 import { Match } from '../parier/match';
 import { Sport } from '../sport';
 
@@ -10,9 +11,11 @@ import { Sport } from '../sport';
 })
 export class AdminCreationService {
   sportUrl: string;
+  matchUrl:string;
 
   constructor(private http: HttpClient) {
     this.sportUrl = 'http://localhost:8080/sports';
+    this.matchUrl = 'http://localhost:8080/matchs';
   }
 
   public getSports(): Observable<Sport[]> {
@@ -50,4 +53,16 @@ export class AdminCreationService {
       match
     );
   }
+public getMatchs( sportSelected: number | undefined):Observable<Match[]>{
+  return this.http.get<Match[]>(
+    this.sportUrl + '/' + sportSelected + '/matchs-all');
+}
+
+createCote(cotes:Cote[],matchId:number|undefined):Observable<Cote[]>{
+  return this.http.post<Cote[]>(
+    this.matchUrl + '/' + matchId + '/cotesList',cotes );
+}
+
+
+
 }

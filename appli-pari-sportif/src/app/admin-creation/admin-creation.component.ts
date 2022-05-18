@@ -10,6 +10,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Equipe } from '../equipe-interface/equipe-interface.component';
 import { EquipeService } from '../equipe.service';
+import { Cote } from '../parier/cote';
 import { Match } from '../parier/match';
 import { MatchService } from '../parier/match.service';
 import { PariService } from '../parier/pari.service';
@@ -34,10 +35,11 @@ export class AdminCreationComponent implements OnInit {
   matchSelected: boolean = false;
   match!: Match;
   matchSelectCH!: Match;
-  today: string;
-  heure: string;
   equipes!: Equipe[];
-
+  coteE1!: Cote;
+  coteE2!: Cote;
+  coteMN!: Cote;
+  cotes!: Cote[];
   equipeSelect1!: number;
   equipeSelect2!: number;
 
@@ -50,10 +52,7 @@ export class AdminCreationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
     private pariService: PariService
-  ) {
-    this.today = this.datePipe.transform(new Date(), 'dd/MM/yyyy')!;
-    this.heure = this.datePipe.transform(new Date(), 'HH:mm')!;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.adminCreationService.getSports().subscribe((data: Sport[]) => {
@@ -78,6 +77,12 @@ export class AdminCreationComponent implements OnInit {
     pays: ['', Validators.required],
   });
 
+  creationCotes = this.builder.group({
+    valeurE1: ['', Validators.required],
+    valeurE2: ['', Validators.required],
+    valeurMN: ['', Validators.required],
+  });
+
   get nameSport(): AbstractControl {
     return this.creationSport.controls['nameSport'];
   }
@@ -97,6 +102,12 @@ export class AdminCreationComponent implements OnInit {
     return this.creationSport.controls['ville'];
   }
   get pays(): AbstractControl {
+    return this.creationSport.controls['pays'];
+  }
+  get statut(): AbstractControl {
+    return this.creationSport.controls['pays'];
+  }
+  get valeur(): AbstractControl {
     return this.creationSport.controls['pays'];
   }
 
@@ -149,6 +160,7 @@ export class AdminCreationComponent implements OnInit {
       });
   }
 
+
   // getEquipes( sportSelected: number | undefined,equipeSelected1 : number | undefined) {
   //   this.adminCreationService
   //   .getEquipeById(sportSelected,equipeSelected1)
@@ -158,6 +170,7 @@ export class AdminCreationComponent implements OnInit {
   //   });
   //   console.log(this.equipe1);
   // }
+
 
   getEquipe1(sportSelected: number | undefined, equipeId: number | undefined) {
 
@@ -185,30 +198,35 @@ export class AdminCreationComponent implements OnInit {
     equipeSelected1: number | undefined,
     equipeSelected2: number | undefined
   ) {
-    this.adminCreationService
-      .getEquipeById(sportSelected, equipeSelected1)
-      .subscribe((equipe: Equipe) => {
-        this.equipe1 = equipe;
-        console.log(this.equipe1.nom);
-      });
-    this.adminCreationService
-      .getEquipeById(sportSelected, equipeSelected2)
-      .subscribe((equipe: Equipe) => {
-        this.equipe2 = equipe;
-        console.log(this.equipe2.nom);
-      });
+    // this.adminCreationService
+    //   .getEquipeById(sportSelected, equipeSelected1)
+    //   .subscribe((equipe: Equipe) => {
+    //     this.equipe1 = equipe;
+    //     console.log(this.equipe1.nom);
+    //   });
+    // this.adminCreationService
+    //   .getEquipeById(sportSelected, equipeSelected2)
+    //   .subscribe((equipe: Equipe) => {
+    //     this.equipe2 = equipe;
+    //     console.log(this.equipe2.nom);
+    //   });
 
-    console.log(
-      'getMatch 1  ' + this.equipe1.id + '       ' + this.equipe1.nom
-    );
-    console.log(
-      'getmatch 2  ' + this.equipe2.id + '       ' + this.equipe2.nom
-    );
+    // console.log(
+    //   'getMatch 1  ' + this.equipe1.id + '       ' + this.equipe1.nom
+    // );
+    // console.log(
+    //   'getmatch 2  ' + this.equipe2.id + '       ' + this.equipe2.nom
+    // );
+
     this.match = {
       id: -1,
       version: 0,
-      dateMatch: this.creationMatch.get('dateMatch')?.value,
+      dateMatch: this.datePipe.transform(
+        this.creationMatch.get('dateMatch')?.value,
+        'dd/MM/yyyy'
+      )!,
       heureMatch: this.creationMatch.get('heureMatch')?.value,
+
       lieu: this.creationMatch.get('lieu')?.value,
       ville: this.creationMatch.get('ville')?.value,
       pays: this.creationMatch.get('pays')?.value,
@@ -217,7 +235,6 @@ export class AdminCreationComponent implements OnInit {
         { id: this.equipe2.id, nom: this.equipe2.nom },
       ],
     };
-    console.log(this.match);
     this.adminCreationService
       .createMatch(this.match, sportSelected)
       .subscribe((match) => this.samePage());
@@ -230,4 +247,52 @@ export class AdminCreationComponent implements OnInit {
   samePage() {
     this.router.navigate(['/creationSportEquipeMatch']);
   }
+
+  loadMatchs(sportSelected: number | undefined) {
+    this.adminCreationService.getMatchs(sportSelected).subscribe((data) => {
+      this.matchs = data;
+      if (this.matchs.length == 0) {
+        this.matchSelected = false;
+      }
+    });
+  }
+
+  onChange(event: Event) {
+    if (this.matchSelectCH) {
+      this.equipe1 = this.matchSelectCH.equipes[0];
+      this.equipe2 = this.matchSelectCH.equipes[1];
+      this.matchSelected = true;
+    } else {
+      this.matchSelected = false;
+    }
+  }
+
+  createCote(matchSelected: number | undefined){
+    this.cotes = [ {
+      id: -1,
+      statut: 'GAGNANT',
+      valeur: this.creationCotes.get('valeurE1')?.value,
+    },
+    this.coteE2 = {
+      id: -1,
+      statut: 'PERDANT',
+      valeur: this.creationCotes.get('valeurE2')?.value,
+    },
+    this.coteMN = {
+      id: -1,
+      statut: 'NUL',
+      valeur: this.creationCotes.get('valeurMN')?.value,
+    }
+  ]
+
+  console.log(this.cotes);
+
+
+
+
+    this.adminCreationService
+      .createCote(this.cotes, matchSelected)
+      .subscribe((match) => this.samePage());
+  }
+
 }
