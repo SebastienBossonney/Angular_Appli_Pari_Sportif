@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Utilisateur } from '../donnees-utilisateur/utilisateur';
+import { Pari } from '../parier/pari';
+import { PariService } from '../parier/pari.service';
+import { UtilisateurService } from '../utilisateur-service.service';
 
 @Component({
   selector: 'app-historique-pari-rugby',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriquePariRugbyComponent implements OnInit {
 
-  constructor() { }
+user!: Utilisateur;
+  listPari!: Pari[];
+  lesParis: boolean=false;
+  utilisateurId!: number;
+  
+  constructor(private pariService: PariService, private utilisateurService: UtilisateurService) { }
 
   ngOnInit(): void {
+  const user =  JSON.parse(sessionStorage.getItem("user")!);
+
+    this.pariService.getPariByUtilisateur(user.id).subscribe(data => {this.listPari = data;
+    console.log("je suis dedans");
+    console.log(this.listPari.length);});
   }
 
+voirParis(){
+
+    if (this.lesParis) {
+      this.lesParis = false;
+    } else {
+      this.lesParis = true;
+    }
+
+  }
 }
