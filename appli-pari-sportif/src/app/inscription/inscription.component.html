@@ -97,6 +97,27 @@
             Sans Risque
           </label>
         </div>
+        <div>
+          <label for="valeur">Limite :</label>
+          <input
+            type="number"
+            class="form-control"
+            id="valeur"
+            name="valeur"
+            placeholder="Entrer votre limite a ne pas dépasser"
+            formControlName="valeur"
+            required/>
+
+            <label for="duree">Date de la limite : </label>
+            <input
+              type="date"
+              class="form-control"
+              id="duree"
+              name="duree"
+              formControlName="duree"
+              required
+            />
+          </div>
         <div class="card-footer d-flex justify-content-center">
           <div class="btn-group btn-group-lg">
             <button
